@@ -1,0 +1,1434 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>lab2023.com</title>
+  <subtitle>lab2023 official blog</subtitle>
+  <id>http://lab2023.com/</id>
+  <link href="http://lab2023.com/"/>
+  <link href="http://lab2023.com/feed.xml" rel="self"/>
+  <updated>2015-11-24T02:00:00+02:00</updated>
+  <entry>
+    <title>Popüler front-end araçları</title>
+    <link rel="alternate" href="http://lab2023.com/populer-front-end-araclari.html"/>
+    <id>http://lab2023.com/populer-front-end-araclari.html</id>
+    <published>2015-11-24T02:00:00+02:00</published>
+    <updated>2015-11-24T23:40:28+02:00</updated>
+    <author>
+      <name>lab2023</name>
+    </author>
+    <content type="html">&lt;p&gt;Teknolojinin geldiği konum ve ulaşılabilirliğinin artmasıyla web teknolojileri hayatımızda farklı bir noktaya yükseldi. Genel anlamda gelişen teknolojide önyüz kodlayıcıları için faydalı bazı araçları tanıtacağım.&lt;/p&gt;
+
+&lt;h3 id="bower"&gt;Bower&lt;/h3&gt;
+
+&lt;p&gt;&lt;img alt="bower" src="assets/images/articles/25-09-08-tools-for-front-end/bower.jpg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Bower bir front-end kütüphanesidir. Diğerlerinden ayıran özelliği ise projemizde kullanacağımız paketi kurduğumuzda bu paketin çalışması için gerekli olan diğer paketleri de kurması.&lt;/p&gt;
+
+&lt;p&gt;Mesela bootstrap’ı indirdiğimizde jquery’ide indiriyor.&lt;/p&gt;
+
+&lt;h3 id="kurulumu:"&gt;Kurulumu:&lt;/h3&gt;
+
+&lt;p&gt;Npm kullanarak kuracağız. Bower paket yöneticisini kullanabilmemiz için bilgisayarımızda &lt;a href="https://nodejs.org/en/"&gt;nodejs&lt;/a&gt; ve &lt;a href="https://git-scm.com/"&gt;git&lt;/a&gt;’in kurulu olması gerekiyor.&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;npm install -g bower
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="paket-kurulumu:"&gt;Paket Kurulumu:&lt;/h3&gt;
+
+&lt;p&gt;Şimdi binlerce paket içerisinden istediğimizi kullanabiliriz.&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;bower install bootstrap
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Çıktısı:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="bower" src="assets/images/articles/25-09-08-tools-for-front-end/bower-bootstrap.jpg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Kulanmak istediğimiz paketin tam adını, github proje linkini, proje linkini ya da github proje uzantısını yazarak kurabiliriz.&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;bower install twbs/bootstrap
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;bower install git://github.com/twbs/bootstrap
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;bower install http://example.com/script.js
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="init"&gt;init&lt;/h3&gt;
+
+&lt;p&gt;Bower’ın bir diğer güzel özelliği ise projemizde kullandıgımız paketleri&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;bower init
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;komutu ile json dosyası olarak saklaması ve dosya sayesinde aynı paketleri baska projelerde de kullanabilmesi. Bu sayede farklı bir projede yine aynı paketleri kullanacaksak yaptığımız işlem sayısını azaltmıs oluyoruz.&lt;/p&gt;
+
+&lt;p&gt;Oluşturduğumuz bu bower.json dosyasını kullanmak istediğimiz projenin dizinine ekleyip&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;bower install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;kodunu çalıştırmamız yeterli oluyor.&lt;/p&gt;
+
+&lt;p&gt;Diyelim ki bower init komutunu çalıştırdıktan sonra projeye yeni paketler dahil ettik ve bunlarıda .json dosyamıza eklemek istiyoruz. Bu işlemide&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;bower install paket-adi --save
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ya da&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;bower install paket-adi -s
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;komutu ile yapabiliyoruz.&lt;/p&gt;
+
+&lt;h3 id="list"&gt;list&lt;/h3&gt;
+
+&lt;p&gt;Projenizde kullandığınız paketleri&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;bower list
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;komutuyla konsolda listeyebilirsiniz.&lt;/p&gt;
+
+&lt;h3 id="search"&gt;search&lt;/h3&gt;
+
+&lt;p&gt;Aradığınız paketin adıyla arama yaptırabilirsiniz.&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;bower search paket-adi
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Çıktısı:
+&lt;img alt="bower" src="assets/images/articles/25-09-08-tools-for-front-end/bower-search.jpg" /&gt;&lt;/p&gt;
+
+&lt;h3 id="update"&gt;update&lt;/h3&gt;
+
+&lt;p&gt;Kurduğumuz paketleri güncellemek istersek&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;bower update
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;komutu ile kurulu bütün paketleri,&lt;/p&gt;
+
+&lt;p&gt;çıktısı:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="bower" src="assets/images/articles/25-09-08-tools-for-front-end/bower-update.jpg" /&gt;&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;bower update paket-adi
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ile de sadece güncellemek istediğimiz paketi güncelletebiliyoruz.&lt;/p&gt;
+
+&lt;p&gt;çıktısı:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="bower" src="assets/images/articles/25-09-08-tools-for-front-end/bower-update-name.jpg" /&gt;&lt;/p&gt;
+
+&lt;h3 id="uninstall"&gt;uninstall&lt;/h3&gt;
+
+&lt;p&gt;Kurduğumuz paketi projeden kaldırmak istersek,&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;bower uninstall paket-adi
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;komutunu kullanıyoruz, json dosyasından da kaldırmak için &amp;ndash;save komutunu eklememiz gerekiyor.&lt;/p&gt;
+
+&lt;p&gt;Bower’ın özellikleri tabii ki bu kadar değil. &lt;a href="http://bower.io/"&gt;www.bower.io&lt;/a&gt; adresinden bütün detaylara ulaşabilirsiniz.&lt;/p&gt;
+
+&lt;h3 id="gulp"&gt;Gulp&lt;/h3&gt;
+
+&lt;p&gt;&lt;img alt="gulp" src="assets/images/articles/25-09-08-tools-for-front-end/gulp.jpg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Bu araç sayesinde projemizin rutin işlerini otomatize edebiliyoruz. Hepimiz web sayfasını yayına almadan önce bazı bazı işlemleri tekrar tekrar yapıyoruz. Kullandığımız fotoğrafların boyutlarını değiştirmek, css dosyamızı küçültmek, yazdığımız js’leri tek dosya haline getirmek gibi. Bu ve bunlar gibi rutin işlerimizi gulp sayesinde otomatize edebiliriz.&lt;/p&gt;
+
+&lt;p&gt;Şimdi ilk olarak gulpjs&amp;#39;i makinemize kuralım. Gulp da bower ve grunt gibi npm’e gereksinim duyuyor. Gulp kullanacağımız modülleri npm veritabanından çekiyor.&lt;/p&gt;
+
+&lt;h3 id="kurulumu:"&gt;Kurulumu:&lt;/h3&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;npm install gulp -g
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Projemize ya da localimize kurduktan sonra gulpfile.js dosyası oluşturup yaptıracağımız görevleri buraya yazıyoruz.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="gulp" src="assets/images/articles/25-09-08-tools-for-front-end/gulp-js.jpg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Verdiğimiz görevler için kurulan plugin ya da paketler ise node_modules/ klasörü altına ekleniyor.&lt;/p&gt;
+
+&lt;p&gt;Sonrasında ise işimize yarayacak paketleri bulup entegre edeceğiz. Bu paketleride istersek &lt;a href="http://gulpjs.com/plugins/"&gt;gulpjs&lt;/a&gt;&amp;lsquo;in sayfasından istersekte &lt;a href="https://www.npmjs.com/"&gt;npmjs&lt;/a&gt;&amp;#39;in sayfasından bulabılırız.&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;
+npm install paket-adi
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;yukarıdakı komut satırıda paketleri kurmaya yarıyor. Paket kurulumundan sonra kurduğumuz paketin parametrelerini gulpfile.js dosyamıza eklememiz gerekiyor.
+Aşağıdaki gulpfile.js dosyasında &lt;a href="https://www.npmjs.com/package/gulp-concat"&gt;gulp-concat&lt;/a&gt;, &lt;a href="https://www.npmjs.com/package/gulp-coffee"&gt;gulp-coffee&lt;/a&gt; ve &lt;a href="https://www.npmjs.com/package/gulp-uglify"&gt;gulp-uglify&lt;/a&gt; eklentileri kullanılmış.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="gulp" src="assets/images/articles/25-09-08-tools-for-front-end/gulp-ext.jpg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Kurduğumuz paketler proje dosyamızın içindeki node_modules dosyasına ekleniyor.&lt;/p&gt;
+
+&lt;p&gt;İstediğimiz paketleri kurduktan ve gulpfile.js dosyasına ekledikten sonra ise komut satırına&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;gulp
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;yazdığımızda bütün görevleri çalıştırıyor.&lt;/p&gt;
+
+&lt;p&gt;Gulpjs için daha detaylı bilgiye &lt;a href="http://gulpjs.com/"&gt;www.gulpjs.com&lt;/a&gt; adresinden ulaşabilirsiniz.&lt;/p&gt;
+
+&lt;h3 id="grunt"&gt;Grunt&lt;/h3&gt;
+
+&lt;p&gt;&lt;img alt="grunt" src="assets/images/articles/25-09-08-tools-for-front-end/grunt.jpeg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Gruntta tıpkı gulpjs gibi bir iş kolaylaştırıcı. Kullandığı modülleri npm veri tabanından çekiyor.&lt;/p&gt;
+
+&lt;h3 id="kurulumu:"&gt;Kurulumu:&lt;/h3&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt; npm install grunt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Grunt için kullanacağımız plug-in ya da modüller içinde&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;npm install paket-adi
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;komutunu kullabiliyoruz.&lt;/p&gt;
+
+&lt;p&gt;Kurduktan sonra node_modules/ klasörü oluşturuyor, bu klasörde kuracağımız paket ve pluginler tutuluyor.&lt;/p&gt;
+
+&lt;p&gt;Şimdi grunt.js dosyası oluşturup görevlerimizi oraya yazacağız. Genel olarak gulpjs&amp;#39;le aynı yapıda. Farklılıkları görev yazma aşamasında ortaya çıkıyor.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="grunt" src="assets/images/articles/25-09-08-tools-for-front-end/grunt-sample.jpeg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Yukarıda kaynağı grunt-project dizininde bulunan sample.js dosyasını add-sample.min.js dosyasına dönüştürecek görev için yazılmış kodlar yer alıyor.&lt;/p&gt;
+
+&lt;p&gt;Kurduğumuz plugin&amp;#39;lerin açıklamaları ve parametreleri github ya da kendi sayfalarında yazıyor.&lt;/p&gt;
+
+&lt;p&gt;Pluginleri &lt;a href="http://gruntjs.com/plugins"&gt;gruntjs&lt;/a&gt;&amp;#39;in sayfasından ya da &lt;a href="https://www.npmjs.com/"&gt;npmjs&lt;/a&gt;&amp;#39;in sayfasından bulup kurabilirsiniz. Kullanabileceğimiz bütün metotlara gruntjs&amp;#39;in &lt;a href="http://gruntjs.com/api/grunt"&gt;API&lt;/a&gt; sayfasından ulaşabilirsiniz.&lt;/p&gt;
+
+&lt;p&gt;Daha detaylı bilgi için  &lt;a href="http://gruntjs.com/"&gt;www.gruntjs.com&lt;/a&gt; adresini inceleyebilirsiniz.&lt;/p&gt;
+
+&lt;h3 id="yeoman"&gt;Yeoman&lt;/h3&gt;
+
+&lt;p&gt;&lt;img alt="yeoman" src="assets/images/articles/25-09-08-tools-for-front-end/yeoman.jpeg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Yeoman npm&amp;#39;i kullanarak sürecimizi hızlandıran bir diğer front-end aracımız. Projemiz için template olusturuyor.&lt;/p&gt;
+
+&lt;p&gt;Bilgisayarımıza kurabilmek için node.js ve git in yüklü olması gerekıyor.&lt;/p&gt;
+
+&lt;h3 id="kurulumu"&gt;Kurulumu&lt;/h3&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;npm install yo
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;komutuyla yükleyebiliyoruz.&lt;/p&gt;
+
+&lt;p&gt;Yeoman gruntjs ve bower araçlarını default olarak projeye dahil ediyor.&lt;/p&gt;
+
+&lt;p&gt;oluşturmak istediğimiz projede kullanacağımız paketleri &lt;a href="http://yeoman.io/generators/"&gt;generators&lt;/a&gt; ya da &lt;a href="https://www.npmjs.com/"&gt;npmjs&lt;/a&gt; sayfasından bulup inceleyebilirsiniz.&lt;/p&gt;
+
+&lt;p&gt;Paket kurulumu için:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;npm install --global paket-adi
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Paketi kurup yo komutunu çalıştırarak ya da&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;yo paket-adi
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;komutunu çalıştırarak template oluşturabiliriz.&lt;/p&gt;
+
+&lt;p&gt;Çalıştırmak için komut satırına:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;yo
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;komutunu yazıyoru.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="yeoman" src="assets/images/articles/25-09-08-tools-for-front-end/yeoman-yo.jpeg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Yukarıda yo komutundan sonra sistemde yüklü template yapılarını secip kullanabileceğimiz gibi install a generator komutunu seçerekte yeni template yükleyebiliyoruz.&lt;/p&gt;
+
+&lt;p&gt;Yukarıda bahsettiğim bütün araçlar paket kurmak için npm&amp;#39;e ihtiyac duyuyor. Bu yuzden plug-in ve paket kurulumları aynı.&lt;/p&gt;
+
+&lt;p&gt;Yeoman ile html5 template’i oluşturmak istiyorsak&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;npm install --global generator-h5bp
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;komutunu kullanarak önce html5 paketini indiriyoruz. Sonrada&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;yp h5bp
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;komutu ile template oluşturuyoruz.&lt;/p&gt;
+
+&lt;p&gt;Detaylı bilgi için  &lt;a href="http://yeoman.io/"&gt;www.yeoman.com&lt;/a&gt; adresini inceleyebilirsiniz.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>What is vagrant and properties of vagrant?</title>
+    <link rel="alternate" href="http://lab2023.com/what_is_vagrant_and_properties_of_vagrant.html"/>
+    <id>http://lab2023.com/what_is_vagrant_and_properties_of_vagrant.html</id>
+    <published>2014-12-25T02:00:00+02:00</published>
+    <updated>2015-11-24T23:26:50+02:00</updated>
+    <author>
+      <name>lab2023</name>
+    </author>
+    <content type="html">&lt;h3 id="properties-of-vagrant"&gt;Properties of Vagrant&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;Vagrant&lt;/code&gt; is a tool which runs your application in a virtual machine, which means
+you can create your project environment in a virtual machine. Thanks to Vagrant, you can clone your local environment in a virtual machine.
+So, when you send your project to &lt;code&gt;server&lt;/code&gt;, you don&amp;rsquo;t see any bugs or errors on your server.
+On the other hand, vagrant is useful while you are working in a team.&lt;/p&gt;
+
+&lt;h3 id="how-to-set-up-vagrant-on-ubuntu-desktop"&gt;How to Set Up Vagrant on Ubuntu Desktop&lt;/h3&gt;
+
+&lt;p&gt;To install and use vagrant, you should follow the steps below respectively.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s look, how to set up and use &lt;code&gt;Vagrant in Ubuntu desktop&lt;/code&gt;,&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Install Vagrant&lt;/li&gt;
+&lt;li&gt;Create Vagrant folders&lt;/li&gt;
+&lt;li&gt;Install precise32 box&lt;/li&gt;
+&lt;li&gt;Set up new virtual machine&lt;/li&gt;
+&lt;li&gt;Install virtual machine configuration&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id="1)-install-vagrant"&gt;1) Install Vagrant&lt;/h3&gt;
+
+&lt;p&gt;Installing vagrant on your Ubuntu desktop is very easy. Open your terminal and write the command below.&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;sudo apt-get install vagrant
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="2)-create-vagrant-folders"&gt;2) Create Vagrant Folders&lt;/h3&gt;
+
+&lt;p&gt;Continue on terminal, write below commands,&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;mkdir Vagrant
+&lt;span class="gp"&gt;$ &lt;/span&gt;mkdir Vagrant/Projects
+&lt;span class="gp"&gt;$ &lt;/span&gt;mkdir Vagrant/Projects/VM_169.x
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="3)-install-precise32-box"&gt;3) Install Precise32 Box&lt;/h3&gt;
+
+&lt;p&gt;Precise32 box is important on ubuntu desktop, because thanks to this box you can modify your virtual machine.&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;Vagrant/Projects/VM_169.x
+&lt;span class="gp"&gt;$ &lt;/span&gt;vagrant box add precise32 http://files.vagrantup.com/precise32.box --provider virtualbox
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;After install, you can check with,&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;vagrant box list
+precise32 &lt;span class="o"&gt;(&lt;/span&gt;virtualbox, 0&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="4)-create-new-virtual-machine"&gt;4) Create New Virtual Machine&lt;/h3&gt;
+
+&lt;p&gt;For create new virtual machine, you should initialize precise32 box,&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;vagrant init precise32
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When you write above command, you get warning about it, this means include &lt;code&gt;Vagrantfile&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id="5)-install-virtual-machine-configuration"&gt;5) Install Virtual Machine configuration&lt;/h3&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;wget https://raw.github.com/saasbook/courseware/master/vm-setup/configure-image-0.10.3.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You should change permission to executable for virtual machine configuration&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;chmod +x configure-image-0.10.3.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Run the virtual machine with &lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;vagrant up
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Connecting with virtual machine&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;vagrant ssh
+Welcome to Ubuntu 12.04 LTS &lt;span class="o"&gt;(&lt;/span&gt;GNU/Linux 3.2.0-23-generic-pae i686&lt;span class="o"&gt;)&lt;/span&gt;
+ &lt;span class="k"&gt;*&lt;/span&gt; Documentation:  https://help.ubuntu.com/
+New release &lt;span class="s1"&gt;'14.04.1 LTS'&lt;/span&gt; available.
+Run &lt;span class="s1"&gt;'do-release-upgrade'&lt;/span&gt; to upgrade to it.
+Welcome to your Vagrant-built virtual machine.
+Last login: Sun Oct 12 09:36:51 2014 from 10.0.2.2
+&lt;span class="gp"&gt;vagrant@precise32:~$ &lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Run virtual machine configuration, &lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;vagrant@precise32:~$ &lt;/span&gt;/vagrant/configure-image-0.10.3.sh
+Enter password to be used &lt;span class="k"&gt;for &lt;/span&gt;sudo commands:
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;you should enter a password for commands above.&lt;/p&gt;
+
+&lt;p&gt;If you finish work on virtual machine, you write below commands for exit or shut down virtual machine&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;vagrant &lt;span class="nb"&gt;suspend&lt;/span&gt;
+&lt;span class="gp"&gt;$ &lt;/span&gt;vagrant resume
+&lt;span class="gp"&gt;$ &lt;/span&gt;vagrant halt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Or if you want to remove all things from virtual machine&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;vagrant destroy
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But for building your project again only the command below is enough.&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;vagrant up
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;When I say &lt;code&gt;Vagrant&lt;/code&gt; is useful for working in a team, look &lt;a href="https://vagrantcloud.com/"&gt;Vagrant Cloud&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;You can create account and share your vagrant environment with anyone with &lt;code&gt;vagrant cloud&lt;/code&gt;.
+After create your account, open your terminal,&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;vagrant login
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Write e-mail or username and password for vagrant cloud, then&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;vagrant share
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For more detail about Vagrant, you can look ;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://docs.vagrantup.com/v2/getting-started/index.html"&gt;Vagrant&lt;/a&gt; &lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/saasbook/courseware/wiki/Setting-Up-Vagrant-Environment-on-Ubuntu-Platform"&gt;Vagrant on Ubuntu&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;or,&lt;/p&gt;
+
+&lt;p&gt;if you want to read same article with details in Turkish, you can read it &lt;a href="http://lab2023.com/vagranta-giris.html"&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;That&amp;rsquo; s all.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Rails 4.2 Kararlı Sürümü Yayınlandı</title>
+    <link rel="alternate" href="http://lab2023.com/rails-4-2-kararli-surum-yayinlandi.html"/>
+    <id>http://lab2023.com/rails-4-2-kararli-surum-yayinlandi.html</id>
+    <published>2014-12-22T02:00:00+02:00</published>
+    <updated>2015-11-24T23:26:50+02:00</updated>
+    <author>
+      <name>lab2023</name>
+    </author>
+    <content type="html">&lt;p&gt;Popüler Ruby web framework’ü Rails’in 4.2 sürümü, kararlı olarak yayınlandı. Sürüm, son betasından bu yana 1600’den fazla commit ile güncellendi ve kullanıma hazır hale getirildi. Şimdi sürümdeki önemli özelliklere tekrardan göz atalım:&lt;/p&gt;
+
+&lt;h3 id="active-job-ve-action-mailer-#deliver_later"&gt;Active Job ve Action Mailer #deliver_later&lt;/h3&gt;
+
+&lt;p&gt;En önemli yeniliklerden birisi olan Active Job, arkaplan iş yöneticileri için bir bağdaştırıcı görevi görüyor. Bu sayede jenerik bir biçimde yazdığınız işler kuyruğa atılıyor ve tüm yöneticiler üzerinde çalıştırılabiliyor. ActiveRecord ile ilişkisel veritabanlarının çalışma tarzına benzer bir mantıkla çalıştığı söylenebilir.&lt;/p&gt;
+
+&lt;p&gt;Bunun yanında Action Mailer sistemine eklenen yeni bir özellik sayesinde, e-postalar gecikmeli olarak gönderilebiliyor. “deliver_later” metodu ile gerçekleştirilen bu eylem, gönderilecek e-postayı iş kuyruğuna ekliyor ve belirlenen zamanda gönderilmesini sağlıyor.&lt;/p&gt;
+
+&lt;h3 id="global-id"&gt;Global ID&lt;/h3&gt;
+
+&lt;p&gt;Bu kütüphane ile ActiveRecord üstünden çektiğiniz kayıtları anında serileştirebiliyorsunuz. Tipik nesne numaraları yerine, serileştirilmiş bir kimlik kullanabilmenizi sağlıyor. Örnek olarak:&lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;person_gid&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;Person&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nf"&gt;to_global_id&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;person_gid&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;to_s&lt;/span&gt;
+&lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="s2"&gt;"gid://app/Person/1"&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="adequate-record"&gt;Adequate Record&lt;/h3&gt;
+
+&lt;p&gt;Bu kütüphane sayesinde Active Record üstünden sıklıkla yapılan sorgulamalar kısmi olarak önbelleğe alınıyor ve gerektiğinde tekrardan kullanılarak hız kazanımı sağlanıyor. Örnek kıyaslamalar için şuraya gözatabilirsiniz:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://tenderlovemaking.com/2014/02/19/adequaterecord-pro-like-activerecord.html"&gt;http://tenderlovemaking.com/2014/02/19/adequaterecord-pro-like-activerecord.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id="web-console"&gt;Web Console&lt;/h3&gt;
+
+&lt;p&gt;Google Summer of Code ile gelen bu proje sayesinde, sayfa bir istisna/hata oluşturduğu zaman anında bir konsol açılıyor. Bu konsoldan o anda geçerli olan işlemleri ve değişkenleri denetleyebilmeniz sağlanıyor. Buna ek olarak, sadece hata oluştuğunda değil, geliştirme sürecinde iken konsolu sayfanın altında sürekli açık bırakabiliyorsunuz.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="webconsole" src="assets/images/articles/2014-12-22-rails-4-2-kararli-surum-yayinlandi/webconsole.gif" /&gt;&lt;/p&gt;
+
+&lt;h3 id="foreign-key"&gt;Foreign Key&lt;/h3&gt;
+
+&lt;p&gt;Bu özellikle beraber, Rails uzun zamandan sonra Active Record modellerinde dış anahtarları (foreign key) desteklemeye başlıyor. Active Record migration’ları için şimdilik “add_foreign_key” ve “remove_foreign_key” metotları eklenmiş durumda. Önemli bir ayrıntı olarak, dış anahtar özelliğinin şu anda sadece MySQL ve PostgreSQL bağdaştırıcılarını desteklediğini belirtmekte fayda var.&lt;/p&gt;
+
+&lt;p&gt;Bunun dışındaki eklenenler, çıkartılanlar, önerilmeyen (deprecated) yapılar ve hata yamaları ile ilgili detaylı bilgiler için:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://guides.rubyonrails.org/4_2_release_notes.html"&gt;http://guides.rubyonrails.org/4_2_release_notes.html&lt;/a&gt;&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>How we created Bulutfon animation</title>
+    <link rel="alternate" href="http://lab2023.com/how-we-created-bulutfon-animation.html"/>
+    <id>http://lab2023.com/how-we-created-bulutfon-animation.html</id>
+    <published>2014-12-17T02:00:00+02:00</published>
+    <updated>2015-11-24T23:26:50+02:00</updated>
+    <author>
+      <name>lab2023</name>
+    </author>
+    <content type="html">&lt;p&gt;In this article I will try to give a short explanation about creating an animation.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;step is creating a story&amp;hellip;&lt;/li&gt;
+&lt;li&gt;step is creating a main character&amp;hellip;&lt;/li&gt;
+&lt;li&gt;step is creating a storyboard&amp;hellip;&lt;/li&gt;
+&lt;li&gt;step is creating main character as a marionette, with bones in an animation program&amp;hellip;&lt;/li&gt;
+&lt;li&gt;step is creating all the objects that we will need in the animation&amp;hellip;&lt;/li&gt;
+&lt;li&gt;step is making an animation&amp;hellip;&lt;/li&gt;
+&lt;li&gt;step is making sound effects&amp;hellip;&lt;/li&gt;
+&lt;li&gt;step is making a background music&amp;hellip;&lt;/li&gt;
+&lt;li&gt;step is applying the merging process&amp;hellip;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id="1.-step-is-creating-a-story..."&gt;1. step is creating a story&amp;hellip;&lt;/h3&gt;
+
+&lt;p&gt;This story is telling us about Bulutfon products, explaining all the opportunities that Bulutfon gives to customers, offering very comfortable services, to make business foundation easier.&lt;/p&gt;
+
+&lt;h3 id="2.-step-is-creating-a-main-character..."&gt;2. step is creating a main character&amp;hellip;&lt;/h3&gt;
+
+&lt;p&gt;After creating the story the next important step is creating a main character. We created this personage with the idea in mind, that we need a young businessman, very sincere, smart, energetic, with the nice smile and kind eyes. We made him very close to the reality, with human proportions.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="main character" src="assets/images/articles/2014-12-17-how-we-created-bulutfon-animation/character.jpg" /&gt;&lt;/p&gt;
+
+&lt;h3 id="3.-step-is-creating-a-storyboard..."&gt;3. step is creating a storyboard&amp;hellip;&lt;/h3&gt;
+
+&lt;p&gt;After knowing that the story and with main character ready, we went to the next, very important step, which is creating the storyboard. We made the storyboard without too much detail, just put the main idea of each sentence of the story. We made it like a short animated description to every single scene, to make people understand our product and the mission of our product. We put a lot of notes in the margins (arrows, which show us from where to where our character is moving and also a lot of comments for the each scene, to help us not to lose the idea of the scene). The result is:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="storyboard" src="assets/images/articles/2014-12-17-how-we-created-bulutfon-animation/storyboard.jpg" /&gt;&lt;/p&gt;
+
+&lt;h3 id="4.-step-is-creating-main-character-as-a-marionette,-with-bones-in-an-animation-program..."&gt;4. step is creating main character as a marionette, with bones in an animation program&amp;hellip;&lt;/h3&gt;
+
+&lt;p&gt;After storyboard is totally ready with all the corrections that were made, we went to the next step, which is creating the main character as a marionette. We created him with bones and all functions, that we will need, to animate him. For example, we drew several types of mouth and eyes, to give him opportunity to speak and blink and change his eyes&amp;rsquo; expression, from normal to surprised or from normal to sad etc. Also as a cartoon’s character he can be squashed and stretched, he can move his legs and hands, his head, his eyebrows, even his tie can be animated.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="character with bones" src="assets/images/articles/2014-12-17-how-we-created-bulutfon-animation/bones.JPG" /&gt;&lt;/p&gt;
+
+&lt;h3 id="5.-step-is-creating-all-the-objects-that-we-will-need-in-the-animation..."&gt;5. step is creating all the objects that we will need in the animation&amp;hellip;&lt;/h3&gt;
+
+&lt;p&gt;We prepared all the elements, that we will use in our animation. For some elements we also created bones, because we will animate them also. We chose main colors very open, like yellow, green, red, blue, which are mixed with very soft grey.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="character with bones" src="assets/images/articles/2014-12-17-how-we-created-bulutfon-animation/objects.JPG" /&gt;&lt;/p&gt;
+
+&lt;h3 id="6.-step-is-making-an-animation..."&gt;6. step is making an animation&amp;hellip;&lt;/h3&gt;
+
+&lt;p&gt;The most important step is making animation of characters by manipulating bones. We tried to make them plastic, comic, very lifeful and adorable. For making animation more realistic we were using rules, that Walt Disney developed.
+Here is a very short review with the main principles of making animation:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://www.youtube.com/watch?v=l-KtwW6eptM"&gt;Main principles of making animation &lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Every single scene we rendered and saved in a folder as a separate file.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="character with bones" src="assets/images/articles/2014-12-17-how-we-created-bulutfon-animation/timeline.jpg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;This is what we got as a result:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="character with bones" src="assets/images/articles/2014-12-17-how-we-created-bulutfon-animation/story.jpg" /&gt;&lt;/p&gt;
+
+&lt;h3 id="7.-step-is-making-sound-effects..."&gt;7. step is making sound effects&amp;hellip;&lt;/h3&gt;
+
+&lt;p&gt;We were using a lot of sound effects in the animation. It is necessary. It gives accents into a movement, it gives weight to a falling object, it gives weight to walking men etc.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="character with bones" width="683" height="832" src="assets/images/articles/2014-12-17-how-we-created-bulutfon-animation/voice.jpg" /&gt;&lt;/p&gt;
+
+&lt;h3 id="8.-step-is-making-background-music..."&gt;8. step is making background music&amp;hellip;&lt;/h3&gt;
+
+&lt;p&gt;Background music is just like an accompaniment to the animation. The whole mood depends on the background music. The animation rhythm and music rhythm have to work synchronously to make all scene finished. We chose energetic and very funny music according the rhythm of the animation and the nature of the main character. So all together they work great as a system.&lt;/p&gt;
+
+&lt;h3 id="9.-step-is-applying-the-merging-process..."&gt;9. step is applying the merging process&amp;hellip;&lt;/h3&gt;
+
+&lt;p&gt;When we have background music and when we have all the animation files finished and all sound effects completed, we just need to make a final step, which is merge all of the files to one video file.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="character with bones" width="576" height="796" src="assets/images/articles/2014-12-17-how-we-created-bulutfon-animation/merge.jpg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now after all of the work that have been made, we can see final animation:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://vimeo.com/102756655"&gt;How we created Bulutfon animation&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;hellip;and we have shared to Dribbble&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://dribbble.com/shots/1676198-Bulutfon-Animation"&gt;Bulutfon animation on dribbble&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Thank you for your attention.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Как создавалась анимация, посвященная "Bulutfon"</title>
+    <link rel="alternate" href="http://lab2023.com/how-we-created-bulutfon-animation-russian.html"/>
+    <id>http://lab2023.com/how-we-created-bulutfon-animation-russian.html</id>
+    <published>2014-12-17T02:00:00+02:00</published>
+    <updated>2015-11-24T23:26:50+02:00</updated>
+    <author>
+      <name>lab2023</name>
+    </author>
+    <content type="html">&lt;p&gt;В этой статье я расскажу вам о поэтапном создании рекламного ролика.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;этап – рождение сюжета;&lt;/li&gt;
+&lt;li&gt;этап – моделирование главного персонажа;&lt;/li&gt;
+&lt;li&gt;этап – создание комикса;&lt;/li&gt;
+&lt;li&gt;этап – превращение главного персонажа в марионетку при помощи «костей» в специальной анимационной программе;&lt;/li&gt;
+&lt;li&gt;этап – создание всех объектов, которые будут использованы при анимации;&lt;/li&gt;
+&lt;li&gt;этап – анимирование;&lt;/li&gt;
+&lt;li&gt;этап – озвучивание анимации;&lt;/li&gt;
+&lt;li&gt;этап – подборка музыки для фона;&lt;/li&gt;
+&lt;li&gt;этап – объединение анимации, музыки и озвучки.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id="1-этап-–-рождение-сюжета…"&gt;1 этап – рождение сюжета…&lt;/h3&gt;
+
+&lt;p&gt;История рассказывает нам о компании Bulutfon, обо всех ее существующих продуктах, сервисах и инновационных проектах, позволяющих сделать бизнес-процесс своих клиентов удобнее и проще.&lt;/p&gt;
+
+&lt;h3 id="2-этап-–-моделирование-главного-персонажа…"&gt;2 этап – моделирование главного персонажа…&lt;/h3&gt;
+
+&lt;p&gt;Моделируя главный персонаж, мы хотели, чтобы он получился жизнерадостным, умным, молодым, предприимчивым бизнесменом с обаятельной улыбкой и добрыми глазами. Кроме того, мы сделали его образ, приближенным к реальности, с человеческими пропорциями.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="main character" src="assets/images/articles/2014-12-17-how-we-created-bulutfon-animation/character.jpg" /&gt;&lt;/p&gt;
+
+&lt;h3 id="3-этап-–-создание-комикса…"&gt;3 этап – создание комикса…&lt;/h3&gt;
+
+&lt;p&gt;После того, как история известна и главный персонаж готов, мы перешли к следующему ответственному этапу – созданию комикса. В нём изложена главная идея каждого отдельного предложения компании, краткое анимированное объяснение с целью сделать понятным предназначение того или иного продукта. Наш комикс получился кратким и очень ёмким.&lt;/p&gt;
+
+&lt;p&gt;Для упрощения работы мы использовали примечания – небольшие заметки, объясняющие мелкие детали, как, например, настроение персонажа и т.д., стрелки, чтобы видеть движение персонажа внутри отдельного плана. Вот что у нас получилось:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="storyboard" src="assets/images/articles/2014-12-17-how-we-created-bulutfon-animation/storyboard.jpg" /&gt;&lt;/p&gt;
+
+&lt;h3 id="4-этап-–-превращение-главного-персонажа-в-марионетку-при-помощи-«костей»-в-специальной-анимационной-программе…"&gt;4 этап – превращение главного персонажа в марионетку при помощи «костей» в специальной анимационной программе…&lt;/h3&gt;
+
+&lt;p&gt;После того, как работа над комиксом закончена и сделаны все поправки, мы перешли к следующему этапу – превращению нашего персонажа в марионетку. Мы создали ему «скелет», помогающий управлять героем во время анимации. Наш персонаж может разговаривать, моргать и менять выражение глаз, может удивляться, быть грустным и смеяться. Как всякий мультипликационный герой, он очень пластичен и гибок.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="character with bones" src="assets/images/articles/2014-12-17-how-we-created-bulutfon-animation/bones.JPG" /&gt;&lt;/p&gt;
+
+&lt;h3 id="5-этап-–-создание-всех-объектов,-которые-будут-использованы-при-анимации…"&gt;5 этап – создание всех объектов, которые будут использованы при анимации…&lt;/h3&gt;
+
+&lt;p&gt;Мы подготовили все необходимые объекты, которые использовались в ходе анимирования. Для некоторых элементов мы создали «кости», поскольку они также участвуют в анимации. Мы выбрали очень чистые открытые цвета: желтый, зеленый, красный, голубой, теплый серый.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="character with bones" src="assets/images/articles/2014-12-17-how-we-created-bulutfon-animation/objects.JPG" /&gt;&lt;/p&gt;
+
+&lt;h3 id="6-этап-–-анимирование…"&gt;6 этап – анимирование…&lt;/h3&gt;
+
+&lt;p&gt;В процессе анимирования мы попытались сделать наших персонажей живыми и обаятельными. В этом нам помогли некоторые правила анимации, которые были разработаны У. Диснеем. Вы можете ознакомиться с ними здесь:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://www.youtube.com/watch?v=l-KtwW6eptM"&gt;Главные приципы анимации&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Каждый  план мы рендерили и сохраняли в папку, как отдельный файл.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="character with bones" src="assets/images/articles/2014-12-17-how-we-created-bulutfon-animation/story.jpg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Вот что в результате у нас получилось:&lt;/p&gt;
+
+&lt;h3 id="7-этап-–-озвучивание-анимации…"&gt;7 этап – озвучивание анимации…&lt;/h3&gt;
+
+&lt;p&gt;В нашей анимации мы использовали большое количество различных звуков. Использование звуков позволило нам верно расставить акценты, создать ощущение падающих предметов или звуки шагающего человека и т.д.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="character with bones" width="683" height="832" src="assets/images/articles/2014-12-17-how-we-created-bulutfon-animation/voice.jpg" /&gt;&lt;/p&gt;
+
+&lt;h3 id="8-этап-–-подборка-музыки-для-фона…"&gt;8 этап – подборка музыки для фона…&lt;/h3&gt;
+
+&lt;p&gt;Фоновая музыка – это аккомпанемент, который создает настроение всему мультфильму. Музыкальный ритм и ритм анимации должны работать синхронно. Мы выбрали очень легкую и энергичную песенку, которая перекликается с характером нашего персонажа. В итоге все элементы нашего ролика работают как одна система.&lt;/p&gt;
+
+&lt;h3 id="9-этап-–-объединение-анимации,-музыки-и-озвучки..."&gt;9 этап – объединение анимации, музыки и озвучки&amp;hellip;&lt;/h3&gt;
+
+&lt;p&gt;Теперь, когда анимация выполнена и подобрана музыка, нам осталось сделать завершающий этап – объединить все отдельные элементы анимации в один общий файл – видео файл.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="character with bones" width="576" height="796" src="assets/images/articles/2014-12-17-how-we-created-bulutfon-animation/merge.jpg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;В итоге мы получили великолепный ролик для компании Bulutfon:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://vimeo.com/102756655"&gt;Как создавалась анимация, посвященная &lt;q&gt;Bulutfon&lt;/q&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Вы можете найти нас на Dribbble&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://dribbble.com/shots/1676198-Bulutfon-Animation"&gt;Анимация, посвященная &lt;q&gt;Bulutfon&lt;/q&gt; на Dribbble&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Благодарим за внимание.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Cómo creamos la animación para Bulutfon.</title>
+    <link rel="alternate" href="http://lab2023.com/como-creamos-la-animacion-para-bulutfon.html"/>
+    <id>http://lab2023.com/como-creamos-la-animacion-para-bulutfon.html</id>
+    <published>2014-12-17T02:00:00+02:00</published>
+    <updated>2015-11-24T23:26:50+02:00</updated>
+    <author>
+      <name>lab2023</name>
+    </author>
+    <content type="html">&lt;p&gt;En este artículo trataré de realizar una corta explicación sobre el proceso de creacion de la animación.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;paso es crear la historia&amp;hellip;&lt;/li&gt;
+&lt;li&gt;paso es crear un personaje principal&amp;hellip;&lt;/li&gt;
+&lt;li&gt;paso es crear un storyboard&amp;hellip;&lt;/li&gt;
+&lt;li&gt;paso es crear un personaje principal que funcione a través de huesos en el programa de animación&amp;hellip;&lt;/li&gt;
+&lt;li&gt;paso es crear todos los objetos que necesitaremos en la animación&amp;hellip;&lt;/li&gt;
+&lt;li&gt;paso es realizar la animación&amp;hellip;&lt;/li&gt;
+&lt;li&gt;paso es realizar los efectos de sonido&amp;hellip;&lt;/li&gt;
+&lt;li&gt;paso es realizar la musica de fondo&amp;hellip;&lt;/li&gt;
+&lt;li&gt;paso es aplicar el proceso de montaje&amp;hellip;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id="1.-paso-es-crear-la-historia..."&gt;1. paso es crear la historia&amp;hellip;&lt;/h3&gt;
+
+&lt;p&gt;Esta historia cuenta sobre los productos de Bulutfon, explicando todas las oportunidades que Bulutfon proporciona a sus clientes, ofreciendo cómodos servicios, para hacer el emprendimiento de negocios mucho más facil.&lt;/p&gt;
+
+&lt;h3 id="2.-paso-es-crear-un-personaje-principal..."&gt;2. paso es crear un personaje principal&amp;hellip;&lt;/h3&gt;
+
+&lt;p&gt;Despues de crear la historia lo siguiente mas importante es crear un personaje principal. Creamos este personaje con la idea en la mente de un joven hombre de negocios, muy sincero, energético, con una sonrisa simpático y ojos amables. Lo hicimos muy cercano a la realidad, con proporciones humanas.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="main character" src="assets/images/articles/2014-12-17-how-we-created-bulutfon-animation/character.jpg" /&gt;&lt;/p&gt;
+
+&lt;h3 id="3.-paso-es-crear-un-storyboard..."&gt;3. paso es crear un storyboard&amp;hellip;&lt;/h3&gt;
+
+&lt;p&gt;Despues de tener la historia y el personaje principal listos, fuimos al siguiente paso, uno de los más importantes, crear el story board. El storyboard no tenia muchos detalles, solo plasmamos la idea principal de cada frase de la historia. Lo realizamos como un pequeña descripción de la animación para cada escena, para hacer a las personas entender nuestro producto y la misión de nuestro producto, pusimos muchas notas en las márgenes (flechas que mostraban de donde a donde nuestro personaje debía moverse, asi como tambien muchos comentarios que nos ayudaran a no perder una sola idea), el resultado fue:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="storyboard" src="assets/images/articles/2014-12-17-how-we-created-bulutfon-animation/storyboard.jpg" /&gt;&lt;/p&gt;
+
+&lt;h3 id="4.-paso-es-crear-un-personaje-principal-que-funcione-a-través-de-huesos-en-el-programa-de-animación..."&gt;4. paso es crear un personaje principal que funcione a través de huesos en el programa de animación&amp;hellip;&lt;/h3&gt;
+
+&lt;p&gt;Despues de que el storyboard esta completamente listo con todas las correcciones necesarias, continuamos al siguiente paso, que es crear los huesos del personaje principal. Lo creamos con puntos con todas las funciones necesarias para animarlo. Por ejemplo, dibujamos varios tipos de bocas y ojos, para darle la oportunidad de hablar, parpadear y cambiar la expresión de sus ojos, de normal a sorprendido o tristes, etc. tambien el caracter puedes estirar y aplastar, mover sus piernas, brazos, cabeza, cejas y la corbata.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="character with bones" src="assets/images/articles/2014-12-17-how-we-created-bulutfon-animation/bones.JPG" /&gt;&lt;/p&gt;
+
+&lt;h3 id="5.-paso-es-crear-todos-los-objetos-que-necesitaremos-en-la-animación..."&gt;5. paso es crear todos los objetos que necesitaremos en la animación&amp;hellip;&lt;/h3&gt;
+
+&lt;p&gt;Preparamos todos los elementos que vamos a usar en nuestra animación. Para algunos objetos creamos también huesos para generar animación en ellos. Escogimos los colores principales muy abiertos como por ejemplo amarillo, verde, rojo, azul mezclado con un gris suave.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="character with bones" src="assets/images/articles/2014-12-17-how-we-created-bulutfon-animation/objects.JPG" /&gt;&lt;/p&gt;
+
+&lt;h3 id="6.-paso-es-realizar-la-animación..."&gt;6. paso es realizar la animación&amp;hellip;&lt;/h3&gt;
+
+&lt;p&gt;El paso más importante es realizar la animación de los personajes por la manipulación de huesos. Tratamos de hacerlo plástico y cómico, muy vivido y adorable. Para hacer la animación más realista estuvimos usando las leyes de walt disney.
+Aqui un pequeño resumen con los principios básicos para realizar animación digital.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://www.youtube.com/watch?v=l-KtwW6eptM"&gt;Principios básicos de la animación&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Cada escena fue renderizada y guardada en carpetas diferentes.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="character with bones" src="assets/images/articles/2014-12-17-how-we-created-bulutfon-animation/timeline.jpg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Este es nuestro resultado:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="character with bones" src="assets/images/articles/2014-12-17-how-we-created-bulutfon-animation/story.jpg" /&gt;&lt;/p&gt;
+
+&lt;h3 id="7.-paso-es-realizar-los-efectos-de-sonido..."&gt;7. paso es realizar los efectos de sonido&amp;hellip;&lt;/h3&gt;
+
+&lt;p&gt;Estamos usando muchos efectos de sonido en la animación, es necesario. Brinda acentos en cada movimiento, demuestra peso en los objetos que caen, demuestra peso en el caminar del personaje etc.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="character with bones" width="683" height="832" src="assets/images/articles/2014-12-17-how-we-created-bulutfon-animation/voice.jpg" /&gt;&lt;/p&gt;
+
+&lt;h3 id="8.-paso-es-realizar-la-musica-de-fondo..."&gt;8. paso es realizar la musica de fondo&amp;hellip;&lt;/h3&gt;
+
+&lt;p&gt;La música de fondo es solo para el acompañamiento de la animación. Todo el tono depende de la musicalización de fondo. El ritmo de la animación y el ritmo de la música deben trabajar sincronizados para finalizar una escena. Escogimos una melodía energética y muy graciosa.&lt;/p&gt;
+
+&lt;h3 id="9.-paso-es-aplicar-el-proceso-de-montaje..."&gt;9. paso es aplicar el proceso de montaje&amp;hellip;&lt;/h3&gt;
+
+&lt;p&gt;Cuando tenemos la música de fondo y tenemos todos los archivos de la animación completos y los efectos de sonido mezclados, solo necesitamos realizar un último paso, que es el montaje final uniendo todas la piezas en un solo video.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="character with bones" width="576" height="796" src="assets/images/articles/2014-12-17-how-we-created-bulutfon-animation/merge.jpg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Ahora despues de todo el trabajo realizado podemos observar nuestro resultado final:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://vimeo.com/102756655"&gt;Como creamos la animación de Bulutfon&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;hellip;y tambien lo compartimos en dribbble&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://dribbble.com/shots/1676198-Bulutfon-Animation"&gt;Encuentra esta animación en Dribbble&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Gracias por su atención.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Bulutfon animasyonunu nasıl hazırladık</title>
+    <link rel="alternate" href="http://lab2023.com/bulutfon-animasyonunu-nasil-hazirladik.html"/>
+    <id>http://lab2023.com/bulutfon-animasyonunu-nasil-hazirladik.html</id>
+    <published>2014-12-17T02:00:00+02:00</published>
+    <updated>2015-11-24T23:26:50+02:00</updated>
+    <author>
+      <name>lab2023</name>
+    </author>
+    <content type="html">&lt;p&gt;Bu makalede, animasyon oluşturma ile ilgili kısaca bilgi vermeye çalışacağım.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;adım, bir hikaye oluşturulması&amp;hellip;&lt;/li&gt;
+&lt;li&gt;adım, bir ana karakter oluşturulması&amp;hellip;&lt;/li&gt;
+&lt;li&gt;adım, bir hikaye panosu oluşturulması&amp;hellip;&lt;/li&gt;
+&lt;li&gt;adım, ana karakterin bir kukla olarak, iskeletiyle birlikte animasyon programında oluşturulması&amp;hellip;&lt;/li&gt;
+&lt;li&gt;adım, animasyon için gerekli olan tüm nesnelerin oluşturulması&amp;hellip;&lt;/li&gt;
+&lt;li&gt;adım, bir animasyon oluşturulması&amp;hellip;&lt;/li&gt;
+&lt;li&gt;adım, ses efektlerinin oluşturulması&amp;hellip;&lt;/li&gt;
+&lt;li&gt;adım, arka plan müziğinin oluşturulması&amp;hellip;&lt;/li&gt;
+&lt;li&gt;adım, birleştirme işlemlerinin uygulanması&amp;hellip;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id="1.-adım,-bir-hikaye-oluşturulması..."&gt;1. adım, bir hikaye oluşturulması&amp;hellip;&lt;/h3&gt;
+
+&lt;p&gt;Bu hikaye bize; Bulutfon ürünlerini anlatıyor; iş kurmayı kolaylaştırmak için Bulutfon&amp;#39;un müşterilere sunduğu fırsatları, sağladığı rahat kullanımlı servisleri açıklıyor.&lt;/p&gt;
+
+&lt;h3 id="2.-adım,-bir-ana-karakter-oluşturulması..."&gt;2. adım, bir ana karakter oluşturulması&amp;hellip;&lt;/h3&gt;
+
+&lt;p&gt;Hikayeyi oluşturduktan sonraki önemli adım, bir ana karakter oluşturmaktır. Bu karakteri; aklımızda çok samimi, zeki, enerjik, hoş gülümseyişe ve nazik gözlere sahip genç bir işadamına ihtiyacımız olduğu fikri ile oluşturduk. İnsan ölçülerine uygun olarak gerçeğe çok yakın bir şekilde hazırladık.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="main character" src="assets/images/articles/2014-12-17-how-we-created-bulutfon-animation/character.jpg" /&gt;&lt;/p&gt;
+
+&lt;h3 id="3.-adım,-bir-hikaye-panosu-oluşturulması..."&gt;3. adım, bir hikaye panosu oluşturulması&amp;hellip;&lt;/h3&gt;
+
+&lt;p&gt;Hikaye ve ana karakter hazır olduktan sonra, bir sonraki çok önemli olan hikaye panosu oluşturma adımına geldik. Hikaye panosunu çok fazla detay olmadan oluşturduk, sadece hikayenin her cümlesindeki ana fikri ekledik. İnsanların ürünümüzü ve ürünümüzün amacını anlamalarını sağlamak için her bir sahneyi kısa animasyonlu açıklama şeklinde hazırladık. Kenar boşluklarına birçok not (karakterimizin nereden nereye hareket ettiğini gösteren oklar ve her bir sahneye, sahnedeki fikri kaybetmemek için bize yardımcı olması amacıyla birçok yorum) ekledik. Sonuç bu:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="storyboard" src="assets/images/articles/2014-12-17-how-we-created-bulutfon-animation/storyboard.jpg" /&gt;&lt;/p&gt;
+
+&lt;h3 id="4.-adım,-ana-karakterin-bir-kukla-olarak,-iskeletiyle-birlikte-animasyon-programında-oluşturulması..."&gt;4. adım, Ana karakterin bir kukla olarak, iskeletiyle birlikte animasyon programında oluşturulması&amp;hellip;&lt;/h3&gt;
+
+&lt;p&gt;Tüm düzeltmeler yapılıp hikaye panosu tam olarak hazır olduğunda, sonraki adıma, karakterin kuklaya dönüştürülmesine geçtik. İş adamımıza animasyon ekleyebilmek için, onu ihtiyaç duyabileceğimiz iskelet ve tüm fonksiyonlar ile birlikte oluşturduk. Örneğin; konuşması, göz kırpması ve gözlerinin ifadesini normalden şaşırmışa veya normalden mutsuza değiştirebilmesini sağlamak için çok tipte ağız ve göz çizdik. Aynı zamanda çizgi karakter olduğundan ezilebilir ve uzayabilir; ayaklarını ve ellerini, kafasını, kaşlarını oynatabilir; hatta kravatına bile animasyon eklenebilir.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="character with bones" src="assets/images/articles/2014-12-17-how-we-created-bulutfon-animation/bones.JPG" /&gt;&lt;/p&gt;
+
+&lt;h3 id="5.-adım,-animasyon-için-gerekli-olan-tüm-nesnelerin-oluşturulması..."&gt;5. adım, Animasyon için gerekli olan tüm nesnelerin oluşturulması&amp;hellip;&lt;/h3&gt;
+
+&lt;p&gt;Animasyonda kullanacağımız bütün öğeleri oluşturduk. Bazı öğelere animasyon ekleyeceğimizden onlar için de ayrıca iskelet oluşturduk. Ana renkleri; çok yumuşak gri ile karıştırılmış sarı, yeşil, mavi ve kırmızı gibi çok açık renkler olarak seçtik.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="character with bones" src="assets/images/articles/2014-12-17-how-we-created-bulutfon-animation/objects.JPG" /&gt;&lt;/p&gt;
+
+&lt;h3 id="6.-adım,-bir-animasyon-oluşturulması..."&gt;6. adım, bir animasyon oluşturulması&amp;hellip;&lt;/h3&gt;
+
+&lt;p&gt;En önemli adım, iskeleti değiştirerek karakterlerin hareket etmesini sağlamaktır. Karakterleri plastik, komik, çok hayat dolu ve çok güzel yapmaya çalıştık. Animasyonu daha gerçekçi yapmak için, Walt Disney&amp;#39;in geliştirdiği kuralları kullandık. Animasyon yapmanın temel prensipleri ile ilgili kısa bir video buradadır:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://www.youtube.com/watch?v=l-KtwW6eptM"&gt;Animasyon oluşturmanın ana prensipleri&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Her bir sahneyi işledik ve bir klasör içine ayrı bir dosya olarak kaydettik.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="character with bones" src="assets/images/articles/2014-12-17-how-we-created-bulutfon-animation/timeline.jpg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Sonuç olarak aldığımız bu:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="character with bones" src="assets/images/articles/2014-12-17-how-we-created-bulutfon-animation/story.jpg" /&gt;&lt;/p&gt;
+
+&lt;h3 id="7.-adım,-ses-efektlerinin-oluşturulması..."&gt;7. adım, ses efektlerinin oluşturulması&amp;hellip;&lt;/h3&gt;
+
+&lt;p&gt;Animasyonda bir çok ses efekti kullandık. Bu çok gerekli. Hareketlerdeki vurguyu öne çıkarır, düşen bir nesneye ağırlık verir, yürüyen bir adama ağırlık verir vs.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="character with bones" width="683" height="832" src="assets/images/articles/2014-12-17-how-we-created-bulutfon-animation/voice.jpg" /&gt;&lt;/p&gt;
+
+&lt;h3 id="8.-adım,-arka-plan-müziğinin-oluşturulması..."&gt;8. adım, arka plan müziğinin oluşturulması&amp;hellip;&lt;/h3&gt;
+
+&lt;p&gt;Arka plan müziği, animasyona refakatçi gibidir. Tüm ruh hali arka plan muziğine dayanır.  Animasyon ritmi ve müzik ritmi tüm sahnenin tamamlanmasını sağlamak için eş zamanlı olarak çalışmak zorundadır.  Animasyonun ritmine ve ana karakterin doğasına uygun enerjik ve çok eğlenceli bir müzik seçtik. Bu sayede, tüm hepsi sistem olarak harika bir şekilde çalışmış oldu.&lt;/p&gt;
+
+&lt;h3 id="9.-adım,-birleştirme-işlemlerinin-uygulanması..."&gt;9. adım, birleştirme işlemlerinin uygulanması&amp;hellip;&lt;/h3&gt;
+
+&lt;p&gt;Arkaplan müziği elimizde olduğunda, tüm animasyon dosyalarını tamamlanmış olarak hazırladığımızda ve tüm ses efektleri tamamlandığında; yapmamız gereken sadece bir adım kalıyor, tüm dosyaları tek bir video dosyası olarak birleştirmek.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="character with bones" width="576" height="796" src="assets/images/articles/2014-12-17-how-we-created-bulutfon-animation/merge.jpg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Şimdi; tamamlanmış tüm çalışmalardan sonra, final animasyonunu görebiliriz:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://vimeo.com/102756655"&gt;Bulutfon Animasyonunu nasıl oluşturduk?&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;hellip;ve Dribbble&amp;#39;da paylaşılmıştır.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://dribbble.com/shots/1676198-Bulutfon-Animation"&gt;Bulutfon animasyonu için dribbble paylaşımı&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;İlginiz için teşekkür ederim.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Özgür Web Teknolojileri Günleri'nin ardından</title>
+    <link rel="alternate" href="http://lab2023.com/ozgur-web-teknolojileri-gunlerinin-ardindan.html"/>
+    <id>http://lab2023.com/ozgur-web-teknolojileri-gunlerinin-ardindan.html</id>
+    <published>2014-12-12T02:00:00+02:00</published>
+    <updated>2015-11-24T23:26:50+02:00</updated>
+    <author>
+      <name>lab2023</name>
+    </author>
+    <content type="html">&lt;p&gt;Özgür Web Teknolojileri Günleri 2014’e katılacağımızı 2 Aralık’ta &lt;a href="/5-farkli-sunum-ile-katki-sagladigimiz-ve-stant-sponsoru-oldugumuz-ozgur-web-teknolojileri-gunleri-2014-e-davetlisiniz.html"&gt;duyurmuş&lt;/a&gt; ve sizleri de davet etmiştik. 05-06 Aralık’ta İstanbul Yeditepe Üniversitesi’nde 5. kez düzenlenen etkinlikte stant sponsoru olarak yerimizi aldık. Önceki yıllarda olduğu gibi, bu yıl da etkinlikte olmaktan büyük keyif duyduk.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="Yeni dostlar" src="assets/images/articles/2014-12-12-owtg-ardindan/stant.jpg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Etkinlik alanındaki diğer stantları dolaştık, standımıza uğrayanları karşıladık, konuştuk, bilgi aldık, bilgi verdik, aydınlandık. Etkinlik boyunca keyifli anlar yaşadık, dostlarımızla buluştuk, Özgür Yazılım’ı destekleyen yeni dostlarla tanıştık.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="Lab2023" src="assets/images/articles/2014-12-12-owtg-ardindan/team.jpg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Etkinlik programı olarak 2 gün boyunca birbirinden değerli kişiler, çeşitli seminerler düzenlediler ve bildiriler sundular. Mümkün oldukça bu seminer ve bildiri sunumlarına katıldık, sunulan bilgilerden faydalandık. Ekibimizden arkadaşlarımızın hazırladığı kısa bildiri ve hızlı konuşmaları da bu program içinde sizlerle buluşturma fırsatı bulduk.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="Sunum" src="assets/images/articles/2014-12-12-owtg-ardindan/presentation.jpg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Lab2023 olarak yaptığımız sunumlara katılıp yanımızda olan siz dostlarımıza teşekkür ederiz. Katılma fırsatı bulamamış ya da tekrar incelemek isteyenler, sunumlarımıza aşağıdaki bağlantılardan erişebilirler.&lt;/p&gt;
+
+&lt;h3 id="ekibimizin-yaptığı-sunumlar"&gt;Ekibimizin yaptığı sunumlar&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://speakerdeck.com/tayfunoziserikan/ruby-on-rails-4-dot-2-ile-gelen-kullanisli-yenilikler"&gt;Ruby on Rails 4.2 İle Gelen Kullanışlı Yenilikler&lt;/a&gt; - Tayfun Öziş ERİKAN&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://speakerdeck.com/claraisabelpantoja/design-processes-and-resources-for-successful-web-applications"&gt;Design Processes and Resources for&lt;/a&gt;  &lt;a href="https://speakerdeck.com/kamilala/design-processes-and-resources-for-successful-web-applications"&gt;Successful Web Applications&lt;/a&gt; - Clara Isabel PANTOJA MUÑOZ - Kamila GAREEVA&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://speakerdeck.com/claraisabelpantoja/all-about-creative-commons"&gt;All about creative commons&lt;/a&gt; - Clara Isabel PANTOJA MUÑOZ&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://speakerdeck.com/kamilala/web-animation"&gt;Animation techniques and principles to make your web application designs more attractive.&lt;/a&gt;- Kamila GAREEVA&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://speakerdeck.com/baygunm/jax-rs-ile-restful-java-web-servisleri"&gt;JAX-RS ile RESTful Java Web Servisleri&lt;/a&gt; - Murat Kemal BAYGÜN&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img alt="Etkinlik Alanı" src="assets/images/articles/2014-12-12-owtg-ardindan/event-area.jpg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Etkinlik programı kapsamında aynı zamanda, Türkiye’de organize olmuş Ruby, PHP ve Python grupları için birlikte çalışma yapabilmeleri ve tanışmaları için topluluk çalışma toplantıları da yapıldı. Biz de, gönül verdiğimiz Ruby için programda olan Ruby Topluluğu Çalışma Toplantısı’nda katılımımızı yaptık, bu çalışma sonucunda toplulukta beraberce aşağıdaki kararları alıp, sorumluları atadık.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Meetup.com üzerinde Ruby Türkiye grubu oluşturulması.&lt;/li&gt;
+&lt;li&gt;S.S.S. hazırlanması ( İlk olarak 10 Madde halinde )&lt;/li&gt;
+&lt;li&gt;Sosyal Medya Hesaplarının Yönetimi&lt;/li&gt;
+&lt;li&gt;Podcast’lerin oluşturulması&lt;/li&gt;
+&lt;li&gt;İş ilanları ve firmalar için erişim sayfası hazırlanması&lt;/li&gt;
+&lt;li&gt;Etkinlik Takviminin Ruby Türkiye sitesine eklenmesi&lt;/li&gt;
+&lt;li&gt;Wikipedi’de grupla ilgili bir madde oluşturulması&lt;/li&gt;
+&lt;li&gt;Grup manifestosu oluşturulması&lt;/li&gt;
+&lt;li&gt;Ruby Türkiye domain’in düzenlenmesi&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Katılımlarınız için tekrar teşekkür eder, Özgür Web Teknolojileri 2015’te ve diğer etkinliklerde tekrar buluşabilmeyi dileriz.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://www.ozgurwebgunleri.org.tr/2014/"&gt;Özgür Web Teknolojileri 2014&lt;/a&gt; ve &lt;a href="http://www.ozgurwebgunleri.org.tr/2014/etkinlik-programi"&gt;etkinlik programı&lt;/a&gt;&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>5 Farklı Sunum ile Katkı Sağladığımız ve Stant Sponsoru Olduğumuz Özgür Web Teknolojileri Günleri 2014'e Davetlisiniz</title>
+    <link rel="alternate" href="http://lab2023.com/5-farkli-sunum-ile-katki-sagladigimiz-ve-stant-sponsoru-oldugumuz-ozgur-web-teknolojileri-gunleri-2014-e-davetlisiniz.html"/>
+    <id>http://lab2023.com/5-farkli-sunum-ile-katki-sagladigimiz-ve-stant-sponsoru-oldugumuz-ozgur-web-teknolojileri-gunleri-2014-e-davetlisiniz.html</id>
+    <published>2014-12-02T02:00:00+02:00</published>
+    <updated>2015-11-24T23:26:50+02:00</updated>
+    <author>
+      <name>lab2023</name>
+    </author>
+    <content type="html">&lt;p&gt;Bu yıl 5. kez düzenlenecek olan Özgür Web Teknolojileri Günleri 2014, &lt;strong&gt;05 – 06 Aralık’ta İstanbul Yeditepe Üniversitesi&lt;/strong&gt;’nde gerçekleştirilecektir.&lt;/p&gt;
+
+&lt;p&gt;Önceki yıllarda da düzenli olarak katıldığımız etkinliğe bu sene Lab2023 olarak 5 farklı sunum içeriği ile katkı sağlıyoruz.&lt;/p&gt;
+
+&lt;p&gt;Bunun yanı sıra stant sponsoru da olduğumuz etkinlikte sizleri de aramızda görmekten ve tanışıp sohbet etme fırsatı bulmaktan mutluluk duyacağız.&lt;/p&gt;
+
+&lt;p&gt;Etkinlikte yer alan sunumlarımıza ait detaylar aşağıdaki gibidir.&lt;/p&gt;
+
+&lt;h3 id="06-aralık-2014---cumartesi"&gt;06 Aralık 2014 - Cumartesi&lt;/h3&gt;
+
+&lt;h4 id="kerem-can-karakaş-salonu"&gt;Kerem Can Karakaş Salonu&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;17:00-17:20 - Design Processes and Resources for Successful Web Applications – Clara Isabel Pantoja Muñoz – Kamila Gareeva (Kısa Bildiri)&lt;/li&gt;
+&lt;li&gt;17:20-17:25 - All you have to know about cc (creative commons) – Clara Isabel Pantoja Muñoz (Hızlı Konuşma)&lt;/li&gt;
+&lt;li&gt;17:25-17:30 - Animation techniques and principles to make your web applications or designs more attractive. – Kamila Gareeva (Hızlı Konuşma)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id="dennis-ritchie-salonu"&gt;Dennis Ritchie Salonu&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;10:25-10:50 - Ruby on Rails 4.2 ile gelen kullanışlı yenilikler – Tayfun Öziş Erikan (Kısa Bildiri)&lt;/li&gt;
+&lt;li&gt;16:25-16:50 – JAX-RS ile RESTful Java Web Servisleri – Murat Kemal Baygün (Kısa Bildiri)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Etkinlikle ilgili tüm detaylara aşağıdaki adreslerden ulaşabilirsiniz.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Detaylı etkinlik programı&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://www.ozgurwebgunleri.org.tr/2014/etkinlik-programi"&gt;http://www.ozgurwebgunleri.org.tr/2014/etkinlik-programi&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Etkinlik web sitesi adresi&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://www.ozgurwebgunleri.org.tr/2014"&gt;http://www.ozgurwebgunleri.org.tr/2014&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;İlgililere duyurulur.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="Picture 1" src="assets/images/articles/2014-12-02-owtg-2014-duyuru/owtg2014-afis.jpg" /&gt;&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Flat Design, Simple is perfect</title>
+    <link rel="alternate" href="http://lab2023.com/Flat-design-Simple-is-perfect.html"/>
+    <id>http://lab2023.com/Flat-design-Simple-is-perfect.html</id>
+    <published>2014-11-24T02:00:00+02:00</published>
+    <updated>2015-11-24T23:26:50+02:00</updated>
+    <author>
+      <name>lab2023</name>
+    </author>
+    <content type="html">&lt;p&gt;Originally ‘Flat UI design’ is a design style trend that becomes from the interfaces and mobile modern digital designs. This minimalistic style is an integration of basic elements, flat shapes and good practices on graphic diagramming, result is not only a very attractive design, but also optimizing web development and completely adapted to the HTML5 standards.&lt;/p&gt;
+
+&lt;p&gt;Flat design is focused on one particular design principle called ‘form and function’ or ‘form and content’, one of the most relevant concepts in the visual language. Design means make a plan or convention for any creation or construction, in this way we can understand that the main importance for a designer is the final purpose or application of this design. and in this case the optimization of the design for development issue is a basic need, a need that Flat design trend is solving in a highly creative way.&lt;/p&gt;
+
+&lt;p&gt;It is not the first time that computer graphics explore the deep relation between aesthetics and functionality in the design, but nowadays this trend tells us to realize that functionality is the true face of the aesthetic, because simple is perfect. Concept about simplicity is hard to interiorize because this doesn&amp;rsquo;t mean that it is going to be easier for designers, actually it is exactly the opposite, a real paradox: less elements more strategy, more visual techniques applied. &lt;/p&gt;
+
+&lt;p&gt;Here are some advices and techniques for Flat design creations:&lt;/p&gt;
+
+&lt;h3 id="diagramming"&gt;Diagramming&lt;/h3&gt;
+
+&lt;p&gt;The proportioned order of the elements, being aware about your empty spaces in the composition and use a grid is the key for the best diagramming practices. placing the elements in the correct way will save space, give more clear information and make your design look professional.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="Picture 1" src="assets/images/articles/2014-11-19-flat-design/2014-11-19-flat-design-diagramming.jpg" /&gt;&lt;/p&gt;
+
+&lt;h3 id="simplicity"&gt;Simplicity&lt;/h3&gt;
+
+&lt;p&gt;Decorative elements are completely not necessary, use contents, color, typography and flat shapes for give the perfect appearance, you don&amp;rsquo;t need useless graphics making noise in your composition. Erase effects, complicated shadows, unnecessary gradients, don&amp;rsquo;t be afraid to do a clean job.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="Picture 2" src="assets/images/articles/2014-11-19-flat-design/2014-11-19-flat-design-simplicity.jpg" /&gt;&lt;/p&gt;
+
+&lt;h3 id="typography"&gt;Typography&lt;/h3&gt;
+
+&lt;p&gt;Give typography the importance it deserves, it is not just text, typography is a design element as it can be colors, shapes, photographs, icons and others. choose the right typography, go for the more readable ones. Sans serif is preferred for Flat design.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="Picture 3" src="assets/images/articles/2014-11-19-flat-design/2014-11-19-flat-design-typography.png" /&gt;&lt;/p&gt;
+
+&lt;h3 id="color"&gt;Color&lt;/h3&gt;
+
+&lt;p&gt;Flat design is nothing without this terrific color schemes representative of this style, if you are not sure about how to mix colors in an appropriate way, there are already a lot of sources that you can use from the internet. but always remember to plan your palette before start.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="Picture 4" src="assets/images/articles/2014-11-19-flat-design/2014-11-19-flat-design-color.jpg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;For more info about color you can review &lt;a href="/how-to-choose-right-colors-for-web-design.html"&gt;How to choose right colors for web design&lt;/a&gt;.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Rails Projesine Rubocop Nasıl Entegre Edilir ?</title>
+    <link rel="alternate" href="http://lab2023.com/rails-projesine-rubocop-nasil-entegre-edilir.html"/>
+    <id>http://lab2023.com/rails-projesine-rubocop-nasil-entegre-edilir.html</id>
+    <published>2014-11-21T02:00:00+02:00</published>
+    <updated>2015-11-24T23:26:50+02:00</updated>
+    <author>
+      <name>lab2023</name>
+    </author>
+    <content type="html">&lt;p&gt;Elinizde bir rails projesi var ve gelişigüzel kodluyorsanız, ancak kod kalitesinden de ödün vermemek gerekir diye
+düşünüyorsanız &lt;code&gt;rubocop&lt;/code&gt; bu aşamada size yardımcı olacaktır.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Rubocop&lt;/strong&gt;, ruby kodlarının &lt;a href="https://github.com/bbatsov/ruby-style-guide"&gt;ruby stil rehberi&lt;/a&gt; standartlarına göre tarayıp
+kodlarınızdaki hataları ve hatalara neden olacak kod parçacıklarınızın göstererek gerektiğinde çözmenizi sağlayan bir
+kod analiz aracıdır. Rubocop ile kod kaliteniz artar, daha temiz ve daha profesyonel kod yazmaya başlarsınız.&lt;/p&gt;
+
+&lt;p&gt;Rubocop kurulumuna ve kullanımına başlamadan önce, var olan rails projenizin &lt;code&gt;git&lt;/code&gt; veya türevlerinden herhangi biri ile
+paketlenmis olduğuna dikkat etmeniz
+gerekmektedir. Sonrasında rubocop&amp;#39;u rails projenize entegre etmek için aşağıdaki işlemleri sırasıyla yapmalısınız,&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Rails projenizde var olan &lt;code&gt;Gemfile&lt;/code&gt; açıp içine aşağıdaki &lt;code&gt;gem&lt;/code&gt; &amp;lsquo;leri eklemeniz gerekmektedir,&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;group&lt;/span&gt; &lt;span class="ss"&gt;:development&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
+  &lt;span class="n"&gt;gem&lt;/span&gt; &lt;span class="s1"&gt;'rubocop'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;require: &lt;/span&gt;&lt;span class="kp"&gt;false&lt;/span&gt;
+  &lt;span class="n"&gt;gem&lt;/span&gt; &lt;span class="s1"&gt;'haml-lint'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;require: &lt;/span&gt;&lt;span class="kp"&gt;false&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;bundle&lt;/code&gt; komutu koşulduktan sonra, &lt;code&gt;rubocop&lt;/code&gt; çalışma mantığını görme amaçlı terminalinizden,&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;rubocop -RD  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;komutunu koşabilirsiniz.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Entegre işlemine devam edecek olursak, Rails projenizin kök dizinine &lt;code&gt;.rubocop.yml&lt;/code&gt; adında bir dosya oluşturmanız gerekmektedir. 
+Ardından terminalde aşağıdaki komutu koşabilirsiniz;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;rubocop --auto-gen-config
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;komutu ile kök dizininde &lt;code&gt;.rubocop-todo.yml&lt;/code&gt; adında bir dosya oluşturmaktadır. &lt;strong&gt;.rubocop-todo.yml&lt;/strong&gt;,  projenizde var olan hataların kontrollerini ve sayılarını içeren bir liste sunmaktadır.&lt;br&gt;
+Ek olarak &lt;code&gt;Ubuntu&lt;/code&gt; bilgisayar kullanıyorsanız yukardaki komut ile birlikte ;&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;rubocop --config .rubocop_todo.yml
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;komutunu koşmanız gerekmektedir.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Ardından oluşturduğumuz &lt;code&gt;.rubocop.yml&lt;/code&gt; dosyasını içine hangi dosyaları include etmek istiyorsak( veya tam terside dogru ),&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="highlight yaml"&gt;&lt;code&gt;&lt;span class="s"&gt;AllCops&lt;/span&gt;&lt;span class="pi"&gt;:&lt;/span&gt;
+  &lt;span class="s"&gt;Include&lt;/span&gt;&lt;span class="pi"&gt;:&lt;/span&gt;
+    &lt;span class="pi"&gt;-&lt;/span&gt; &lt;span class="s"&gt;Rakefile&lt;/span&gt;
+    &lt;span class="pi"&gt;-&lt;/span&gt; &lt;span class="s"&gt;config.ru&lt;/span&gt;
+  &lt;span class="s"&gt;Exclude&lt;/span&gt;&lt;span class="pi"&gt;:&lt;/span&gt;
+    &lt;span class="pi"&gt;-&lt;/span&gt; &lt;span class="s"&gt;db/schema.rb&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;şeklinde belirtiyoruz. Ancak eğer var olan dosyalar için işlem yapmak istiyorsanız &lt;code&gt;.rubocop.yml&lt;/code&gt; dosyasını oluşturmadan da&lt;br&gt;
+yukarıdaki komutları koşup rubocop&amp;#39;u rails projenize entegre edebilrsiniz.&lt;/p&gt;
+
+&lt;p&gt;Ek olarak rubocop entegre edildikten sonra projeniz için,&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;rubocop
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;yerine&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;rubocop -R
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Komutunu koşmanız size daha detaylı bir liste verecektir.&lt;/p&gt;
+
+&lt;p&gt;Detaylı bilgi için &lt;a href="https://github.com/bbatsov/rubocop"&gt;Rubocop Github Sayfası&lt;/a&gt; yardımcı olacaktır.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>How to Integrate Rubocop to Rails Project ?</title>
+    <link rel="alternate" href="http://lab2023.com/how-to-integrate-rubocop-to-rails-project.html"/>
+    <id>http://lab2023.com/how-to-integrate-rubocop-to-rails-project.html</id>
+    <published>2014-11-21T02:00:00+02:00</published>
+    <updated>2015-11-24T23:26:50+02:00</updated>
+    <author>
+      <name>lab2023</name>
+    </author>
+    <content type="html">&lt;p&gt;You have a rails project and you are coding randomly. But you&amp;rsquo;re thinking for your code quality shouldn&amp;rsquo;t compromise, in this step
+&lt;code&gt;rubocop&lt;/code&gt; helped to you.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Rubocop&lt;/strong&gt; is code analyzer tool, scanning your codes according to &lt;a href="https://github.com/bbatsov/ruby-style-guide"&gt;ruby style guide&lt;/a&gt; and 
+find bugs like typo or sometimes fix your bugs. With &lt;code&gt;rubocop&lt;/code&gt;, your code quality is increase, you start coding more clean and coding like professional.&lt;/p&gt;
+
+&lt;p&gt;Before setup and using &lt;code&gt;rubocop&lt;/code&gt;, you should be careful for integrate your project with &lt;code&gt;git&lt;/code&gt; or derivatives. Then you should make below step by step.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Open &lt;code&gt;Gemfile&lt;/code&gt; in your rails project, add below &lt;code&gt;gems&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;group&lt;/span&gt; &lt;span class="ss"&gt;:development&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
+  &lt;span class="n"&gt;gem&lt;/span&gt; &lt;span class="s1"&gt;'rubocop'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;require: &lt;/span&gt;&lt;span class="kp"&gt;false&lt;/span&gt;
+  &lt;span class="n"&gt;gem&lt;/span&gt; &lt;span class="s1"&gt;'haml-lint'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;require: &lt;/span&gt;&lt;span class="kp"&gt;false&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;After running &lt;code&gt;bundle&lt;/code&gt; command, for see working logic of the rubocop, you can run below command,&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;rubocop -RD
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Let&amp;rsquo;s continue to integration steps, you should create &lt;code&gt;.rubocop.yml&lt;/code&gt; file on root of your rails project. Then running below commands,&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;rubocop --auto-gen-config
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When you running above commands, rubocop created &lt;code&gt;.rubocop-todo.yml&lt;/code&gt; file automatically on your root of rails project. &lt;code&gt;.rubocop-todo.yml&lt;/code&gt; offer a list including
+bug checks and counts. In addition if you use &lt;code&gt;ubuntu&lt;/code&gt; desktop, you should run below command.&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;rubocop --config .rubocop_todo.yml
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;After that we created &lt;code&gt;.rubocop.yml&lt;/code&gt; file. In this file, we can write which file you want to include or exclude with below code&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="highlight yaml"&gt;&lt;code&gt;&lt;span class="s"&gt;AllCops&lt;/span&gt;&lt;span class="pi"&gt;:&lt;/span&gt;
+  &lt;span class="s"&gt;Include&lt;/span&gt;&lt;span class="pi"&gt;:&lt;/span&gt;
+    &lt;span class="pi"&gt;-&lt;/span&gt; &lt;span class="s"&gt;Rakefile&lt;/span&gt;
+    &lt;span class="pi"&gt;-&lt;/span&gt; &lt;span class="s"&gt;config.ru&lt;/span&gt;
+  &lt;span class="s"&gt;Exclude&lt;/span&gt;&lt;span class="pi"&gt;:&lt;/span&gt;
+    &lt;span class="pi"&gt;-&lt;/span&gt; &lt;span class="s"&gt;db/schema.rb&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But if you don&amp;rsquo;t want to make include or exclude, you don&amp;rsquo;t need to create &lt;code&gt;.rubocop.yml&lt;/code&gt; files. Without create &lt;code&gt;.rubocop.yml&lt;/code&gt; file, you can run above commands. 
+Thus you can integrate &lt;code&gt;rubocop&lt;/code&gt; to your rails project.&lt;/p&gt;
+
+&lt;p&gt;After you integrate &lt;code&gt;rubocop&lt;/code&gt; to your project, you should run&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;rubocop
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;instead of above command, if you run below command, rubocop give you details list for your bugs and errors.&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;rubocop -R 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For detail you can visit &lt;a href="https://github.com/bbatsov/rubocop"&gt;Rubocop Github Page&lt;/a&gt;. &lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>JavaScript Plugins for Scroll Pages</title>
+    <link rel="alternate" href="http://lab2023.com/javascript-plugins-for-scroll-pages.html"/>
+    <id>http://lab2023.com/javascript-plugins-for-scroll-pages.html</id>
+    <published>2014-09-17T03:00:00+03:00</published>
+    <updated>2015-09-07T18:08:49+03:00</updated>
+    <author>
+      <name>lab2023</name>
+    </author>
+    <content type="html">&lt;p&gt;JavaScript scroll page plugins provide to like,&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;scroll&lt;/li&gt;
+&lt;li&gt;parallax&lt;/li&gt;
+&lt;li&gt;animations&lt;/li&gt;
+&lt;li&gt;rotations&lt;/li&gt;
+&lt;li&gt;drawing line or arcs &amp;hellip;etc&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;we can use this properties for our pages for entertainment pages. 
+Let&amp;rsquo; s examine js plugins ,  &lt;/p&gt;
+
+&lt;p&gt;1- &lt;a href="http://www.infinite-scroll.com/"&gt;infinite-scroll&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Infinite-scroll&lt;/code&gt; provide to unpaginate and endless pages for web pages&lt;/li&gt;
+&lt;li&gt;For detail on &lt;a href="https://github.com/paulirish/infinite-scroll"&gt;GitHub page&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img alt="infinite-scroll" src="assets/images/articles/2014-09-17-javascript-plugins-for-scroll-pages/infinite-scroll-image.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;2- &lt;a href="http://www.thepetedesign.com/demos/onepage_scroll_demo.html"&gt;One-page scroll&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Provide scroll page with parallax on one page.&lt;/li&gt;
+&lt;li&gt;You can create game or entertainment page with this plugins&lt;/li&gt;
+&lt;li&gt;For detail on &lt;a href="https://github.com/peachananr/onepage-scroll"&gt;GitHub page&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img alt="one-page-scroll" src="assets/images/articles/2014-09-17-javascript-plugins-for-scroll-pages/one-page-scroll.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;3- &lt;a href="http://janpaepke.github.io/ScrollMagic/"&gt;Scroll Magic&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Provide animation for all things (text, image, video &amp;hellip;etc)&lt;/li&gt;
+&lt;li&gt;Also synchronize an animation, infinitely scrolling  page. &lt;/li&gt;
+&lt;li&gt;For detail on &lt;a href="https://github.com/janpaepke/ScrollMagic"&gt;GitHub page&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img alt="scroll-magic" src="assets/images/articles/2014-09-17-javascript-plugins-for-scroll-pages/scroll-magic.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;4- &lt;a href="http://manos.malihu.gr/jquery-custom-content-scroller/"&gt;Custom content scroller&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;High customizable custom scrollbar &lt;/li&gt;
+&lt;li&gt;Features include vertical, horizontal, scrolling, drawing &amp;hellip;etc&lt;/li&gt;
+&lt;li&gt;For detail on &lt;a href="https://github.com/malihu/malihu-custom-scrollbar-plugin"&gt;GitHub page&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img alt="custom-scroll" src="assets/images/articles/2014-09-17-javascript-plugins-for-scroll-pages/custom-scroll.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;5- &lt;a href="http://joehewitt.github.io/scrollability/"&gt;Scrollability&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Provide scrolling for mobile devices .&lt;/li&gt;
+&lt;li&gt;For detail on &lt;a href="https://github.com/joehewitt/scrollability"&gt;GitHub page&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img alt="scrollability" src="assets/images/articles/2014-09-17-javascript-plugins-for-scroll-pages/scrollability.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;6- &lt;a href="http://imakewebthings.com/jquery-waypoints/"&gt;WayPoints&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Provide to status of webpage like horizontal or vertical for one page or multiple pages&lt;/li&gt;
+&lt;li&gt;For detail on &lt;a href="https://github.com/imakewebthings/jquery-waypoints"&gt;GitHub page&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img alt="waypoints" src="assets/images/articles/2014-09-17-javascript-plugins-for-scroll-pages/waypoints.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;7- &lt;a href="http://scrollrevealjs.org/"&gt;Scroll Reveal&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Provide to scroll animation for page&lt;/li&gt;
+&lt;li&gt;For detail on &lt;a href="https://github.com/julianlloyd/scrollReveal.js"&gt;GitHub page&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img alt="scroll-reveal" src="assets/images/articles/2014-09-17-javascript-plugins-for-scroll-pages/scroll-reveal.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;8- &lt;a href="http://joelb.me/scrollpath/"&gt;Scroll Path&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;it offer custom scroll paths,&lt;/li&gt;
+&lt;li&gt;provide to rotations and draw line or arcs&lt;/li&gt;
+&lt;li&gt;For detail on  &lt;a href="https://github.com/JoelBesada/scrollpath"&gt;GitHub page&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img alt="scroll-path" src="assets/images/articles/2014-09-17-javascript-plugins-for-scroll-pages/scroll-path.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;9- &lt;a href="http://johnpolacek.github.io/superscrollorama/"&gt;Super Scrollorama&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;It offer may properties like pinning, scale, slide, bounce &amp;hellip;etc animations for web-page.&lt;/li&gt;
+&lt;li&gt;For detail on &lt;a href="https://github.com/johnpolacek/superscrollorama"&gt;GitHub page&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img alt="super scrollorama" src="assets/images/articles/2014-09-17-javascript-plugins-for-scroll-pages/super-scrollorama.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;10- &lt;a href="http://darsa.in/sly/"&gt;Sly&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;provide advanced one-directional scrolling with item based navigation support.&lt;/li&gt;
+&lt;li&gt;For detail on &lt;a href="https://github.com/darsain/sly"&gt;GitHub page&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img alt="sly" src="assets/images/articles/2014-09-17-javascript-plugins-for-scroll-pages/sly.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;11- &lt;a href="http://jscrollpane.kelvinluck.com/"&gt;Scroll Pane&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;provide to converts a browsers default scrollbars for html structure that can be easily skinned with css.&lt;/li&gt;
+&lt;li&gt;For detail on &lt;a href="https://github.com/vitch/jScrollPane"&gt;GitHub page&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img alt="scroll-pane" src="assets/images/articles/2014-09-17-javascript-plugins-for-scroll-pages/scroll-pane.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;12- &lt;a href="http://prinzhorn.github.io/skrollr/"&gt;Skrollr&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Stand-alone scrolling-parallax js library for mobile devices &lt;/li&gt;
+&lt;li&gt;without jquery, only javascript.&lt;/li&gt;
+&lt;li&gt;For detail on &lt;a href="https://github.com/Prinzhorn/skrollr"&gt;GitHub page&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img alt="skrollr" src="assets/images/articles/2014-09-17-javascript-plugins-for-scroll-pages/skrollr.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;13- &lt;a href="http://iscrolljs.com/"&gt;iSroll&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;provide to scroll with parallax, also it offers 3D scroll animations.&lt;/li&gt;
+&lt;li&gt;For detail on &lt;a href="https://github.com/cubiq/iscroll"&gt;GitHub page&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img alt="iscroll" src="assets/images/articles/2014-09-17-javascript-plugins-for-scroll-pages/iscroll.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;The best open source library for &lt;code&gt;scroll-page&lt;/code&gt; like above.&lt;/p&gt;
+
+&lt;p&gt;I hope helped to you.&lt;/p&gt;
+
+&lt;p&gt;Regards.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Diagnoscope Belirti Tarama Uygulaması ile 17-18 Eylül 2014 tarihindeki Dijital Sağlık Zirvesi’ne Konuşmacı Olarak Katılacağız</title>
+    <link rel="alternate" href="http://lab2023.com/diagnoscope-belirti-tarama-uygulamasi-ile-17-18-eylul-2014-tarihindeki-dijital-saglik-zirvesi-ne-konusmaci-olarak-katilacagiz.html"/>
+    <id>http://lab2023.com/diagnoscope-belirti-tarama-uygulamasi-ile-17-18-eylul-2014-tarihindeki-dijital-saglik-zirvesi-ne-konusmaci-olarak-katilacagiz.html</id>
+    <published>2014-09-15T03:00:00+03:00</published>
+    <updated>2015-09-07T18:08:49+03:00</updated>
+    <author>
+      <name>lab2023</name>
+    </author>
+    <content type="html">&lt;p&gt;&lt;a href="http://altinorumcek.com/sonuclar/10-altin-orumcek/"&gt;10. Altın Örümcek Web Ödülleri Sağlık Kategorisi Birinciliği&lt;/a&gt; aldığımız
+ &lt;a href="http://www.diagnoscope.com/"&gt;Diagnoscope Belirti Tarama Uygulaması&lt;/a&gt; ile 17-18
+Eylül 2014 tarihinde Istanbul’da düzenlenen &lt;a href="http://www.dhsturkey.com/"&gt;Dijital Sağlık Zirvesi&lt;/a&gt;’ne katılıyoruz.&lt;/p&gt;
+
+&lt;p&gt;Etkinlikteki &lt;q&gt;Mobil Sağlık Aplikasyon Kullanımında İkna Stratejileri&lt;/q&gt; konulu panele ekibimizden
+Serdar YAĞCI konuşmacı olarak katılacaktır.&lt;/p&gt;
+
+&lt;p&gt;İlgililere duyurulur.&lt;/p&gt;
+
+&lt;p&gt;Detaylar için:
+&lt;a href="http://www.dhsturkey.com/"&gt;http://www.dhsturkey.com/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="Diagnoscope" src="assets/images/articles/2014-09-15-diagnoscope-post/diagnoscope2.jpg" /&gt;&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Tmux'a Giriş</title>
+    <link rel="alternate" href="http://lab2023.com/tmuxa-giris.html"/>
+    <id>http://lab2023.com/tmuxa-giris.html</id>
+    <published>2014-08-11T03:00:00+03:00</published>
+    <updated>2015-09-07T18:08:49+03:00</updated>
+    <author>
+      <name>lab2023</name>
+    </author>
+    <content type="html">&lt;p&gt;&lt;strong&gt;Tmux&lt;/strong&gt;, kısaltmanın açılmış haliyle Terminal Multiplexer, bir &lt;strong&gt;uçbirim&lt;/strong&gt; (terminal) çoklayıcısıdır. Aynı pencere içerisinde birden fazla terminal oturumu açıp, istediğiniz şekilde yapılandırıp kullanabilmenizi ve mevcut oturumu kaydedip-kapatıp istediğiniz zaman devam edebilmenizi sağlar. Özellikle kaydetme ve yeniden kullanma özellikleri, Tmux’ı elzem bir araç haline getiriyor.&lt;/p&gt;
+
+&lt;p&gt;Tmux’ın kurulumu oldukça kolay. Debian/Ubuntu ve türevlerinde kurmak için:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;sudo apt-get install tmux
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Mac OS X için:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;brew install tmux
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Arch Linux için:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;sudo pacman -S tmux
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Kurulum bu kadar. Kullanmaya başlamak için bir terminal oturumundan &lt;strong&gt;tmux&lt;/strong&gt; komutunu verin. Yaptıktan sonra terminalin alt kısmının değiştiğini göreceksiniz. Terminali dikey olarak bölmek için şu &lt;strong&gt;tuş kombinasyonunu&lt;/strong&gt; kullanın:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;Ctrl-B %
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Bulunduğunuz pencereyi yatay olarak bölmek için:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;Ctrl-B “
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Bu şekilde istediğiniz kadar bölme yapıp yeni oturumlar açabilirsiniz. Bulunduğunuz oturumdan bir diğerine geçmek için şunu kullanın:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;Ctrl-B (Yön Tuşları)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Mevcut oturumun penceresini yeniden boyutlandırmak için ise şu kombinasyonu kullanmanız gerekiyor:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;Ctrl-B Ctrl-(Yön Tuşları)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Tmux’ın genel kullanım şekli böyle. Örneğin bir oturumda web sunucu çalıştırıp, diğerinde log dosyalarını takip edip, diğerinde metin editörü ile düzenleme yapabilirsiniz. Tamamen ihtiyacınıza göre düzenlenebilir bir sistem oluşturmanız mümkün.&lt;/p&gt;
+
+&lt;p&gt;Şimdi ise Tmux’ın en bomba özelliklerinden bir tanesine değinmek istiyorum. Öncelikle şu komutu verin:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;Ctrl-B D
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Terminal penceresi kapandı değil mi? :) Burada yaptığımız şey, aslında çalışan bir Tmux oturumundan ayrılmaktan (&lt;strong&gt;detaching&lt;/strong&gt;) ibaret. Ama Tmux oturumu kapanmadı, biz sadece o oturumla olan bağlantımızı kestik. Şimdi şu komutu verin:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;tmux ls
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Şuna benzer bir çıktı göreceksiniz: &lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;0: 1 windows (created Mon Aug 11 15:40:31 2014) [103x24]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Gördüğünüz çıktı, Tmux oturumlarının listesi. Çıktının başındaki numara ise, duruma göre isim de olabilir, oturum adı oluyor ve oturumlara tekrardan bağlanmak için bunu kullanıyoruz. Tekrardan bağlanmak için şu komutu verin:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;tmux attach -t 0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Eğer bir sorun olmazsa, az önce kapattığımız terminal penceresinin tekrardan geri gelmesi lazım. İşin güzel yanı, bu oturumlardan istediğiniz kadar yapıp, birinden ayrılıp diğerine geçmeniz mümkün. Tabi oturumlar, siz Tmux oturumunu veya tek tek terminalleri kapatmadığınız sürece olduğu gibi kalıyorlar. Ekstra olarak bilgisayar kapanınca veya yeniden başlayınca da oturumlar gidiyor ama bunları da kaydetmek mümkün.&lt;/p&gt;
+
+&lt;p&gt;Bunun dışında güzel bir özellik de, Tmux oturumlarını en başta belirli bir isimle açabiliyorsunuz. Örnek olarak:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;tmux new -s rails-projesi
+
+&lt;span class="c"&gt;# Ctrl-B D&lt;/span&gt;
+
+tmux new -s django-projesi
+
+&lt;span class="c"&gt;# Ctrl-B D&lt;/span&gt;
+
+tmux ls
+
+&lt;span class="c"&gt;# Çıktı&lt;/span&gt;
+django-projesi: 1 windows &lt;span class="o"&gt;(&lt;/span&gt;created Mon Aug 11 16:03:13 2014&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;103x24]
+rails-projesi: 1 windows &lt;span class="o"&gt;(&lt;/span&gt;created Mon Aug 11 16:02:52 2014&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;103x24]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Böylelikle farklı projeleriniz arasında rahatça geçiş yapıp, geliştirme ortamlarınızı korumanız mümkün. Tmux’la ilgili daha fazla detay ve örnek için:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://gist.github.com/MohamedAlaa/2961058"&gt;https://gist.github.com/MohamedAlaa/2961058&lt;/a&gt;
+&lt;a href="http://cheat.errtheblog.com/s/tmux"&gt;http://cheat.errtheblog.com/s/tmux&lt;/a&gt;&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>CSS Medya Sorguları</title>
+    <link rel="alternate" href="http://lab2023.com/media-queries-on-css.html"/>
+    <id>http://lab2023.com/media-queries-on-css.html</id>
+    <published>2014-08-08T03:00:00+03:00</published>
+    <updated>2015-09-07T18:08:49+03:00</updated>
+    <author>
+      <name>lab2023</name>
+    </author>
+    <content type="html">&lt;p&gt;Web sayfalarının kullandığımız cihaza uyum sağlaması ve bu sayede kullanılabilirliğinin artması
+ için css&amp;#39;in bize yarar sağlayabileceği noktalardan birisi de Medya Sorguları kullanabilmemiz.
+ Medya sorguları sayesinde mobil cihazlar için eskiden olduğu gibi ekstra bir çaba harcamaya
+ gerek kalmıyor. CSS cihazın çözünürlüğünü tanıyıp uygun şekilde stil dönüşümünü yapıyor.
+ Şimdi medya tiplerini inceleyerek kısa bir giriş yapalım.&lt;/p&gt;
+
+&lt;h3 id="medya-tipleri"&gt;Medya Tipleri&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;all (Tüm araçlar için kullanılır.)&lt;/li&gt;
+&lt;li&gt;aural (Ses sentez birimlerinde kullanılır.)&lt;/li&gt;
+&lt;li&gt;braille (Braille dokunsal okuyucularda kullanılır.)&lt;/li&gt;
+&lt;li&gt;embossed (Braille yazıcı çıktıları için kullanılır.)&lt;/li&gt;
+&lt;li&gt;handheld (Taşınabilir telefonlar ve PDA’lar için kullanılır.)&lt;/li&gt;
+&lt;li&gt;print (Yazıcı çıktılarında görüntüleme için kullanılır.)&lt;/li&gt;
+&lt;li&gt;projection (Projeksiyonda görüntüleme için kullanılır.)&lt;/li&gt;
+&lt;li&gt;screen (Bilgisayarda görüntüleme için kullanılır.)&lt;/li&gt;
+&lt;li&gt;tty (Bilgisayar terminalleri ve eski taşınabilir araçlar ile görüntülemede kullanılır.)&lt;/li&gt;
+&lt;li&gt;tv (Televizyonda görüntülemede kullanılır.)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id="mantıksal-operatörler"&gt;Mantıksal Operatörler&lt;/h3&gt;
+
+&lt;p&gt;Medya sorguları kullanacağımız operatörler and, not ve only&amp;#39;dir.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;And:
+Bu operatör ile birden fazla şart sağlayabiliriz. Şartlar sağlanıyorsa özelliklerimiz uygulanır.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Örnek:&lt;/p&gt;
+&lt;pre class="highlight css"&gt;&lt;code&gt; &lt;span class="k"&gt;@media&lt;/span&gt; &lt;span class="n"&gt;screen&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;min-width&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="m"&gt;768px&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;max-width&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="m"&gt;959px&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+ &lt;span class="p"&gt;{&lt;/span&gt;
+ &lt;span class="nc"&gt;.section1&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+     &lt;span class="nl"&gt;background&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="no"&gt;blue&lt;/span&gt;
+     &lt;span class="p"&gt;}&lt;/span&gt;
+ &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Örnekte de gördüğümüz gibi screen medya tipi için  min-width: 768px ve max-width: 768px değer
+aralığında section1 class&amp;#39;ının arka plan rengi maviye dönüşecek.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Only:
+Bu operatör ile belirlediğimiz ekran özelliği sağlanan kadar geçerli olacak özellikleri belirleyebiliyoruz.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Örnek:&lt;/p&gt;
+&lt;pre class="highlight css"&gt;&lt;code&gt;&lt;span class="k"&gt;@media&lt;/span&gt; &lt;span class="n"&gt;only&lt;/span&gt; &lt;span class="n"&gt;screen&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;min-width&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="m"&gt;480px&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nc"&gt;.section&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="nl"&gt;width&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="m"&gt;500px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="nl"&gt;background-color&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="no"&gt;blue&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Yukarıda ki örnekte ekran çözünürlüğü 480px&amp;#39;e kadar section class&amp;#39;ının genişliği 500px, arka plan rengi ise mavi olacaktır.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Not: Medya değeri doğru ise uygulanmayacak özelliklerde kullanılır.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Örnek:&lt;/p&gt;
+&lt;pre class="highlight css"&gt;&lt;code&gt; &lt;span class="k"&gt;@media&lt;/span&gt; &lt;span class="n"&gt;not&lt;/span&gt; &lt;span class="n"&gt;screen&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;color&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+ &lt;span class="p"&gt;{&lt;/span&gt;
+     &lt;span class="nc"&gt;.section&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+         &lt;span class="nl"&gt;font-size&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="m"&gt;2em&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+     &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Bu örnekte de gördüğümüz gibi renkli ekran şartı sağlanıyorsa section class&amp;#39;ının font büyüklüğü 2em olmayacaktır.&lt;/p&gt;
+
+&lt;p&gt;Medya sorgularının tüm özellikleri bu kadarla sınırlı değil, bir sonraki blog yazım medya tiplerinin kullanımı üzerine olacak.&lt;/p&gt;
+</content>
+  </entry>
+</feed>
