@@ -5,7 +5,52 @@
   <id>http://lab2023.com/</id>
   <link href="http://lab2023.com/"/>
   <link href="http://lab2023.com/feed.xml" rel="self"/>
-  <updated>2015-11-24T02:00:00+02:00</updated>
+  <updated>2015-12-02T02:00:00+02:00</updated>
+  <entry>
+    <title>İkinci Rails Girls Denizli Etkinliği</title>
+    <link rel="alternate" href="http://lab2023.com/ikinci-rails-girls-denizli-etkinligi.html"/>
+    <id>http://lab2023.com/ikinci-rails-girls-denizli-etkinligi.html</id>
+    <published>2015-12-02T02:00:00+02:00</published>
+    <updated>2015-12-03T17:13:24+02:00</updated>
+    <author>
+      <name>lab2023</name>
+    </author>
+    <content type="html">&lt;p&gt;&lt;a href="http://railsgirls.com/"&gt;Rails Girls&lt;/a&gt; Finlandiya’da kurulmuş bir topluluktur. Amacı Rails kodlayan kadın sayısını artırmaktır.
+Rails Girls topluluğu birçok ülkede başarılı projelere imza atmaktadır. Ülkemizde daha önce 2013 Ekim ayında
+&lt;a href="http://railsgirls.com/istanbul"&gt;Rails Girls İstanbul&lt;/a&gt;, 2014 Mart ayında  &lt;a href="http://railsgirls.com/ankara"&gt;Rails Girls Ankara&lt;/a&gt;, 2014 Mayıs ayında da &lt;a href="http://railsgirls.com/denizli"&gt;Rails Girls Denizli&lt;/a&gt; etkinlikleri
+düzenlenmiştir. Türkiye’de 4. kez düzenlenen Rails Girls etkinliği &lt;a href="http://lab2023.com/"&gt;Lab2023&lt;/a&gt;&amp;lsquo;ün organizatörlüğünde Denizli ’de ikinci kez düzenleniyor.
+2. Rails Girls Denizli etkinliği 11 - 12 Aralık tarihleri arasında Pamukkale Teknokent Konferans salonunda gerçekleşecek.
+Etkinliğe katılım ve bilgi almak için &lt;a href="http://railsgirls.com/denizli2015"&gt;railsgirls.com/denizli2015&lt;/a&gt; adresini ziyaret edebilirsiniz.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://railsgirls.com/denizli2015"&gt;&lt;img alt="railsgirlsdenizli2014" src="assets/images/articles/2015-12-02-rails-girls-denizli-etkinligi/railsgirls2014.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Rails, Ruby programlama diliyle yazılmış, açık kaynak kodlu bir web uygulama geliştirme çerçevesidir.
+Sade ve kısa bir sözdizimi sayesinde kullanıcı sayısı her geçen gün artmaktadır. Bu etkinliğin amacı her
+yaştan kadının Rails’i tanıması, web dünyasını öğrenmesi ve küçük web uygulamaları yapabilmeleridir.
+Bu uygulamalar sayesinde kadınlar kod yazmanın zor olmadığını farketmeye başlayacak ve ön yargılarından
+kurtulacaklardır. Etkinliğe yanlarında bir kadının eşlik etmesi halinde konuyla ilgilenen erkeklerde katılabiliyor.&lt;/p&gt;
+
+&lt;p&gt;Rails Girls etkinliğini en güzel yanlarından birisi de Rails konusunda uzman kişilerin etkinlik sırasında
+size mentorluk etmesi ve yönlendirmesi. Etkinliğe katılmak için programcılık bilgisine sahip olmanıza gerek yoktur.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://lab2023.com/"&gt;Lab2023&lt;/a&gt; organizatörlüğünde  11 - 12 Aralık 2015 tarihleri arasında Denizli’de &lt;a href="http://pauteknokent.com.tr/teknokent/"&gt;Pamukkale Teknokent&lt;/a&gt;, &lt;a href="https://www.bulutfon.com/"&gt;Bulutfon&lt;/a&gt;, &lt;a href="https://www.netinternet.com.tr/"&gt;Netinternet&lt;/a&gt;, &lt;a href="http://www.soroptimistdenizli.org/"&gt;Denizli Soroptimistik Kulübü&lt;/a&gt;,
+&lt;a href="http://www.denizlihs.org/"&gt;Denizli Hackerspace&lt;/a&gt; ve &lt;a href="http://lab2023.com/"&gt;Lab2023&lt;/a&gt; &amp;#39;ün sponsorluk destekleriyle gerçekleşecek olan Rails Girls etkinliğinin programı şu şekildedir.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Cuma akşamı katılımcılar ve mentörler ile tanışma ve kurulum partisi yapılacaktır. Bu partide cumartesi günü neler yapılacağı
+anlatılacak ve katılımcıların bilgisayarlarına gerekli programların kurulması sağlanacaktır.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Cumartesi günü ise eğitime başlanacak ve küçük uygulamalar yapılarak bir proje ortaya çıkarılacak.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Bu güzel etkinliğe son katılım tarihi, 6 Aralık &amp;#39;tır.&lt;/p&gt;
+
+&lt;p&gt;Katılmak için &lt;a href="http://railsgirls.com/denizli2015"&gt;railsgirls.com/denizli2015&lt;/a&gt; adresindeki formu doldurmanız yeterli.&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;&lt;a href="http://railsgirls.com/denizli2015"&gt;&lt;img alt="railsgirlsdenizli" src="assets/images/articles/2015-12-02-rails-girls-denizli-etkinligi/railsgirlsdenizli2015.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>Popüler front-end araçları</title>
     <link rel="alternate" href="http://lab2023.com/populer-front-end-araclari.html"/>
@@ -1345,90 +1390,6 @@ rails-projesi: 1 windows &lt;span class="o"&gt;(&lt;/span&gt;created Mon Aug 11 
 
 &lt;p&gt;&lt;a href="https://gist.github.com/MohamedAlaa/2961058"&gt;https://gist.github.com/MohamedAlaa/2961058&lt;/a&gt;
 &lt;a href="http://cheat.errtheblog.com/s/tmux"&gt;http://cheat.errtheblog.com/s/tmux&lt;/a&gt;&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>CSS Medya Sorguları</title>
-    <link rel="alternate" href="http://lab2023.com/media-queries-on-css.html"/>
-    <id>http://lab2023.com/media-queries-on-css.html</id>
-    <published>2014-08-08T03:00:00+03:00</published>
-    <updated>2015-09-07T18:08:49+03:00</updated>
-    <author>
-      <name>lab2023</name>
-    </author>
-    <content type="html">&lt;p&gt;Web sayfalarının kullandığımız cihaza uyum sağlaması ve bu sayede kullanılabilirliğinin artması
- için css&amp;#39;in bize yarar sağlayabileceği noktalardan birisi de Medya Sorguları kullanabilmemiz.
- Medya sorguları sayesinde mobil cihazlar için eskiden olduğu gibi ekstra bir çaba harcamaya
- gerek kalmıyor. CSS cihazın çözünürlüğünü tanıyıp uygun şekilde stil dönüşümünü yapıyor.
- Şimdi medya tiplerini inceleyerek kısa bir giriş yapalım.&lt;/p&gt;
-
-&lt;h3 id="medya-tipleri"&gt;Medya Tipleri&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;all (Tüm araçlar için kullanılır.)&lt;/li&gt;
-&lt;li&gt;aural (Ses sentez birimlerinde kullanılır.)&lt;/li&gt;
-&lt;li&gt;braille (Braille dokunsal okuyucularda kullanılır.)&lt;/li&gt;
-&lt;li&gt;embossed (Braille yazıcı çıktıları için kullanılır.)&lt;/li&gt;
-&lt;li&gt;handheld (Taşınabilir telefonlar ve PDA’lar için kullanılır.)&lt;/li&gt;
-&lt;li&gt;print (Yazıcı çıktılarında görüntüleme için kullanılır.)&lt;/li&gt;
-&lt;li&gt;projection (Projeksiyonda görüntüleme için kullanılır.)&lt;/li&gt;
-&lt;li&gt;screen (Bilgisayarda görüntüleme için kullanılır.)&lt;/li&gt;
-&lt;li&gt;tty (Bilgisayar terminalleri ve eski taşınabilir araçlar ile görüntülemede kullanılır.)&lt;/li&gt;
-&lt;li&gt;tv (Televizyonda görüntülemede kullanılır.)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id="mantıksal-operatörler"&gt;Mantıksal Operatörler&lt;/h3&gt;
-
-&lt;p&gt;Medya sorguları kullanacağımız operatörler and, not ve only&amp;#39;dir.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;And:
-Bu operatör ile birden fazla şart sağlayabiliriz. Şartlar sağlanıyorsa özelliklerimiz uygulanır.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Örnek:&lt;/p&gt;
-&lt;pre class="highlight css"&gt;&lt;code&gt; &lt;span class="k"&gt;@media&lt;/span&gt; &lt;span class="n"&gt;screen&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;min-width&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="m"&gt;768px&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;max-width&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="m"&gt;959px&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
- &lt;span class="p"&gt;{&lt;/span&gt;
- &lt;span class="nc"&gt;.section1&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-     &lt;span class="nl"&gt;background&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="no"&gt;blue&lt;/span&gt;
-     &lt;span class="p"&gt;}&lt;/span&gt;
- &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Örnekte de gördüğümüz gibi screen medya tipi için  min-width: 768px ve max-width: 768px değer
-aralığında section1 class&amp;#39;ının arka plan rengi maviye dönüşecek.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Only:
-Bu operatör ile belirlediğimiz ekran özelliği sağlanan kadar geçerli olacak özellikleri belirleyebiliyoruz.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Örnek:&lt;/p&gt;
-&lt;pre class="highlight css"&gt;&lt;code&gt;&lt;span class="k"&gt;@media&lt;/span&gt; &lt;span class="n"&gt;only&lt;/span&gt; &lt;span class="n"&gt;screen&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;min-width&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="m"&gt;480px&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="nc"&gt;.section&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="nl"&gt;width&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="m"&gt;500px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-        &lt;span class="nl"&gt;background-color&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="no"&gt;blue&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Yukarıda ki örnekte ekran çözünürlüğü 480px&amp;#39;e kadar section class&amp;#39;ının genişliği 500px, arka plan rengi ise mavi olacaktır.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Not: Medya değeri doğru ise uygulanmayacak özelliklerde kullanılır.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Örnek:&lt;/p&gt;
-&lt;pre class="highlight css"&gt;&lt;code&gt; &lt;span class="k"&gt;@media&lt;/span&gt; &lt;span class="n"&gt;not&lt;/span&gt; &lt;span class="n"&gt;screen&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;color&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
- &lt;span class="p"&gt;{&lt;/span&gt;
-     &lt;span class="nc"&gt;.section&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-         &lt;span class="nl"&gt;font-size&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="m"&gt;2em&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-     &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Bu örnekte de gördüğümüz gibi renkli ekran şartı sağlanıyorsa section class&amp;#39;ının font büyüklüğü 2em olmayacaktır.&lt;/p&gt;
-
-&lt;p&gt;Medya sorgularının tüm özellikleri bu kadarla sınırlı değil, bir sonraki blog yazım medya tiplerinin kullanımı üzerine olacak.&lt;/p&gt;
 </content>
   </entry>
 </feed>
