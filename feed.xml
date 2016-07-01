@@ -5,13 +5,941 @@
   <id>http://lab2023.com/</id>
   <link href="http://lab2023.com/"/>
   <link href="http://lab2023.com/feed.xml" rel="self"/>
-  <updated>2015-12-02T02:00:00+02:00</updated>
+  <updated>2015-12-22T02:00:00+02:00</updated>
+  <entry>
+    <title>Bulutfon Ruby SDK</title>
+    <link rel="alternate" href="http://lab2023.com/bulutfon-ruby-sdk.html"/>
+    <id>http://lab2023.com/bulutfon-ruby-sdk.html</id>
+    <published>2015-12-22T02:00:00+02:00</published>
+    <updated>2016-07-01T16:07:24+03:00</updated>
+    <author>
+      <name>lab2023</name>
+    </author>
+    <content type="html">&lt;p&gt;Merhaba,&lt;/p&gt;
+
+&lt;p&gt;Bugün sizlere, gelişiminde bizim de katkıda bulunduğumuz
+&lt;a href="https://www.bulutfon.com/?ref=1"&gt;&lt;code&gt;Bulutfon API&lt;/code&gt;&lt;/a&gt; &amp;lsquo;si için &lt;code&gt;Ruby&lt;/code&gt; programlama dili ile yazılmış olan &lt;a href="https://github.com/bulutfon/ruby-sdk"&gt;&lt;code&gt;bulutfon_sdk gem&lt;/code&gt;&lt;/a&gt; &amp;#39;den bahsedecek ve örnek kodlar göstereceğiz.&lt;/p&gt;
+
+&lt;p&gt;Bu gem ile uygulamanızın &lt;a href="https://github.com/bulutfon/documents"&gt;&lt;code&gt;Bulutfon API Servisi&lt;/code&gt;&lt;/a&gt; ile kolayca haberleşmesini sağlayabileceksiniz. SMS gönderme, arama kayıtlarına erişme, otomatik arama
+oluşturma gibi birçok özelliği hızlı bir şekilde uygulmalarınıza entegre edebileceksiniz. &lt;a href="http://api.bulutfon.com/docs"&gt;&lt;code&gt;Bulutfon API&lt;/code&gt;&lt;/a&gt; ile daha fazla neler yapabileceğiniz hakkında bilgi almak için
+&lt;a href="https://github.com/bulutfon/documents"&gt;https://github.com/bulutfon/documents&lt;/a&gt; adresine göz atabilirsiniz.&lt;/p&gt;
+
+&lt;p&gt;Sözü daha fazla uzatmadan örnek kodlara geçelim;&lt;/p&gt;
+
+&lt;h1 id="bulutfon_sdk-gem-&amp;#39;inin-yüklü-olduğundan-emin-oluyoruz."&gt;bulutfon_sdk gem &amp;#39;inin yüklü olduğundan emin oluyoruz.&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s1"&gt;'bulutfon_sdk'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="bulutfon-hesabınızdan-almanız-gereken-api-master-token"&gt;Bulutfon hesabınızdan almanız gereken API master token&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;token&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'your_token'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="hesap-ile-ilgili-işlemler"&gt;Hesap ile ilgili işlemler&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;bulutfon&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;BulutfonSDK&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;REST&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Bulutfon&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;new&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;token&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="hesap-detayları"&gt;Hesap detayları&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="n"&gt;bulutfon&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;details&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="bulutfon-üzerinden-erişebileceğiniz-nesneler.-ayrıca-bu-nesneleri-ayrı-ayrı-kullanmak-isterseniz-alt-bölümlerdeki-kodları-inceleyeniz."&gt;Bulutfon üzerinden erişebileceğiniz nesneler. Ayrıca bu nesneleri ayrı ayrı kullanmak isterseniz alt bölümlerdeki kodları inceleyeniz.&lt;/h1&gt;
+
+&lt;h1 id="Örneğin-sms-göndermek-için-bulutfonsdk::rest::message-sınıfını-yanlız-başına-kullanabilirsiniz.-alt-kısımda-örneği-bulunmaktadır."&gt;Örneğin SMS göndermek için &lt;code&gt;BulutfonSDK::REST::Message&lt;/code&gt; sınıfını yanlız başına kullanabilirsiniz. Alt kısımda örneği bulunmaktadır.&lt;/h1&gt;
+
+&lt;h1 id="bulutfonsdk::rest::message-objesi"&gt;BulutfonSDK::REST::Message objesi&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="n"&gt;bulutfon&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;messages&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="bulutfonsdk::rest::messagetitle-objesi"&gt;BulutfonSDK::REST::MessageTitle objesi&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="n"&gt;bulutfon&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;message_titles&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="bulutfonsdk::rest::did-objesi"&gt;BulutfonSDK::REST::Did objesi&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="n"&gt;bulutfon&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;dids&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="bulutfonsdk::rest::extension-objesi"&gt;BulutfonSDK::REST::Extension objesi&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="n"&gt;bulutfon&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;extensions&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="bulutfonsdk::rest::group-objesi"&gt;BulutfonSDK::REST::Group objesi&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="n"&gt;bulutfon&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;groups&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="bulutfonsdk::rest::cdr-objesi"&gt;BulutfonSDK::REST::Cdr objesi&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="n"&gt;bulutfon&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;cdrs&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="bulutfonsdk::rest::callrecord-objesi"&gt;BulutfonSDK::REST::CallRecord objesi&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="n"&gt;bulutfon&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;call_records&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="bulutfonsdk::rest::incomingfax-objesi"&gt;BulutfonSDK::REST::IncomingFax objesi&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="n"&gt;bulutfon&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;incoming_faxes&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="bulutfonsdk::rest::outgoingfax-objesi"&gt;BulutfonSDK::REST::OutgoingFax objesi&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="n"&gt;bulutfon&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;outgoing_faxes&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="bulutfonsdk::rest::announcement-objesi"&gt;BulutfonSDK::REST::Announcement objesi&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="n"&gt;bulutfon&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;announcements&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="bulutfonsdk::rest::automaticcall-objesi"&gt;BulutfonSDK::REST::AutomaticCall objesi&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="n"&gt;bulutfon&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;automatic_calls&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="santrale-bağlı-telefon-numaraları"&gt;Santrale bağlı telefon numaraları&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;did&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;BulutfonSDK&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;REST&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Did&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;new&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;token&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="santrale-bağlı-telefon-numaralarını-listeler"&gt;Santrale bağlı telefon numaralarını listeler&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="n"&gt;did&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;all&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="id-&amp;#39;si-verilen-santral-numarasının-detaylarını-getirir"&gt;Id &amp;#39;si verilen santral numarasının detaylarını getirir&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="n"&gt;did&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="dahililer"&gt;Dahililer&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;extension&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;BulutfonSDK&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;REST&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Extension&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;new&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;token&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="dahililerin-hepsini-getirir"&gt;Dahililerin hepsini getirir&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="n"&gt;extension&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;all&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="id-&amp;#39;si-verilen-dahili-detaylarını-getirir"&gt;Id &amp;#39;si verilen dahili detaylarını getirir&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="n"&gt;extension&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="yeni-bir-dahili-oluşturma-işlemi"&gt;Yeni bir dahili oluşturma işlemi&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;params&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="ss"&gt;full_name: &lt;/span&gt;&lt;span class="s1"&gt;'Deneme'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="ss"&gt;email: &lt;/span&gt;&lt;span class="s1"&gt;'deneme@deneme.com'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="ss"&gt;did: &lt;/span&gt;&lt;span class="s1"&gt;'905xxxxxxxxx'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="ss"&gt;number: &lt;/span&gt;&lt;span class="mi"&gt;9999&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="ss"&gt;redirection_type: &lt;/span&gt;&lt;span class="s1"&gt;'NONE'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="ss"&gt;destination_type: &lt;/span&gt;&lt;span class="s1"&gt;'EXTENSION'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="ss"&gt;destination_number: &lt;/span&gt;&lt;span class="s1"&gt;'905xxxxxxxxx'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;'acl[]'&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="s1"&gt;'domestic'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'gsm'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'international'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="n"&gt;extension&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;create&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;params&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="dahili-güncelleme-işlemi"&gt;Dahili güncelleme işlemi&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;params&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="ss"&gt;full_name: &lt;/span&gt;&lt;span class="s1"&gt;'Deneme Deneme'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;'acl[]'&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="s1"&gt;'domestic'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'gsm'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="n"&gt;extension&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;update&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;params&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="dahili-silme-işlemi"&gt;Dahili silme işlemi&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="n"&gt;extension&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;delete&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="gruplar"&gt;Gruplar&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;group&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;BulutfonSDK&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;REST&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Group&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;new&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;token&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="grupları-listeler"&gt;Grupları listeler&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="n"&gt;group&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;all&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="id-&amp;#39;si-verilen-grup-detaylarını-getirir"&gt;Id &amp;#39;si verilen grup detaylarını getirir&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="n"&gt;group&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="arama-kayıtları"&gt;Arama kayıtları&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;cdr&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;BulutfonSDK&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;REST&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Cdr&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;new&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;token&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="tüm-arama-kayıtlarını-listeler"&gt;Tüm arama kayıtlarını listeler&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="n"&gt;cdr&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;all&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="arama-kayıtlarını-sayfalama-yaparak-getirir"&gt;Arama kayıtlarını sayfalama yaparak getirir&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="n"&gt;cdr&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;all&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="ss"&gt;page: &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;limit: &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="uuid-&amp;#39;si-verilen-arama-kaydı-detaylarını-getirir"&gt;Uuid &amp;#39;si verilen arama kaydı detaylarını getirir&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="n"&gt;cdr&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'uuid'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="ses-kayıtları"&gt;Ses kayıtları&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;call_record&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;BulutfonSDK&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;REST&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;CallRecord&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;new&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;token&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="uuid-&amp;#39;si-verilen-ses-kaydının-bilgilerini-getirir"&gt;Uuid &amp;#39;si verilen ses kaydının bilgilerini getirir&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="n"&gt;call_record&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'uuid'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="uuid-&amp;#39;si-verilen-ses-kaydını-verilen-save_path-dosyasına-kayıt-eder"&gt;Uuid &amp;#39;si verilen ses kaydını verilen save_path dosyasına kayıt eder&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;save_path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;File&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;expand_path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="no"&gt;File&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;dirname&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kp"&gt;__FILE__&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;/save_uuid.ogg"&lt;/span&gt;
+&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="n"&gt;call_record&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;save&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'uuid'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;save_path&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="gelen-fakslar"&gt;Gelen fakslar&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;incoming_fax&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;BulutfonSDK&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;REST&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;IncomingFax&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;new&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;token&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="gelen-faksları-listeler"&gt;Gelen faksları listeler&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="n"&gt;incoming_fax&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;all&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="uuid-&amp;#39;si-verilen-gelen-faks-detaylarını-getirir"&gt;Uuid &amp;#39;si verilen gelen faks detaylarını getirir&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="n"&gt;incoming_fax&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'uuid'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="uuid-&amp;#39;si-verilen-gelen-faks-dosyasını-save_path-dosyasını-kayıt-eder"&gt;Uuid &amp;#39;si verilen gelen faks dosyasını save_path dosyasını kayıt eder&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;save_path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;File&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;expand_path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="no"&gt;File&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;dirname&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kp"&gt;__FILE__&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;/save_uuid.tiff"&lt;/span&gt;
+&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="n"&gt;incoming_fax&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;save&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'uuid'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;save_path&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="giden-fakslar"&gt;Giden fakslar&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;outgoing_fax&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;BulutfonSDK&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;REST&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;OutgoingFax&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;new&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;token&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="giden-faksları-listeler"&gt;Giden faksları listeler&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="n"&gt;outgoing_fax&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;all&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="id-&amp;#39;si-verilen-giden-faks-detaylarını-getirir"&gt;Id &amp;#39;si verilen giden faks detaylarını getirir&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="n"&gt;outgoing_fax&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="giden-faks-oluşturma-işlemi"&gt;Giden faks oluşturma işlemi&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;File&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;expand_path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="no"&gt;File&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;dirname&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kp"&gt;__FILE__&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;/pdf-sample.pdf"&lt;/span&gt;
+&lt;span class="n"&gt;params&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="ss"&gt;title: &lt;/span&gt;&lt;span class="s1"&gt;'Deneme'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="ss"&gt;receivers: &lt;/span&gt;&lt;span class="s1"&gt;'905xxxxxxxxx'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="ss"&gt;did: &lt;/span&gt;&lt;span class="s1"&gt;'905xxxxxxxxx'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="ss"&gt;attachment: &lt;/span&gt;&lt;span class="n"&gt;file&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="n"&gt;outgoing_fax&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;create&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;params&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="ses-dosyaları"&gt;Ses Dosyaları&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;announcement&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;BulutfonSDK&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;REST&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Announcement&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;new&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;token&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="ses-dosyalarını-listeler"&gt;Ses dosyalarını listeler&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="n"&gt;announcement&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;all&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="id-&amp;#39;si-verilen-ses-dosyası-detaylarını-getirir"&gt;Id &amp;#39;si verilen ses dosyası detaylarını getirir&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="n"&gt;announcement&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="ses-dosyası-oluşturur"&gt;Ses dosyası oluşturur&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;File&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;expand_path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="no"&gt;File&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;dirname&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kp"&gt;__FILE__&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;/test.wav"&lt;/span&gt;
+&lt;span class="n"&gt;params&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="ss"&gt;name: &lt;/span&gt;&lt;span class="s1"&gt;'Deneme'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="ss"&gt;announcement: &lt;/span&gt;&lt;span class="n"&gt;file&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="n"&gt;announcement&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;create&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;params&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="id-&amp;#39;si-verilen-ses-dosyasını,-veilen-dosya-yoluna-kayıt-eder"&gt;Id &amp;#39;si verilen ses dosyasını, veilen dosya yoluna kayıt eder&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;save_path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;File&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;expand_path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="no"&gt;File&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;dirname&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kp"&gt;__FILE__&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;/save_test.wav"&lt;/span&gt;
+&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="n"&gt;announcement&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;save&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;save_path&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="id-&amp;#39;si-verilen-ses-dosyasını-siler"&gt;Id &amp;#39;si verilen ses dosyasını siler&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="n"&gt;announcement&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;delete&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="otomatik-aramalar"&gt;Otomatik Aramalar&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;automatic_call&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;BulutfonSDK&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;REST&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;AutomaticCall&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;new&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;token&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="otomatik-aramalar-listesini-getirir"&gt;Otomatik aramalar listesini getirir&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="n"&gt;automatic_call&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;all&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="id-&amp;#39;si-verilen-otomatik-arama-detaylarını-geitirir"&gt;Id &amp;#39;si verilen otomatik arama detaylarını geitirir&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="n"&gt;automatic_call&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="otomatik-arama-oluşturur-ve-oluşturma-işleminden-sonra-receivers-numaraları-aranır."&gt;Otomatik arama oluşturur ve oluşturma işleminden sonra receivers numaraları aranır.&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;params&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="ss"&gt;title: &lt;/span&gt;&lt;span class="s1"&gt;'Automatic call after creation'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="ss"&gt;receivers: &lt;/span&gt;&lt;span class="s1"&gt;'905xxxxxxxxx'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="ss"&gt;did: &lt;/span&gt;&lt;span class="s1"&gt;'905xxxxxxxxx'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="ss"&gt;announcement_id: &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="n"&gt;automatic_call&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;create&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;params&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="zaman-planlı-otomatik-arama-oluşturulur,-bu-parametrelerde,-receivers-numaraları-perşembe-günü-10:15-ve-12:00-saatleri-arasında-aranır."&gt;Zaman planlı otomatik arama oluşturulur, Bu parametrelerde, receivers numaraları perşembe günü 10:15 ve 12:00 saatleri arasında aranır.&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;params&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="ss"&gt;title: &lt;/span&gt;&lt;span class="s1"&gt;'Time planned call'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="ss"&gt;receivers: &lt;/span&gt;&lt;span class="s1"&gt;'905xxxxxxxxx'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="ss"&gt;did: &lt;/span&gt;&lt;span class="s1"&gt;'905xxxxxxxxx'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="ss"&gt;announcement_id: &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="ss"&gt;mon_active: &lt;/span&gt;&lt;span class="kp"&gt;false&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="ss"&gt;tue_active: &lt;/span&gt;&lt;span class="kp"&gt;false&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="ss"&gt;wed_active: &lt;/span&gt;&lt;span class="kp"&gt;false&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="ss"&gt;thu_active: &lt;/span&gt;&lt;span class="kp"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="ss"&gt;thu_start: &lt;/span&gt;&lt;span class="s1"&gt;'10:15'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="ss"&gt;thu_finish: &lt;/span&gt;&lt;span class="s1"&gt;'12:00'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="ss"&gt;fri_active: &lt;/span&gt;&lt;span class="kp"&gt;false&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="ss"&gt;sat_active: &lt;/span&gt;&lt;span class="kp"&gt;false&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="ss"&gt;sun_active: &lt;/span&gt;&lt;span class="kp"&gt;false&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="ss"&gt;hours_active: &lt;/span&gt;&lt;span class="kp"&gt;true&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="n"&gt;automatic_call&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;create&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;params&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="mesaj-başlıkları"&gt;Mesaj Başlıkları&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;message_title&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;BulutfonSDK&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;REST&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;MessageTitle&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;new&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;token&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="mesaj-başlıklarını-listeler"&gt;Mesaj başlıklarını listeler&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="n"&gt;message_title&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;all&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="mesajlar"&gt;Mesajlar&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;message&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;BulutfonSDK&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;REST&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Message&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;new&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;token&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="mesajları-listeler"&gt;Mesajları listeler&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="n"&gt;message&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;all&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="mesajları-sayfalama-yapılarak-listelenir"&gt;Mesajları sayfalama yapılarak listelenir&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="n"&gt;message&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;all&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="ss"&gt;page: &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;limit: &lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="p"&gt;})&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="id-&amp;#39;si-verilen-mesaj-detaylarını-getirir"&gt;Id &amp;#39;si verilen mesaj detaylarını getirir&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="n"&gt;message&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="sms-mesajı-oluşturma-işlemi"&gt;SMS mesajı oluşturma işlemi&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;params&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="ss"&gt;title: &lt;/span&gt;&lt;span class="s1"&gt;'CONFIRMED_MESSAGE_TITLE'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="ss"&gt;content: &lt;/span&gt;&lt;span class="s1"&gt;'Test Message'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="ss"&gt;receivers: &lt;/span&gt;&lt;span class="s1"&gt;'905xxxxxxxxx'&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="n"&gt;message&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;create&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;params&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="Çok-alıcılı-mesja-gönderme-işlemi"&gt;Çok alıcılı mesja gönderme işlemi&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;params_multiple&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="ss"&gt;title: &lt;/span&gt;&lt;span class="s1"&gt;'CONFIRMED_MESSAGE_TITLE'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="ss"&gt;content: &lt;/span&gt;&lt;span class="s1"&gt;'Multiple Message'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="ss"&gt;receivers: &lt;/span&gt;&lt;span class="s1"&gt;'905xxxxxxxxx,905xxxxxxxxx'&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="n"&gt;message&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;create&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;params_multiple&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id="zaman-planlı-mesaj-gönderme-işlemi"&gt;Zaman planlı mesaj gönderme işlemi&lt;/h1&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;params&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="ss"&gt;title: &lt;/span&gt;&lt;span class="s1"&gt;'CONFIRMED_MESSAGE_TITLE'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="ss"&gt;content: &lt;/span&gt;&lt;span class="s1"&gt;'Planned message example'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="ss"&gt;receivers: &lt;/span&gt;&lt;span class="s1"&gt;'905xxxxxxxxx'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="ss"&gt;is_future_sms: &lt;/span&gt;&lt;span class="kp"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="ss"&gt;send_date: &lt;/span&gt;&lt;span class="s1"&gt;'16/12/2015 10:00'&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="n"&gt;message&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;create&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;params&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Kaynakça,&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.bulutfon.com/?ref=1"&gt;https://bulutfon.com/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/bulutfon/documents"&gt;https://github.com/bulutfon/documents&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/bulutfon/ruby-sdk"&gt;https://github.com/bulutfon/ruby-sdk&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://api.bulutfon.com/docs"&gt;http://api.bulutfon.com/docs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://devforums.bulutfon.com/"&gt;http://devforums.bulutfon.com/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Ruby on Rails Uygulamasının Capistrano 3 ile Kolayca Yayınlanması</title>
+    <link rel="alternate" href="http://lab2023.com/ruby-on-rails-uygulamasinin-capistrano-3-ile-kolayca-yayinlanmasi.html"/>
+    <id>http://lab2023.com/ruby-on-rails-uygulamasinin-capistrano-3-ile-kolayca-yayinlanmasi.html</id>
+    <published>2015-12-21T02:00:00+02:00</published>
+    <updated>2016-07-01T16:18:27+03:00</updated>
+    <author>
+      <name>lab2023</name>
+    </author>
+    <content type="html">&lt;p&gt;Merhaba,&lt;/p&gt;
+
+&lt;p&gt;Sizlere Ubuntu-14.04 sunucusunu sıfırdan ayağa kaldırıp, kendi rails uygulamalarınızı sunucuya hızlı bir şekilde aktarabileceğiniz &lt;a href="https://github.com/capistrano/capistrano" target="_blank"&gt;Capistrano&lt;/a&gt; uygulamasından bahsedecek ve bazı kaynak kodlar paylaşacağız.
+Kullandığımız capistrano&amp;#39;nun versiyonu 3.4&amp;#39;tür. Sunucu üzerinde kullanıdığımız ruby versiyonu ise 2.2.3&amp;#39;tür. Capistrano &amp;lsquo;nun kaynak kodlarına &lt;a href="https://github.com/capistrano/capistrano" target="_blank"&gt;github&lt;/a&gt; adresinden erişip göz atabilirsiniz.
+&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt; HEAD&lt;/p&gt;
+
+&lt;h1 id="Örnek-olarak,-netinternet-&amp;#39;ten-veya-digitalocean-&amp;#39;dan-alacağınız-bir-sunucuyu-aşağıdaki-bash-scriptleri-ile-2-3-saat-içinde-ayağa-kaldırıp-nginx,-postgresql,-unicorn-ayarlarını-yaparak-çalışır-hale-getirebilirsiniz."&gt;Örnek olarak, &lt;a href="https://www.netinternet.com.tr/vps-sunucular"&gt;Netinternet&lt;/a&gt; &amp;#39;ten veya &lt;a href="https://www.digitalocean.com/"&gt;DigitalOcean&lt;/a&gt; &amp;#39;dan alacağınız bir sunucuyu aşağıdaki bash scriptleri ile 2-3 saat içinde ayağa kaldırıp Nginx, Postgresql, Unicorn ayarlarını yaparak çalışır hale getirebilirsiniz.&lt;/h1&gt;
+
+&lt;p&gt;Örnek olarak, &lt;a href="http://www.netinternet.com.tr/panel/aff.php?aff=916"&gt;Netinternet&lt;/a&gt; &amp;#39;ten veya &lt;a href="https://www.digitalocean.com/"&gt;DigitalOcean&lt;/a&gt; &amp;#39;dan alacağınız bir sunucuyu aşağıdaki bash scriptleri ile 2-3 saat içinde ayağa kaldırıp Nginx, Postgresql, Unicorn ayarlarını yaparak çalışır hale getirebilirsiniz.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;hotfix/v1.11.2.0&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Sunucuda ruby ortamı için temel kurulum scripti aşağıdaki gibidir. Bu script root kullanıcısı olarak bağlanıp çalıştırmalısınız.&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="c"&gt;## Run this script with root user&lt;/span&gt;
+&lt;span class="c"&gt;## Fancy echo&lt;/span&gt;
+fancy_echo&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+  &lt;span class="nb"&gt;printf&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;%b&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="nv"&gt;$1&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+fancy_echo &lt;span class="s2"&gt;"Updating system packages ..."&lt;/span&gt;
+apt-get -y update
+apt-get -y upgrade
+fancy_echo &lt;span class="s2"&gt;"Installing python-software-properties..."&lt;/span&gt;
+apt-get -y install python-software-properties
+fancy_echo &lt;span class="s2"&gt;"Installing software-properties-common..."&lt;/span&gt;
+apt-get -y install software-properties-common
+fancy_echo &lt;span class="s2"&gt;"Exporting language"&lt;/span&gt;
+&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;LANGUAGE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;en_US.UTF-8 &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;LANG&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;en_US.UTF-8 &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;LC_ALL&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;en_US.UTF-8 &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; locale-gen en_US.UTF-8 &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; dpkg-reconfigure locales
+fancy_echo &lt;span class="s2"&gt;"Installing libraries for common gem dependencies ..."&lt;/span&gt;
+apt-get -y install autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev
+apt-get install git-core openssl curl libreadline-dev libxslt1-dev libcurl4-openssl-dev ruby-dev make make-doc
+fancy_echo &lt;span class="s2"&gt;"Installing nodejs ..."&lt;/span&gt;
+add-apt-repository -y ppa:chris-lea/node.js
+apt-get -y update
+apt-get -y install nodejs
+apt-get -y install libxslt-dev libxml2-dev
+fancy_echo &lt;span class="s2"&gt;"Installing imagemagick ..."&lt;/span&gt;
+apt-get install -y imagemagick
+fancy_echo &lt;span class="s2"&gt;"Installing nginx ..."&lt;/span&gt;
+add-apt-repository -y ppa:nginx/stable
+apt-get -y update
+apt-get -y install nginx
+service nginx start
+fancy_echo &lt;span class="s2"&gt;"Installing postgresql ..."&lt;/span&gt;
+apt-get -y install postgresql libpq-dev
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Sunucuda deploy kullanıcısı için kurulum scripti aşağıdaki gibidir. Bu script&amp;#39;ide root kullanıcısı olarak bağlanıp çalıştırmalısınız.&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="c"&gt;# Deploy group&lt;/span&gt;
+&lt;span class="nv"&gt;deploy_group&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;deploy
+&lt;span class="c"&gt;# Deploy user&lt;/span&gt;
+&lt;span class="nv"&gt;deploy_user&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;deploy
+&lt;span class="c"&gt;# Github usernames for access with ssh to deploy user&lt;/span&gt;
+&lt;span class="nv"&gt;usernames&lt;/span&gt;&lt;span class="o"&gt;=(&lt;/span&gt;tayfunoziserikan ismailakbudak&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="c"&gt;# Check user is exist&lt;/span&gt;
+id -u &lt;span class="nv"&gt;$deploy_user&lt;/span&gt; &amp;amp;&amp;gt; /dev/null
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; &lt;span class="nv"&gt;$?&lt;/span&gt; -ne 0 &lt;span class="o"&gt;]&lt;/span&gt;
+&lt;span class="k"&gt;then
+  &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;"* Add &lt;/span&gt;&lt;span class="nv"&gt;$deploy_group&lt;/span&gt;&lt;span class="s2"&gt; group"&lt;/span&gt;
+  groupadd &lt;span class="nv"&gt;$deploy_group&lt;/span&gt;
+  &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;"* Creating user &lt;/span&gt;&lt;span class="nv"&gt;$deploy_user&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;
+  useradd -m -g &lt;span class="nv"&gt;$deploy_group&lt;/span&gt; -s /bin/bash &lt;span class="nv"&gt;$deploy_user&lt;/span&gt;
+  &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;"* Adding user &lt;/span&gt;&lt;span class="nv"&gt;$deploy_user&lt;/span&gt;&lt;span class="s2"&gt; to sudoers"&lt;/span&gt;
+  chmod +w /etc/sudoers
+  &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="nv"&gt;$deploy_user&lt;/span&gt;&lt;span class="s2"&gt; ALL=(ALL) ALL"&lt;/span&gt; &amp;gt;&amp;gt; /etc/sudoers
+  chmod -w /etc/sudoers
+&lt;span class="k"&gt;else
+  &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;"* &lt;/span&gt;&lt;span class="nv"&gt;$deploy_user&lt;/span&gt;&lt;span class="s2"&gt; user already exists"&lt;/span&gt;
+&lt;span class="k"&gt;fi&lt;/span&gt;
+&lt;span class="c"&gt;# Check user is exist, maybe some errors occured&lt;/span&gt;
+id -u &lt;span class="nv"&gt;$deploy_user&lt;/span&gt; &amp;amp;&amp;gt; /dev/null
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; &lt;span class="nv"&gt;$?&lt;/span&gt; -ne 0 &lt;span class="o"&gt;]&lt;/span&gt;
+&lt;span class="k"&gt;then
+  &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;"* &lt;/span&gt;&lt;span class="nv"&gt;$deploy_user&lt;/span&gt;&lt;span class="s2"&gt; user does not exists"&lt;/span&gt;
+&lt;span class="k"&gt;else&lt;/span&gt;
+  &lt;span class="c"&gt;# Prepare ssh keys environment&lt;/span&gt;
+  &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;"* Add .ssh directory to &lt;/span&gt;&lt;span class="nv"&gt;$deploy_user&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;
+  &lt;span class="nb"&gt;test&lt;/span&gt; -d /home/&lt;span class="nv"&gt;$deploy_user&lt;/span&gt;/.ssh
+  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; &lt;span class="nv"&gt;$?&lt;/span&gt; -ne 0 &lt;span class="o"&gt;]&lt;/span&gt;
+  &lt;span class="k"&gt;then
+    &lt;/span&gt;mkdir /home/&lt;span class="nv"&gt;$deploy_user&lt;/span&gt;/.ssh
+    &lt;span class="c"&gt;# change user permisisions&lt;/span&gt;
+    &lt;span class="c"&gt;# 700 =&amp;gt; (owner read/write/execute, group none, other none)&lt;/span&gt;
+    chmod 700 /home/&lt;span class="nv"&gt;$deploy_user&lt;/span&gt;/.ssh
+    chown &lt;span class="nv"&gt;$deploy_user&lt;/span&gt; /home/&lt;span class="nv"&gt;$deploy_user&lt;/span&gt;/.ssh
+    chgrp &lt;span class="nv"&gt;$deploy_group&lt;/span&gt; /home/&lt;span class="nv"&gt;$deploy_user&lt;/span&gt;/.ssh
+  &lt;span class="k"&gt;fi
+  &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;"* Get usernames public keys from GitHub and add them to &lt;/span&gt;&lt;span class="nv"&gt;$deploy_user&lt;/span&gt;&lt;span class="s2"&gt; authorized_keys"&lt;/span&gt;
+  &lt;span class="k"&gt;for &lt;/span&gt;username &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="k"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;usernames&lt;/span&gt;&lt;span class="p"&gt;[@]&lt;/span&gt;&lt;span class="k"&gt;}&lt;/span&gt;; &lt;span class="k"&gt;do
+    &lt;/span&gt;&lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$username&lt;/span&gt;.keys
+    wget https://github.com/&lt;span class="nv"&gt;$name&lt;/span&gt; --no-check-certificate -O &lt;span class="nv"&gt;$name&lt;/span&gt;
+    cat &lt;span class="nv"&gt;$name&lt;/span&gt; &amp;gt;&amp;gt; /home/&lt;span class="nv"&gt;$deploy_user&lt;/span&gt;/.ssh/authorized_keys
+    rm &lt;span class="nv"&gt;$name&lt;/span&gt; &lt;span class="c"&gt;# remove temprory file&lt;/span&gt;
+  &lt;span class="k"&gt;done&lt;/span&gt;
+  &lt;span class="c"&gt;# change user permisisions&lt;/span&gt;
+  &lt;span class="c"&gt;# 600 =&amp;gt; (owner read/write, group none, other none)&lt;/span&gt;
+  chmod 600 /home/&lt;span class="nv"&gt;$deploy_user&lt;/span&gt;/.ssh/authorized_keys
+  chown &lt;span class="nv"&gt;$deploy_user&lt;/span&gt; /home/&lt;span class="nv"&gt;$deploy_user&lt;/span&gt;/.ssh/authorized_keys
+  chgrp &lt;span class="nv"&gt;$deploy_group&lt;/span&gt; /home/&lt;span class="nv"&gt;$deploy_user&lt;/span&gt;/.ssh/authorized_keys
+  &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;"* Completed..."&lt;/span&gt;
+&lt;span class="k"&gt;fi&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;Sunucuda deploy kullanıcısı için ruby ortamını hazırlama scripti aşağıdaki gibidir. Bu script deploy kullanıcısı olarak bağlanıp çalıştırmalısınız.&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="c"&gt;## Run this command with deploy user&lt;/span&gt;
+&lt;span class="c"&gt;# define user home path&lt;/span&gt;
+&lt;span class="nv"&gt;user_path&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/home/deploy
+&lt;span class="c"&gt;## Fancy echo&lt;/span&gt;
+fancy_echo&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+  &lt;span class="nb"&gt;printf&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;%b&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="nv"&gt;$1&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+fancy_echo &lt;span class="s2"&gt;"Installing rbenv..."&lt;/span&gt;
+git clone git://github.com/sstephenson/rbenv.git &lt;span class="nv"&gt;$user_path&lt;/span&gt;/.rbenv
+fancy_echo &lt;span class="s2"&gt;"Writing rbenv path to bashrc ..."&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'export PATH=\"$HOME/.rbenv/bin:$PATH\"'&lt;/span&gt; &amp;gt;&amp;gt; &lt;span class="nv"&gt;$user_path&lt;/span&gt;/.bashrc
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'eval "$(rbenv init -)"'&lt;/span&gt; &amp;gt;&amp;gt; &lt;span class="nv"&gt;$user_path&lt;/span&gt;/.bashrc
+fancy_echo &lt;span class="s2"&gt;"Exporting rbenv path..."&lt;/span&gt;
+&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="nv"&gt;$HOME&lt;/span&gt;&lt;span class="s2"&gt;/.rbenv/bin:&lt;/span&gt;&lt;span class="nv"&gt;$PATH&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;
+&lt;span class="nb"&gt;eval&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;rbenv init -&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;
+fancy_echo &lt;span class="s2"&gt;"Preparing rbenv plugins..."&lt;/span&gt;
+mkdir -p &lt;span class="nv"&gt;$user_path&lt;/span&gt;/.rbenv/plugins
+git clone https://github.com/sstephenson/ruby-build.git &lt;span class="nv"&gt;$user_path&lt;/span&gt;/.rbenv/plugins/ruby-build
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"'&lt;/span&gt; &amp;gt;&amp;gt; &lt;span class="nv"&gt;$user_path&lt;/span&gt;/.bashrc
+git clone https://github.com/sstephenson/rbenv-gem-rehash.git &lt;span class="nv"&gt;$user_path&lt;/span&gt;/.rbenv/plugins/rbenv-gem-rehash
+&lt;span class="c"&gt;## Ruby environment&lt;/span&gt;
+&lt;span class="nv"&gt;RUBY_VERSION&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"2.2.3"&lt;/span&gt;
+fancy_echo &lt;span class="s2"&gt;"Installing Ruby &lt;/span&gt;&lt;span class="nv"&gt;$RUBY_VERSION&lt;/span&gt;&lt;span class="s2"&gt; ..."&lt;/span&gt;
+rbenv install &lt;span class="nv"&gt;$RUBY_VERSION&lt;/span&gt;
+rbenv rehash
+rbenv global &lt;span class="nv"&gt;$RUBY_VERSION&lt;/span&gt;
+ruby -v
+fancy_echo &lt;span class="s2"&gt;"Gem update system ..."&lt;/span&gt;
+gem update --system
+fancy_echo &lt;span class="s2"&gt;"Echo .gemrc..."&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'gem: --no-rdoc --no-ri'&lt;/span&gt; &amp;gt;&amp;gt; &lt;span class="nv"&gt;$user_path&lt;/span&gt;/.gemrc
+gem install bundler
+gem install backup
+rbenv rehash
+fancy_echo &lt;span class="s2"&gt;"Export path ..."&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;"export PATH="&lt;/span&gt;&lt;span class="nv"&gt;$PATH&lt;/span&gt;:/usr/bin&lt;span class="s2"&gt;""&lt;/span&gt; &amp;gt;&amp;gt; &lt;span class="nv"&gt;$user_path&lt;/span&gt;/.bashrc
+&lt;span class="nb"&gt;exec&lt;/span&gt; &lt;span class="nv"&gt;$SHELL&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;Bu scriptler ile sunucunuzu bir rails uygulamasını çalıştıracak duruma getirmiş olursunuz.&lt;/p&gt;
+
+&lt;p&gt;Şimdi bir rails uygulaması oluşturup, uygulamayı bir sunucuya aktarma işlemlerini anlatacağız.
+&lt;a href="https://en.wikipedia.org/wiki/Ruby_on_Rails" target="_blank"&gt;Ruby On Rails&lt;/a&gt; bildiğiniz ruby dili ile, &lt;a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller" target="_blank"&gt;MVC(Model-View-Controller)&lt;/a&gt; mimari deseni ile geliştirilmiş ve bünyesinde &lt;a href="https://en.wikipedia.org/wiki/Don't_repeat_yourself" target="_blank"&gt;DRY(Don&amp;rsquo;t Repeat Yourself)&lt;/a&gt;, &lt;a href="https://en.wikipedia.org/wiki/Convention_over_configuration" target="_blank"&gt;CoC(Convetion over configuration)&lt;/a&gt; gibi yazılım felsefelerini barındıran açık kaynak bir uygulama çatısıdır.&lt;/p&gt;
+
+&lt;p&gt;Hızlı bir Ruby On Rails uygulaması çıkarmak istiyorsanız size &lt;a href="https://rubygems.org/gems/cybele" target="_blank"&gt;Cybele&lt;/a&gt; ruby gem&amp;#39;ini öneririz. Bu gem bir uygulamada olması gereken kullanıcı giriş, bilgi güncelleme, yönetici tarafına giriş işlemleri gibi her projede kullanacağınız kısımlar hazır bir taslak olarak geliyor. Bu sayede önceden yazdığınız kodları tekrar yazmak zorunda kalmıyorsunuz. Cybele geminin taslak olarak getirdiği Gemfile &amp;#39;ı &lt;a href="https://github.com/lab2023/cybele/blob/develop/templates/cybele_Gemfile"&gt;github&lt;/a&gt; adresinden inceleyebilirsiniz.
+Sunucuya kolay bir şekilde uygulamayı taşımak için kullancağımız gemler bu Gemfile &amp;#39;da yer almaktadır.
+Eğer &lt;code&gt; rails new project_name&lt;/code&gt; şeklinde sıfırdan bir proje oluşturursanız veya halihazırda bulunan bir projenizi sunucuya taşımak isterseniz, kullanacağımız komutlar dizisinin yer aldığı &lt;a href="https://github.com/lab2023/recipes_matic"&gt;recipes_matic&lt;/a&gt; gemini incelemenizi tavsiye ederiz.&lt;/p&gt;
+
+&lt;p&gt;Cybele ile oluşturduğumuz bir proje için bu adımları anlatacagız.
+&lt;ol&gt;
+    &lt;li&gt;Proje oluştur &lt;code&gt;$ cybele project_name&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Deploy repo bilgilerini düzenle &lt;code&gt;/config/deploy.rb&lt;/code&gt;
+&lt;pre&gt; set :repo_url, &amp;#39;&lt;a href="mailto:git@github.com"&gt;git@github.com&lt;/a&gt;:your_username/your_repo_name.git&amp;#39;&lt;/pre&gt;
+&lt;/li&gt;
+    &lt;li&gt;Production deploy bilgilerini düzenle &lt;code&gt; /config/deploy/production.rb &lt;/code&gt;
+&lt;pre&gt;
+server &lt;q&gt;example.com&lt;/q&gt;, user: &lt;q&gt;#{fetch(:local_user)}&lt;/q&gt;, roles: %w{app db web}, primary: true, port: 22
+set :rails_env, &amp;#39;production&amp;#39;
+set :branch, &amp;#39;master&amp;#39;
+set :project_domain, “example.com”
+&lt;/pre&gt;
+&lt;/li&gt;
+    &lt;li&gt;Staging deploy bilgilerini düzenle &lt;code&gt;/config/deploy/staging.rb&lt;/code&gt;
+&lt;pre&gt;
+server &lt;q&gt;staging.example.com&lt;/q&gt;, user: &lt;q&gt;#{fetch(:local_user)}&lt;/q&gt;, roles: %w{app db web}, primary: true, port: 22
+set :rails_env, &amp;#39;staging&amp;#39;
+set :branch, &amp;#39;develop&amp;#39;
+set :project_domain, “staging.example.com”
+&lt;/pre&gt;
+&lt;/li&gt;
+    &lt;li&gt;Hata bildirimleri için email adresini düzenle
+ &lt;br/&gt; &lt;code&gt;config/environments/production.rb &lt;/code&gt;&lt;br/&gt; &lt;code&gt;config/environments/staging.rb&lt;/code&gt;
+&lt;pre&gt;config.middleware.use ExceptionNotification::Rack,
+:email =&amp;gt; {
+  :email_prefix =&amp;gt; &lt;q&gt;[project_name]&lt;/q&gt;,
+  :sender_address =&amp;gt; %{&lt;q&gt;Notifier&lt;/q&gt; &amp;lt;&lt;a href="mailto:notifier@project_name.com"&gt;notifier@project_name.com&lt;/a&gt;&amp;gt;},
+  :exception_recipients =&amp;gt; %w{&lt;a href="mailto:your_email@address.com"&gt;your_email@address.com&lt;/a&gt;}
+}
+&lt;/pre&gt;
+&lt;/li&gt;
+    &lt;li&gt;Aşağıdaki dosyalarda SMTP ayarlarını ayarla &lt;br/&gt;&lt;code&gt;config/settings/staging.yml&lt;/code&gt;&lt;br/&gt;&lt;code&gt;config/settings/production.yml&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Github da bulunan private repolara lokaldeki gibi erismek icin şu komutları çalıştır
+            &lt;br/&gt;&lt;code&gt;$ eval &lt;code&gt;ssh-agent -s&lt;/code&gt;&lt;/code&gt; &lt;br/&gt;&lt;code&gt;$ ssh-add &lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Gelelim terminalden çalıştırmamız gereken komutlar dizisine,Production sunucusunda ki deploy ortamının hazır olup olmadığını kontrol eder.
+&lt;code&gt;$ bundle exec cap production deploy:check&lt;/code&gt;
+Production sunucusunda nginx, postgresql, unicorn, &lt;a href="http://meskyanichi.github.io/backup/v3/"&gt;backup&lt;/a&gt;(veritabanı yedek alma gemi) gibi ayarları yapar.
+&lt;code&gt;$ bundle exec cap production deploy:prepare&lt;/code&gt;
+Production sunucusuna deploy işlemini gerçekleştirir.
+&lt;code&gt;$ bundle exec cap production deploy&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;Örnek dosyalarımızda şu şekilde olmalıdır.
+Proje anadizininde bulunan Capfile örneği:&lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="c1"&gt;# Load DSL and set up stages&lt;/span&gt;
+&lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s1"&gt;'capistrano/setup'&lt;/span&gt;
+&lt;span class="c1"&gt;# Include default deployment tasks&lt;/span&gt;
+&lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s1"&gt;'capistrano/deploy'&lt;/span&gt;
+&lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s1"&gt;'capistrano/rails'&lt;/span&gt;
+&lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s1"&gt;'capistrano/bundler'&lt;/span&gt;
+&lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s1"&gt;'sshkit/sudo'&lt;/span&gt;
+&lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s1"&gt;'capistrano/maintenance'&lt;/span&gt;
+&lt;span class="c1"&gt;# Include tasks from other gems included in your Gemfile&lt;/span&gt;
+&lt;span class="c1"&gt;# For documentation on these, see for example:&lt;/span&gt;
+&lt;span class="c1"&gt;#   https://github.com/capistrano/rvm&lt;/span&gt;
+&lt;span class="c1"&gt;#   https://github.com/capistrano/rbenv&lt;/span&gt;
+&lt;span class="c1"&gt;#   https://github.com/capistrano/chruby&lt;/span&gt;
+&lt;span class="c1"&gt;#   https://github.com/capistrano/bundler&lt;/span&gt;
+&lt;span class="c1"&gt;#   https://github.com/capistrano/rails&lt;/span&gt;
+&lt;span class="c1"&gt;#   https://github.com/capistrano/passenger&lt;/span&gt;
+&lt;span class="c1"&gt;# require 'capistrano/rvm'&lt;/span&gt;
+&lt;span class="c1"&gt;# require 'capistrano/rbenv'&lt;/span&gt;
+&lt;span class="c1"&gt;# require 'capistrano/chruby'&lt;/span&gt;
+&lt;span class="c1"&gt;# require 'capistrano/bundler'&lt;/span&gt;
+&lt;span class="c1"&gt;# require 'capistrano/rails/assets'&lt;/span&gt;
+&lt;span class="c1"&gt;# require 'capistrano/rails/migrations'&lt;/span&gt;
+&lt;span class="c1"&gt;# require 'capistrano/passenger'&lt;/span&gt;
+&lt;span class="c1"&gt;# Load custom tasks from `lib/capistrano/tasks` if you have any defined&lt;/span&gt;
+&lt;span class="no"&gt;Dir&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;glob&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'lib/capistrano/tasks/*.rake'&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nf"&gt;each&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;import&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Proje config dizininde bulunan deploy.rb örneği:&lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="c1"&gt;# config valid only for current version of Capistrano&lt;/span&gt;
+&lt;span class="n"&gt;lock&lt;/span&gt; &lt;span class="s1"&gt;'3.4.0'&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="ss"&gt;:application&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'appname'&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="ss"&gt;:local_user&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'deploy'&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="ss"&gt;:stages&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="sx"&gt;%w(staging production)&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="ss"&gt;:default_stage&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'production'&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="ss"&gt;:repo_url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"git@github.com:username/&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="n"&gt;fetch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:application&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;.git"&lt;/span&gt;
+&lt;span class="c1"&gt;# Default branch is :master&lt;/span&gt;
+&lt;span class="c1"&gt;# ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp&lt;/span&gt;
+&lt;span class="c1"&gt;# Default deploy_to directory is /var/www/blog2&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="ss"&gt;:deploy_to&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"/home/&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="n"&gt;fetch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:local_user&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;/apps/&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="n"&gt;fetch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:application&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;
+&lt;span class="c1"&gt;# Default value for :scm is :git&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="ss"&gt;:scm&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;:git&lt;/span&gt;
+&lt;span class="c1"&gt;# Default value for :format is :pretty&lt;/span&gt;
+&lt;span class="c1"&gt;# set :format, :pretty&lt;/span&gt;
+&lt;span class="c1"&gt;# Default value for :log_level is :debug&lt;/span&gt;
+&lt;span class="c1"&gt;# set :log_level, :debug&lt;/span&gt;
+&lt;span class="c1"&gt;# Default value for :pty is false&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="ss"&gt;:pty&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kp"&gt;true&lt;/span&gt;
+&lt;span class="c1"&gt;# Default value for :linked_files is []&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="ss"&gt;:linked_files&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;fetch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:linked_files&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[]).&lt;/span&gt;&lt;span class="nf"&gt;push&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'config/database.yml'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# Default value for linked_dirs is []&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="ss"&gt;:linked_dirs&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;fetch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:linked_dirs&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[]).&lt;/span&gt;&lt;span class="nf"&gt;push&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'log'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'tmp/pids'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'tmp/cache'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'tmp/sockets'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'vendor/bundle'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'public/system'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'public/upload'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'public/images'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'public/seat_images'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# Default value for default_env is {}&lt;/span&gt;
+&lt;span class="c1"&gt;# set :default_env, { path: "/opt/ruby/bin:$PATH" }&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="ss"&gt;:default_env&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="ss"&gt;path: &lt;/span&gt;&lt;span class="s1"&gt;'$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH'&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="c1"&gt;# Default value for keep_releases is 5&lt;/span&gt;
+&lt;span class="c1"&gt;# set :keep_releases, 5&lt;/span&gt;
+&lt;span class="c1"&gt;# Look our recipes&lt;/span&gt;
+&lt;span class="c1"&gt;# https://github.com/lab2023/recipes_matic&lt;/span&gt;
+&lt;span class="nb"&gt;load&lt;/span&gt; &lt;span class="s1"&gt;'config/deploy/recipes/base.rb'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Umarım faydalı bir yazı olmuştur.
+Kolay gelsin.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Deploy Ruby on Rails Application Quickly With Capistrano 3</title>
+    <link rel="alternate" href="http://lab2023.com/deploy-ruby-on-rails-application-quickly-with-capistrano.html"/>
+    <id>http://lab2023.com/deploy-ruby-on-rails-application-quickly-with-capistrano.html</id>
+    <published>2015-12-21T02:00:00+02:00</published>
+    <updated>2016-07-01T16:18:27+03:00</updated>
+    <author>
+      <name>lab2023</name>
+    </author>
+    <content type="html">&lt;p&gt;Hi,&lt;/p&gt;
+
+&lt;p&gt;In this post, We will write about the  &lt;a href="https://github.com/capistrano/capistrano" target="_blank"&gt;Capistrano&lt;/a&gt;  deploy tool on &lt;code&gt;Ruby On Rails(ROR)&lt;/code&gt; and We will share some code blocks
+that is a bash script for starting the server from beginning. We are using Ubuntu-14.04 server. Capistrano version is 3.4. Ruby version on our server is 2.2.3. Capistrano is an open source project,
+if you want to look the source code, you can visit the &lt;a href="https://github.com/capistrano/capistrano" target="_blank"&gt;github&lt;/a&gt; page.
+&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt; HEAD&lt;/p&gt;
+
+&lt;h1 id="for-example-you-can-use-netinternet-or-digitalocean-server-suppliers.-you-can-prepare-your-server-within-2-3-hours-with-the-following-bash-scripts."&gt;For example you can use &lt;a href="https://www.netinternet.com.tr/ssd-vds-sunucular"&gt;Netinternet&lt;/a&gt; or &lt;a href="https://www.digitalocean.com/"&gt;DigitalOcean&lt;/a&gt; server suppliers. You can prepare your server within 2-3 hours w&lt;span id="result_box" class="short_text" lang="en"&gt;&lt;span class="hps"&gt;ith&lt;/span&gt; &lt;span class="hps"&gt;the following bash&lt;/span&gt; &lt;span class="hps"&gt;scripts.&lt;/h1&gt;
+
+&lt;p&gt;For example you can use &lt;a href="http://www.netinternet.com.tr/panel/aff.php?aff=916"&gt;Netinternet&lt;/a&gt; or &lt;a href="https://www.digitalocean.com/"&gt;DigitalOcean&lt;/a&gt; server suppliers. You can prepare your server within 2-3 hours w&lt;span id="result_box" class="short_text" lang="en"&gt;&lt;span class="hps"&gt;ith&lt;/span&gt; &lt;span class="hps"&gt;the following bash&lt;/span&gt; &lt;span class="hps"&gt;scripts.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;hotfix/v1.11.2.0
+Those bash scripts prepare basic environment for Ruby libraries and create &lt;code&gt;deploy user&lt;/code&gt; for using on deployment process.  Also one of them prepares Ruby environment under the &lt;code&gt;deploy user&lt;/code&gt; home folder(default &lt;code&gt;deploy user&lt;/code&gt; name you can change it  before to run scripts)&lt;/span&gt;&lt;/span&gt; .&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Base installation bash script for Ruby environment is as follows. You must run this script as a root user.&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="c"&gt;## Run this script with root user&lt;/span&gt;
+&lt;span class="c"&gt;## Fancy echo&lt;/span&gt;
+fancy_echo&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+  &lt;span class="nb"&gt;printf&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;%b&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="nv"&gt;$1&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+fancy_echo &lt;span class="s2"&gt;"Updating system packages ..."&lt;/span&gt;
+apt-get -y update
+apt-get -y upgrade
+fancy_echo &lt;span class="s2"&gt;"Installing python-software-properties..."&lt;/span&gt;
+apt-get -y install python-software-properties
+fancy_echo &lt;span class="s2"&gt;"Installing software-properties-common..."&lt;/span&gt;
+apt-get -y install software-properties-common
+fancy_echo &lt;span class="s2"&gt;"Exporting language"&lt;/span&gt;
+&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;LANGUAGE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;en_US.UTF-8 &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;LANG&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;en_US.UTF-8 &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;LC_ALL&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;en_US.UTF-8 &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; locale-gen en_US.UTF-8 &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; dpkg-reconfigure locales
+fancy_echo &lt;span class="s2"&gt;"Installing libraries for common gem dependencies ..."&lt;/span&gt;
+apt-get -y install autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev
+apt-get install git-core openssl curl libreadline-dev libxslt1-dev libcurl4-openssl-dev ruby-dev make make-doc
+fancy_echo &lt;span class="s2"&gt;"Installing nodejs ..."&lt;/span&gt;
+add-apt-repository -y ppa:chris-lea/node.js
+apt-get -y update
+apt-get -y install nodejs
+apt-get -y install libxslt-dev libxml2-dev
+fancy_echo &lt;span class="s2"&gt;"Installing imagemagick ..."&lt;/span&gt;
+apt-get install -y imagemagick
+fancy_echo &lt;span class="s2"&gt;"Installing nginx ..."&lt;/span&gt;
+add-apt-repository -y ppa:nginx/stable
+apt-get -y update
+apt-get -y install nginx
+service nginx start
+fancy_echo &lt;span class="s2"&gt;"Installing postgresql ..."&lt;/span&gt;
+apt-get -y install postgresql libpq-dev
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Deploy user creating script is as follows. You must run this script as a root user too.&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="c"&gt;# Deploy group&lt;/span&gt;
+&lt;span class="nv"&gt;deploy_group&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;deploy
+&lt;span class="c"&gt;# Deploy user&lt;/span&gt;
+&lt;span class="nv"&gt;deploy_user&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;deploy
+&lt;span class="c"&gt;# Github usernames for access with ssh to deploy user&lt;/span&gt;
+&lt;span class="nv"&gt;usernames&lt;/span&gt;&lt;span class="o"&gt;=(&lt;/span&gt;tayfunoziserikan ismailakbudak&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="c"&gt;# Check user is exist&lt;/span&gt;
+id -u &lt;span class="nv"&gt;$deploy_user&lt;/span&gt; &amp;amp;&amp;gt; /dev/null
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; &lt;span class="nv"&gt;$?&lt;/span&gt; -ne 0 &lt;span class="o"&gt;]&lt;/span&gt;
+&lt;span class="k"&gt;then
+  &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;"* Add &lt;/span&gt;&lt;span class="nv"&gt;$deploy_group&lt;/span&gt;&lt;span class="s2"&gt; group"&lt;/span&gt;
+  groupadd &lt;span class="nv"&gt;$deploy_group&lt;/span&gt;
+  &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;"* Creating user &lt;/span&gt;&lt;span class="nv"&gt;$deploy_user&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;
+  useradd -m -g &lt;span class="nv"&gt;$deploy_group&lt;/span&gt; -s /bin/bash &lt;span class="nv"&gt;$deploy_user&lt;/span&gt;
+  &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;"* Adding user &lt;/span&gt;&lt;span class="nv"&gt;$deploy_user&lt;/span&gt;&lt;span class="s2"&gt; to sudoers"&lt;/span&gt;
+  chmod +w /etc/sudoers
+  &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="nv"&gt;$deploy_user&lt;/span&gt;&lt;span class="s2"&gt; ALL=(ALL) ALL"&lt;/span&gt; &amp;gt;&amp;gt; /etc/sudoers
+  chmod -w /etc/sudoers
+&lt;span class="k"&gt;else
+  &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;"* &lt;/span&gt;&lt;span class="nv"&gt;$deploy_user&lt;/span&gt;&lt;span class="s2"&gt; user already exists"&lt;/span&gt;
+&lt;span class="k"&gt;fi&lt;/span&gt;
+&lt;span class="c"&gt;# Check user is exist, maybe some errors occured&lt;/span&gt;
+id -u &lt;span class="nv"&gt;$deploy_user&lt;/span&gt; &amp;amp;&amp;gt; /dev/null
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; &lt;span class="nv"&gt;$?&lt;/span&gt; -ne 0 &lt;span class="o"&gt;]&lt;/span&gt;
+&lt;span class="k"&gt;then
+  &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;"* &lt;/span&gt;&lt;span class="nv"&gt;$deploy_user&lt;/span&gt;&lt;span class="s2"&gt; user does not exists"&lt;/span&gt;
+&lt;span class="k"&gt;else&lt;/span&gt;
+  &lt;span class="c"&gt;# Prepare ssh keys environment&lt;/span&gt;
+  &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;"* Add .ssh directory to &lt;/span&gt;&lt;span class="nv"&gt;$deploy_user&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;
+  &lt;span class="nb"&gt;test&lt;/span&gt; -d /home/&lt;span class="nv"&gt;$deploy_user&lt;/span&gt;/.ssh
+  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; &lt;span class="nv"&gt;$?&lt;/span&gt; -ne 0 &lt;span class="o"&gt;]&lt;/span&gt;
+  &lt;span class="k"&gt;then
+    &lt;/span&gt;mkdir /home/&lt;span class="nv"&gt;$deploy_user&lt;/span&gt;/.ssh
+    &lt;span class="c"&gt;# change user permisisions&lt;/span&gt;
+    &lt;span class="c"&gt;# 700 =&amp;gt; (owner read/write/execute, group none, other none)&lt;/span&gt;
+    chmod 700 /home/&lt;span class="nv"&gt;$deploy_user&lt;/span&gt;/.ssh
+    chown &lt;span class="nv"&gt;$deploy_user&lt;/span&gt; /home/&lt;span class="nv"&gt;$deploy_user&lt;/span&gt;/.ssh
+    chgrp &lt;span class="nv"&gt;$deploy_group&lt;/span&gt; /home/&lt;span class="nv"&gt;$deploy_user&lt;/span&gt;/.ssh
+  &lt;span class="k"&gt;fi
+  &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;"* Get usernames public keys from GitHub and add them to &lt;/span&gt;&lt;span class="nv"&gt;$deploy_user&lt;/span&gt;&lt;span class="s2"&gt; authorized_keys"&lt;/span&gt;
+  &lt;span class="k"&gt;for &lt;/span&gt;username &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="k"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;usernames&lt;/span&gt;&lt;span class="p"&gt;[@]&lt;/span&gt;&lt;span class="k"&gt;}&lt;/span&gt;; &lt;span class="k"&gt;do
+    &lt;/span&gt;&lt;span class="nv"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$username&lt;/span&gt;.keys
+    wget https://github.com/&lt;span class="nv"&gt;$name&lt;/span&gt; --no-check-certificate -O &lt;span class="nv"&gt;$name&lt;/span&gt;
+    cat &lt;span class="nv"&gt;$name&lt;/span&gt; &amp;gt;&amp;gt; /home/&lt;span class="nv"&gt;$deploy_user&lt;/span&gt;/.ssh/authorized_keys
+    rm &lt;span class="nv"&gt;$name&lt;/span&gt; &lt;span class="c"&gt;# remove temprory file&lt;/span&gt;
+  &lt;span class="k"&gt;done&lt;/span&gt;
+  &lt;span class="c"&gt;# change user permisisions&lt;/span&gt;
+  &lt;span class="c"&gt;# 600 =&amp;gt; (owner read/write, group none, other none)&lt;/span&gt;
+  chmod 600 /home/&lt;span class="nv"&gt;$deploy_user&lt;/span&gt;/.ssh/authorized_keys
+  chown &lt;span class="nv"&gt;$deploy_user&lt;/span&gt; /home/&lt;span class="nv"&gt;$deploy_user&lt;/span&gt;/.ssh/authorized_keys
+  chgrp &lt;span class="nv"&gt;$deploy_group&lt;/span&gt; /home/&lt;span class="nv"&gt;$deploy_user&lt;/span&gt;/.ssh/authorized_keys
+  &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;"* Completed..."&lt;/span&gt;
+&lt;span class="k"&gt;fi&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;This script  is preparing ruby environment for &lt;code&gt;deploy user&lt;/code&gt;. You should run this script as a &lt;code&gt;deploy user&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="c"&gt;## Run this command with deploy user&lt;/span&gt;
+&lt;span class="c"&gt;# define user home path&lt;/span&gt;
+&lt;span class="nv"&gt;user_path&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/home/deploy
+&lt;span class="c"&gt;## Fancy echo&lt;/span&gt;
+fancy_echo&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+  &lt;span class="nb"&gt;printf&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;%b&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="nv"&gt;$1&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+fancy_echo &lt;span class="s2"&gt;"Installing rbenv..."&lt;/span&gt;
+git clone git://github.com/sstephenson/rbenv.git &lt;span class="nv"&gt;$user_path&lt;/span&gt;/.rbenv
+fancy_echo &lt;span class="s2"&gt;"Writing rbenv path to bashrc ..."&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'export PATH=\"$HOME/.rbenv/bin:$PATH\"'&lt;/span&gt; &amp;gt;&amp;gt; &lt;span class="nv"&gt;$user_path&lt;/span&gt;/.bashrc
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'eval "$(rbenv init -)"'&lt;/span&gt; &amp;gt;&amp;gt; &lt;span class="nv"&gt;$user_path&lt;/span&gt;/.bashrc
+fancy_echo &lt;span class="s2"&gt;"Exporting rbenv path..."&lt;/span&gt;
+&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="nv"&gt;$HOME&lt;/span&gt;&lt;span class="s2"&gt;/.rbenv/bin:&lt;/span&gt;&lt;span class="nv"&gt;$PATH&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;
+&lt;span class="nb"&gt;eval&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;rbenv init -&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;
+fancy_echo &lt;span class="s2"&gt;"Preparing rbenv plugins..."&lt;/span&gt;
+mkdir -p &lt;span class="nv"&gt;$user_path&lt;/span&gt;/.rbenv/plugins
+git clone https://github.com/sstephenson/ruby-build.git &lt;span class="nv"&gt;$user_path&lt;/span&gt;/.rbenv/plugins/ruby-build
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"'&lt;/span&gt; &amp;gt;&amp;gt; &lt;span class="nv"&gt;$user_path&lt;/span&gt;/.bashrc
+git clone https://github.com/sstephenson/rbenv-gem-rehash.git &lt;span class="nv"&gt;$user_path&lt;/span&gt;/.rbenv/plugins/rbenv-gem-rehash
+&lt;span class="c"&gt;## Ruby environment&lt;/span&gt;
+&lt;span class="nv"&gt;RUBY_VERSION&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"2.2.3"&lt;/span&gt;
+fancy_echo &lt;span class="s2"&gt;"Installing Ruby &lt;/span&gt;&lt;span class="nv"&gt;$RUBY_VERSION&lt;/span&gt;&lt;span class="s2"&gt; ..."&lt;/span&gt;
+rbenv install &lt;span class="nv"&gt;$RUBY_VERSION&lt;/span&gt;
+rbenv rehash
+rbenv global &lt;span class="nv"&gt;$RUBY_VERSION&lt;/span&gt;
+ruby -v
+fancy_echo &lt;span class="s2"&gt;"Gem update system ..."&lt;/span&gt;
+gem update --system
+fancy_echo &lt;span class="s2"&gt;"Echo .gemrc..."&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'gem: --no-rdoc --no-ri'&lt;/span&gt; &amp;gt;&amp;gt; &lt;span class="nv"&gt;$user_path&lt;/span&gt;/.gemrc
+gem install bundler
+gem install backup
+rbenv rehash
+fancy_echo &lt;span class="s2"&gt;"Export path ..."&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;"export PATH="&lt;/span&gt;&lt;span class="nv"&gt;$PATH&lt;/span&gt;:/usr/bin&lt;span class="s2"&gt;""&lt;/span&gt; &amp;gt;&amp;gt; &lt;span class="nv"&gt;$user_path&lt;/span&gt;/.bashrc
+&lt;span class="nb"&gt;exec&lt;/span&gt; &lt;span class="nv"&gt;$SHELL&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;Your server is ready to run ROR application  with those scripts.&lt;/p&gt;
+
+&lt;p&gt;Now We will write about deployment process for simple application.
+As you know &lt;a href="https://en.wikipedia.org/wiki/Ruby_on_Rails" target="_blank"&gt;ROR&lt;/a&gt; has been developed with Ruby programming language,  developing with &lt;a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller" target="_blank"&gt;MVC(Model-View-Controller)&lt;/a&gt; open source web framework and it includes principles like &lt;a href="https://en.wikipedia.org/wiki/Don't_repeat_yourself" target="_blank"&gt;DRY(Don&amp;rsquo;t Repeat Yourself)&lt;/a&gt;, &lt;a href="https://en.wikipedia.org/wiki/Convention_over_configuration" target="_blank"&gt;CoC(Convetion over configuration)&lt;/a&gt; .&lt;/p&gt;
+
+&lt;p&gt;If you want to create rails application quickly, you should look the &lt;a href="https://rubygems.org/gems/cybele" target="_blank"&gt;Cybele Ruby Gem&lt;/a&gt; . This gem provides useful gem list and creates common pages for using in every application like user register, user login, update login and profile info, admin login. Thus you don&amp;rsquo;t repeat yourself on every new project. You can look the template Gemfile of Cybele gem, also from &lt;a href="https://github.com/lab2023/cybele/blob/develop/templates/cybele_Gemfile"&gt;github&lt;/a&gt;.  Some useful deploy gems are on this file.
+If you create project  &lt;code&gt;rails new project_name&lt;/code&gt;  command or if you want to deploy project that is already initialized, my deploy commands is in this &lt;a href="https://github.com/lab2023/recipes_matic"&gt;recipes_matic&lt;/a&gt; gem, you should look that.&lt;/p&gt;
+
+&lt;p&gt;We will show deploy steps using with cybele gem.
+&lt;ol&gt;
+    &lt;li&gt;Create project &lt;code&gt;$ cybele project_name&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Edit deploy repo on this file &lt;code&gt;/config/deploy.rb&lt;/code&gt;
+&lt;pre&gt; set :repo_url, &amp;#39;&lt;a href="mailto:git@github.com"&gt;git@github.com&lt;/a&gt;:your_username/your_repo_name.git&amp;#39;&lt;/pre&gt;
+&lt;/li&gt;
+    &lt;li&gt;Edit production deploy settings on this file &lt;code&gt; /config/deploy/production.rb &lt;/code&gt;
+&lt;pre&gt;
+server &lt;q&gt;example.com&lt;/q&gt;, user: &lt;q&gt;#{fetch(:local_user)}&lt;/q&gt;, roles: %w{app db web}, primary: true, port: 22
+set :rails_env, &amp;#39;production&amp;#39;
+set :branch, &amp;#39;master&amp;#39;
+set :project_domain, “example.com”
+&lt;/pre&gt;
+&lt;/li&gt;
+    &lt;li&gt;Edit staging deploy settings on this file &lt;code&gt;/config/deploy/staging.rb&lt;/code&gt;
+&lt;pre&gt;
+server &lt;q&gt;staging.example.com&lt;/q&gt;, user: &lt;q&gt;#{fetch(:local_user)}&lt;/q&gt;, roles: %w{app db web}, primary: true, port: 22
+set :rails_env, &amp;#39;staging&amp;#39;
+set :branch, &amp;#39;develop&amp;#39;
+set :project_domain, “staging.example.com”
+&lt;/pre&gt;
+&lt;/li&gt;
+    &lt;li&gt; Edit your_email address for to get info about the occurred errors
+&lt;br/&gt;&lt;code&gt;config/environments/production.rb &lt;/code&gt;&lt;br/&gt; &lt;code&gt;config/environments/staging.rb&lt;/code&gt;
+&lt;pre&gt;config.middleware.use ExceptionNotification::Rack,
+:email =&amp;gt; {
+  :email_prefix =&amp;gt; &lt;q&gt;[project_name]&lt;/q&gt;,
+  :sender_address =&amp;gt; %{&lt;q&gt;Notifier&lt;/q&gt; &amp;lt;&lt;a href="mailto:notifier@project_name.com"&gt;notifier@project_name.com&lt;/a&gt;&amp;gt;},
+  :exception_recipients =&amp;gt; %w{&lt;a href="mailto:your_email@address.com"&gt;your_email@address.com&lt;/a&gt;}
+}
+&lt;/pre&gt;
+&lt;/li&gt;
+    &lt;li&gt;Edit yout SMTP settings on those files &lt;br/&gt;&lt;code&gt;config/settings/staging.yml&lt;/code&gt;&lt;br/&gt; &lt;code&gt;config/settings/production.yml&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;If you have private repo on github, run this commands in order for to access repo from server &lt;br/&gt;&lt;code&gt;$ eval &lt;code&gt;ssh-agent -s&lt;/code&gt;&lt;/code&gt;&lt;br/&gt; &lt;code&gt;$ ssh-add &lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Let&amp;rsquo;s deploy our application with capistrano,
+Check production server is ready to deployment
+&lt;code&gt;$ bundle exec cap production deploy:check&lt;/code&gt;
+Setup nginx, postgresql, unicorn, &lt;a href="http://meskyanichi.github.io/backup/v3/"&gt;backup&lt;/a&gt;(backup gem for to get database backup before deploy) for production server.
+&lt;code&gt;$ bundle exec cap production deploy:prepare&lt;/code&gt;
+Do deploy to production server.
+&lt;code&gt;$ bundle exec cap production deploy&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;Example Capfile file under project root directory&lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="c1"&gt;# Load DSL and set up stages&lt;/span&gt;
+&lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s1"&gt;'capistrano/setup'&lt;/span&gt;
+&lt;span class="c1"&gt;# Include default deployment tasks&lt;/span&gt;
+&lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s1"&gt;'capistrano/deploy'&lt;/span&gt;
+&lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s1"&gt;'capistrano/rails'&lt;/span&gt;
+&lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s1"&gt;'capistrano/bundler'&lt;/span&gt;
+&lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s1"&gt;'sshkit/sudo'&lt;/span&gt;
+&lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s1"&gt;'capistrano/maintenance'&lt;/span&gt;
+&lt;span class="c1"&gt;# Include tasks from other gems included in your Gemfile&lt;/span&gt;
+&lt;span class="c1"&gt;# For documentation on these, see for example:&lt;/span&gt;
+&lt;span class="c1"&gt;#   https://github.com/capistrano/rvm&lt;/span&gt;
+&lt;span class="c1"&gt;#   https://github.com/capistrano/rbenv&lt;/span&gt;
+&lt;span class="c1"&gt;#   https://github.com/capistrano/chruby&lt;/span&gt;
+&lt;span class="c1"&gt;#   https://github.com/capistrano/bundler&lt;/span&gt;
+&lt;span class="c1"&gt;#   https://github.com/capistrano/rails&lt;/span&gt;
+&lt;span class="c1"&gt;#   https://github.com/capistrano/passenger&lt;/span&gt;
+&lt;span class="c1"&gt;# require 'capistrano/rvm'&lt;/span&gt;
+&lt;span class="c1"&gt;# require 'capistrano/rbenv'&lt;/span&gt;
+&lt;span class="c1"&gt;# require 'capistrano/chruby'&lt;/span&gt;
+&lt;span class="c1"&gt;# require 'capistrano/bundler'&lt;/span&gt;
+&lt;span class="c1"&gt;# require 'capistrano/rails/assets'&lt;/span&gt;
+&lt;span class="c1"&gt;# require 'capistrano/rails/migrations'&lt;/span&gt;
+&lt;span class="c1"&gt;# require 'capistrano/passenger'&lt;/span&gt;
+&lt;span class="c1"&gt;# Load custom tasks from `lib/capistrano/tasks` if you have any defined&lt;/span&gt;
+&lt;span class="no"&gt;Dir&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;glob&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'lib/capistrano/tasks/*.rake'&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nf"&gt;each&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;import&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Example deploy.rb file under project config directory&lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="c1"&gt;# config valid only for current version of Capistrano&lt;/span&gt;
+&lt;span class="n"&gt;lock&lt;/span&gt; &lt;span class="s1"&gt;'3.4.0'&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="ss"&gt;:application&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'appname'&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="ss"&gt;:local_user&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'deploy'&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="ss"&gt;:stages&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="sx"&gt;%w(staging production)&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="ss"&gt;:default_stage&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'production'&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="ss"&gt;:repo_url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"git@github.com:username/&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="n"&gt;fetch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:application&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;.git"&lt;/span&gt;
+&lt;span class="c1"&gt;# Default branch is :master&lt;/span&gt;
+&lt;span class="c1"&gt;# ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp&lt;/span&gt;
+&lt;span class="c1"&gt;# Default deploy_to directory is /var/www/blog2&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="ss"&gt;:deploy_to&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"/home/&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="n"&gt;fetch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:local_user&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;/apps/&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="n"&gt;fetch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:application&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;
+&lt;span class="c1"&gt;# Default value for :scm is :git&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="ss"&gt;:scm&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;:git&lt;/span&gt;
+&lt;span class="c1"&gt;# Default value for :format is :pretty&lt;/span&gt;
+&lt;span class="c1"&gt;# set :format, :pretty&lt;/span&gt;
+&lt;span class="c1"&gt;# Default value for :log_level is :debug&lt;/span&gt;
+&lt;span class="c1"&gt;# set :log_level, :debug&lt;/span&gt;
+&lt;span class="c1"&gt;# Default value for :pty is false&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="ss"&gt;:pty&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kp"&gt;true&lt;/span&gt;
+&lt;span class="c1"&gt;# Default value for :linked_files is []&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="ss"&gt;:linked_files&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;fetch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:linked_files&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[]).&lt;/span&gt;&lt;span class="nf"&gt;push&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'config/database.yml'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# Default value for linked_dirs is []&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="ss"&gt;:linked_dirs&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;fetch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:linked_dirs&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[]).&lt;/span&gt;&lt;span class="nf"&gt;push&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'log'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'tmp/pids'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'tmp/cache'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'tmp/sockets'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'vendor/bundle'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'public/system'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'public/upload'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'public/images'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'public/seat_images'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# Default value for default_env is {}&lt;/span&gt;
+&lt;span class="c1"&gt;# set :default_env, { path: "/opt/ruby/bin:$PATH" }&lt;/span&gt;
+&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="ss"&gt;:default_env&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="ss"&gt;path: &lt;/span&gt;&lt;span class="s1"&gt;'$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH'&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="c1"&gt;# Default value for keep_releases is 5&lt;/span&gt;
+&lt;span class="c1"&gt;# set :keep_releases, 5&lt;/span&gt;
+&lt;span class="c1"&gt;# Look our recipes&lt;/span&gt;
+&lt;span class="c1"&gt;# https://github.com/lab2023/recipes_matic&lt;/span&gt;
+&lt;span class="nb"&gt;load&lt;/span&gt; &lt;span class="s1"&gt;'config/deploy/recipes/base.rb'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We hope it is a useful post for you.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>İkinci Rails Girls Denizli Etkinliği</title>
     <link rel="alternate" href="http://lab2023.com/ikinci-rails-girls-denizli-etkinligi.html"/>
     <id>http://lab2023.com/ikinci-rails-girls-denizli-etkinligi.html</id>
     <published>2015-12-02T02:00:00+02:00</published>
-    <updated>2015-12-03T17:13:24+02:00</updated>
+    <updated>2016-07-01T16:07:24+03:00</updated>
     <author>
       <name>lab2023</name>
     </author>
@@ -33,7 +961,7 @@ kurtulacaklardır. Etkinliğe yanlarında bir kadının eşlik etmesi halinde ko
 &lt;p&gt;Rails Girls etkinliğini en güzel yanlarından birisi de Rails konusunda uzman kişilerin etkinlik sırasında
 size mentorluk etmesi ve yönlendirmesi. Etkinliğe katılmak için programcılık bilgisine sahip olmanıza gerek yoktur.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href="http://lab2023.com/"&gt;Lab2023&lt;/a&gt; organizatörlüğünde  11 - 12 Aralık 2015 tarihleri arasında Denizli’de &lt;a href="http://pauteknokent.com.tr/teknokent/"&gt;Pamukkale Teknokent&lt;/a&gt;, &lt;a href="https://www.bulutfon.com/"&gt;Bulutfon&lt;/a&gt;, &lt;a href="https://www.netinternet.com.tr/"&gt;Netinternet&lt;/a&gt;, &lt;a href="http://www.soroptimistdenizli.org/"&gt;Denizli Soroptimistik Kulübü&lt;/a&gt;,
+&lt;p&gt;&lt;a href="http://lab2023.com/"&gt;Lab2023&lt;/a&gt; organizatörlüğünde  11 - 12 Aralık 2015 tarihleri arasında Denizli’de &lt;a href="http://pauteknokent.com.tr/teknokent/"&gt;Pamukkale Teknokent&lt;/a&gt;, &lt;a href="https://www.bulutfon.com/?ref=1"&gt;Bulutfon&lt;/a&gt;, &lt;a href="http://www.netinternet.com.tr/panel/aff.php?aff=916"&gt;Netinternet&lt;/a&gt;, &lt;a href="http://www.soroptimistdenizli.org/"&gt;Denizli Soroptimistik Kulübü&lt;/a&gt;,
 &lt;a href="http://www.denizlihs.org/"&gt;Denizli Hackerspace&lt;/a&gt; ve &lt;a href="http://lab2023.com/"&gt;Lab2023&lt;/a&gt; &amp;#39;ün sponsorluk destekleriyle gerçekleşecek olan Rails Girls etkinliğinin programı şu şekildedir.&lt;/p&gt;
 
 &lt;ul&gt;
@@ -482,7 +1410,7 @@ After create your account, open your terminal,&lt;/p&gt;
     <link rel="alternate" href="http://lab2023.com/how-we-created-bulutfon-animation.html"/>
     <id>http://lab2023.com/how-we-created-bulutfon-animation.html</id>
     <published>2014-12-17T02:00:00+02:00</published>
-    <updated>2015-11-24T23:26:50+02:00</updated>
+    <updated>2016-07-01T16:07:24+03:00</updated>
     <author>
       <name>lab2023</name>
     </author>
@@ -502,7 +1430,7 @@ After create your account, open your terminal,&lt;/p&gt;
 
 &lt;h3 id="1.-step-is-creating-a-story..."&gt;1. step is creating a story&amp;hellip;&lt;/h3&gt;
 
-&lt;p&gt;This story is telling us about Bulutfon products, explaining all the opportunities that Bulutfon gives to customers, offering very comfortable services, to make business foundation easier.&lt;/p&gt;
+&lt;p&gt;This story is telling us about &lt;a href="https://www.bulutfon.com/?ref=1"&gt;Bulutfon&lt;/a&gt; products, explaining all the opportunities that &lt;a href="https://www.bulutfon.com/?ref=1"&gt;Bulutfon&lt;/a&gt; gives to customers, offering very comfortable services, to make business foundation easier.&lt;/p&gt;
 
 &lt;h3 id="2.-step-is-creating-a-main-character..."&gt;2. step is creating a main character&amp;hellip;&lt;/h3&gt;
 
@@ -575,7 +1503,7 @@ Here is a very short review with the main principles of making animation:&lt;/p&
     <link rel="alternate" href="http://lab2023.com/how-we-created-bulutfon-animation-russian.html"/>
     <id>http://lab2023.com/how-we-created-bulutfon-animation-russian.html</id>
     <published>2014-12-17T02:00:00+02:00</published>
-    <updated>2015-11-24T23:26:50+02:00</updated>
+    <updated>2016-07-01T16:07:24+03:00</updated>
     <author>
       <name>lab2023</name>
     </author>
@@ -595,7 +1523,7 @@ Here is a very short review with the main principles of making animation:&lt;/p&
 
 &lt;h3 id="1-этап-–-рождение-сюжета…"&gt;1 этап – рождение сюжета…&lt;/h3&gt;
 
-&lt;p&gt;История рассказывает нам о компании Bulutfon, обо всех ее существующих продуктах, сервисах и инновационных проектах, позволяющих сделать бизнес-процесс своих клиентов удобнее и проще.&lt;/p&gt;
+&lt;p&gt;История рассказывает нам о компании &lt;a href="https://www.bulutfon.com/?ref=1"&gt;Bulutfon&lt;/a&gt;, обо всех ее существующих продуктах, сервисах и инновационных проектах, позволяющих сделать бизнес-процесс своих клиентов удобнее и проще.&lt;/p&gt;
 
 &lt;h3 id="2-этап-–-моделирование-главного-персонажа…"&gt;2 этап – моделирование главного персонажа…&lt;/h3&gt;
 
@@ -651,7 +1579,7 @@ Here is a very short review with the main principles of making animation:&lt;/p&
 
 &lt;p&gt;&lt;img alt="character with bones" width="576" height="796" src="assets/images/articles/2014-12-17-how-we-created-bulutfon-animation/merge.jpg" /&gt;&lt;/p&gt;
 
-&lt;p&gt;В итоге мы получили великолепный ролик для компании Bulutfon:&lt;/p&gt;
+&lt;p&gt;В итоге мы получили великолепный ролик для компании &lt;a href="https://www.bulutfon.com/?ref=1"&gt;Bulutfon&lt;/a&gt;:&lt;/p&gt;
 
 &lt;p&gt;&lt;a href="http://vimeo.com/102756655"&gt;Как создавалась анимация, посвященная &lt;q&gt;Bulutfon&lt;/q&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -667,7 +1595,7 @@ Here is a very short review with the main principles of making animation:&lt;/p&
     <link rel="alternate" href="http://lab2023.com/como-creamos-la-animacion-para-bulutfon.html"/>
     <id>http://lab2023.com/como-creamos-la-animacion-para-bulutfon.html</id>
     <published>2014-12-17T02:00:00+02:00</published>
-    <updated>2015-11-24T23:26:50+02:00</updated>
+    <updated>2016-07-01T16:07:24+03:00</updated>
     <author>
       <name>lab2023</name>
     </author>
@@ -687,7 +1615,7 @@ Here is a very short review with the main principles of making animation:&lt;/p&
 
 &lt;h3 id="1.-paso-es-crear-la-historia..."&gt;1. paso es crear la historia&amp;hellip;&lt;/h3&gt;
 
-&lt;p&gt;Esta historia cuenta sobre los productos de Bulutfon, explicando todas las oportunidades que Bulutfon proporciona a sus clientes, ofreciendo cómodos servicios, para hacer el emprendimiento de negocios mucho más facil.&lt;/p&gt;
+&lt;p&gt;Esta historia cuenta sobre los productos de &lt;a href="https://www.bulutfon.com/?ref=1"&gt;Bulutfon&lt;/a&gt;, explicando todas las oportunidades que &lt;a href="https://www.bulutfon.com/?ref=1"&gt;Bulutfon&lt;/a&gt; proporciona a sus clientes, ofreciendo cómodos servicios, para hacer el emprendimiento de negocios mucho más facil.&lt;/p&gt;
 
 &lt;h3 id="2.-paso-es-crear-un-personaje-principal..."&gt;2. paso es crear un personaje principal&amp;hellip;&lt;/h3&gt;
 
@@ -760,7 +1688,7 @@ Aqui un pequeño resumen con los principios básicos para realizar animación di
     <link rel="alternate" href="http://lab2023.com/bulutfon-animasyonunu-nasil-hazirladik.html"/>
     <id>http://lab2023.com/bulutfon-animasyonunu-nasil-hazirladik.html</id>
     <published>2014-12-17T02:00:00+02:00</published>
-    <updated>2015-11-24T23:26:50+02:00</updated>
+    <updated>2016-07-01T16:07:24+03:00</updated>
     <author>
       <name>lab2023</name>
     </author>
@@ -780,7 +1708,7 @@ Aqui un pequeño resumen con los principios básicos para realizar animación di
 
 &lt;h3 id="1.-adım,-bir-hikaye-oluşturulması..."&gt;1. adım, bir hikaye oluşturulması&amp;hellip;&lt;/h3&gt;
 
-&lt;p&gt;Bu hikaye bize; Bulutfon ürünlerini anlatıyor; iş kurmayı kolaylaştırmak için Bulutfon&amp;#39;un müşterilere sunduğu fırsatları, sağladığı rahat kullanımlı servisleri açıklıyor.&lt;/p&gt;
+&lt;p&gt;Bu hikaye bize; &lt;a href="https://www.bulutfon.com/?ref=1"&gt;Bulutfon&lt;/a&gt; ürünlerini anlatıyor; iş kurmayı kolaylaştırmak için &lt;a href="https://www.bulutfon.com/?ref=1"&gt;Bulutfon&lt;/a&gt;&amp;lsquo;un müşterilere sunduğu fırsatları, sağladığı rahat kullanımlı servisleri açıklıyor.&lt;/p&gt;
 
 &lt;h3 id="2.-adım,-bir-ana-karakter-oluşturulması..."&gt;2. adım, bir ana karakter oluşturulması&amp;hellip;&lt;/h3&gt;
 
@@ -1134,262 +2062,6 @@ Thus you can integrate &lt;code&gt;rubocop&lt;/code&gt; to your rails project.&l
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;For detail you can visit &lt;a href="https://github.com/bbatsov/rubocop"&gt;Rubocop Github Page&lt;/a&gt;. &lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>JavaScript Plugins for Scroll Pages</title>
-    <link rel="alternate" href="http://lab2023.com/javascript-plugins-for-scroll-pages.html"/>
-    <id>http://lab2023.com/javascript-plugins-for-scroll-pages.html</id>
-    <published>2014-09-17T03:00:00+03:00</published>
-    <updated>2015-09-07T18:08:49+03:00</updated>
-    <author>
-      <name>lab2023</name>
-    </author>
-    <content type="html">&lt;p&gt;JavaScript scroll page plugins provide to like,&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;scroll&lt;/li&gt;
-&lt;li&gt;parallax&lt;/li&gt;
-&lt;li&gt;animations&lt;/li&gt;
-&lt;li&gt;rotations&lt;/li&gt;
-&lt;li&gt;drawing line or arcs &amp;hellip;etc&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;we can use this properties for our pages for entertainment pages. 
-Let&amp;rsquo; s examine js plugins ,  &lt;/p&gt;
-
-&lt;p&gt;1- &lt;a href="http://www.infinite-scroll.com/"&gt;infinite-scroll&lt;/a&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;Infinite-scroll&lt;/code&gt; provide to unpaginate and endless pages for web pages&lt;/li&gt;
-&lt;li&gt;For detail on &lt;a href="https://github.com/paulirish/infinite-scroll"&gt;GitHub page&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img alt="infinite-scroll" src="assets/images/articles/2014-09-17-javascript-plugins-for-scroll-pages/infinite-scroll-image.png" /&gt;&lt;/p&gt;
-
-&lt;p&gt;2- &lt;a href="http://www.thepetedesign.com/demos/onepage_scroll_demo.html"&gt;One-page scroll&lt;/a&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Provide scroll page with parallax on one page.&lt;/li&gt;
-&lt;li&gt;You can create game or entertainment page with this plugins&lt;/li&gt;
-&lt;li&gt;For detail on &lt;a href="https://github.com/peachananr/onepage-scroll"&gt;GitHub page&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img alt="one-page-scroll" src="assets/images/articles/2014-09-17-javascript-plugins-for-scroll-pages/one-page-scroll.png" /&gt;&lt;/p&gt;
-
-&lt;p&gt;3- &lt;a href="http://janpaepke.github.io/ScrollMagic/"&gt;Scroll Magic&lt;/a&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Provide animation for all things (text, image, video &amp;hellip;etc)&lt;/li&gt;
-&lt;li&gt;Also synchronize an animation, infinitely scrolling  page. &lt;/li&gt;
-&lt;li&gt;For detail on &lt;a href="https://github.com/janpaepke/ScrollMagic"&gt;GitHub page&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img alt="scroll-magic" src="assets/images/articles/2014-09-17-javascript-plugins-for-scroll-pages/scroll-magic.png" /&gt;&lt;/p&gt;
-
-&lt;p&gt;4- &lt;a href="http://manos.malihu.gr/jquery-custom-content-scroller/"&gt;Custom content scroller&lt;/a&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;High customizable custom scrollbar &lt;/li&gt;
-&lt;li&gt;Features include vertical, horizontal, scrolling, drawing &amp;hellip;etc&lt;/li&gt;
-&lt;li&gt;For detail on &lt;a href="https://github.com/malihu/malihu-custom-scrollbar-plugin"&gt;GitHub page&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img alt="custom-scroll" src="assets/images/articles/2014-09-17-javascript-plugins-for-scroll-pages/custom-scroll.png" /&gt;&lt;/p&gt;
-
-&lt;p&gt;5- &lt;a href="http://joehewitt.github.io/scrollability/"&gt;Scrollability&lt;/a&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Provide scrolling for mobile devices .&lt;/li&gt;
-&lt;li&gt;For detail on &lt;a href="https://github.com/joehewitt/scrollability"&gt;GitHub page&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img alt="scrollability" src="assets/images/articles/2014-09-17-javascript-plugins-for-scroll-pages/scrollability.png" /&gt;&lt;/p&gt;
-
-&lt;p&gt;6- &lt;a href="http://imakewebthings.com/jquery-waypoints/"&gt;WayPoints&lt;/a&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Provide to status of webpage like horizontal or vertical for one page or multiple pages&lt;/li&gt;
-&lt;li&gt;For detail on &lt;a href="https://github.com/imakewebthings/jquery-waypoints"&gt;GitHub page&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img alt="waypoints" src="assets/images/articles/2014-09-17-javascript-plugins-for-scroll-pages/waypoints.png" /&gt;&lt;/p&gt;
-
-&lt;p&gt;7- &lt;a href="http://scrollrevealjs.org/"&gt;Scroll Reveal&lt;/a&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Provide to scroll animation for page&lt;/li&gt;
-&lt;li&gt;For detail on &lt;a href="https://github.com/julianlloyd/scrollReveal.js"&gt;GitHub page&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img alt="scroll-reveal" src="assets/images/articles/2014-09-17-javascript-plugins-for-scroll-pages/scroll-reveal.png" /&gt;&lt;/p&gt;
-
-&lt;p&gt;8- &lt;a href="http://joelb.me/scrollpath/"&gt;Scroll Path&lt;/a&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;it offer custom scroll paths,&lt;/li&gt;
-&lt;li&gt;provide to rotations and draw line or arcs&lt;/li&gt;
-&lt;li&gt;For detail on  &lt;a href="https://github.com/JoelBesada/scrollpath"&gt;GitHub page&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img alt="scroll-path" src="assets/images/articles/2014-09-17-javascript-plugins-for-scroll-pages/scroll-path.png" /&gt;&lt;/p&gt;
-
-&lt;p&gt;9- &lt;a href="http://johnpolacek.github.io/superscrollorama/"&gt;Super Scrollorama&lt;/a&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;It offer may properties like pinning, scale, slide, bounce &amp;hellip;etc animations for web-page.&lt;/li&gt;
-&lt;li&gt;For detail on &lt;a href="https://github.com/johnpolacek/superscrollorama"&gt;GitHub page&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img alt="super scrollorama" src="assets/images/articles/2014-09-17-javascript-plugins-for-scroll-pages/super-scrollorama.png" /&gt;&lt;/p&gt;
-
-&lt;p&gt;10- &lt;a href="http://darsa.in/sly/"&gt;Sly&lt;/a&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;provide advanced one-directional scrolling with item based navigation support.&lt;/li&gt;
-&lt;li&gt;For detail on &lt;a href="https://github.com/darsain/sly"&gt;GitHub page&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img alt="sly" src="assets/images/articles/2014-09-17-javascript-plugins-for-scroll-pages/sly.png" /&gt;&lt;/p&gt;
-
-&lt;p&gt;11- &lt;a href="http://jscrollpane.kelvinluck.com/"&gt;Scroll Pane&lt;/a&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;provide to converts a browsers default scrollbars for html structure that can be easily skinned with css.&lt;/li&gt;
-&lt;li&gt;For detail on &lt;a href="https://github.com/vitch/jScrollPane"&gt;GitHub page&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img alt="scroll-pane" src="assets/images/articles/2014-09-17-javascript-plugins-for-scroll-pages/scroll-pane.png" /&gt;&lt;/p&gt;
-
-&lt;p&gt;12- &lt;a href="http://prinzhorn.github.io/skrollr/"&gt;Skrollr&lt;/a&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Stand-alone scrolling-parallax js library for mobile devices &lt;/li&gt;
-&lt;li&gt;without jquery, only javascript.&lt;/li&gt;
-&lt;li&gt;For detail on &lt;a href="https://github.com/Prinzhorn/skrollr"&gt;GitHub page&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img alt="skrollr" src="assets/images/articles/2014-09-17-javascript-plugins-for-scroll-pages/skrollr.png" /&gt;&lt;/p&gt;
-
-&lt;p&gt;13- &lt;a href="http://iscrolljs.com/"&gt;iSroll&lt;/a&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;provide to scroll with parallax, also it offers 3D scroll animations.&lt;/li&gt;
-&lt;li&gt;For detail on &lt;a href="https://github.com/cubiq/iscroll"&gt;GitHub page&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img alt="iscroll" src="assets/images/articles/2014-09-17-javascript-plugins-for-scroll-pages/iscroll.png" /&gt;&lt;/p&gt;
-
-&lt;p&gt;The best open source library for &lt;code&gt;scroll-page&lt;/code&gt; like above.&lt;/p&gt;
-
-&lt;p&gt;I hope helped to you.&lt;/p&gt;
-
-&lt;p&gt;Regards.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Diagnoscope Belirti Tarama Uygulaması ile 17-18 Eylül 2014 tarihindeki Dijital Sağlık Zirvesi’ne Konuşmacı Olarak Katılacağız</title>
-    <link rel="alternate" href="http://lab2023.com/diagnoscope-belirti-tarama-uygulamasi-ile-17-18-eylul-2014-tarihindeki-dijital-saglik-zirvesi-ne-konusmaci-olarak-katilacagiz.html"/>
-    <id>http://lab2023.com/diagnoscope-belirti-tarama-uygulamasi-ile-17-18-eylul-2014-tarihindeki-dijital-saglik-zirvesi-ne-konusmaci-olarak-katilacagiz.html</id>
-    <published>2014-09-15T03:00:00+03:00</published>
-    <updated>2015-09-07T18:08:49+03:00</updated>
-    <author>
-      <name>lab2023</name>
-    </author>
-    <content type="html">&lt;p&gt;&lt;a href="http://altinorumcek.com/sonuclar/10-altin-orumcek/"&gt;10. Altın Örümcek Web Ödülleri Sağlık Kategorisi Birinciliği&lt;/a&gt; aldığımız
- &lt;a href="http://www.diagnoscope.com/"&gt;Diagnoscope Belirti Tarama Uygulaması&lt;/a&gt; ile 17-18
-Eylül 2014 tarihinde Istanbul’da düzenlenen &lt;a href="http://www.dhsturkey.com/"&gt;Dijital Sağlık Zirvesi&lt;/a&gt;’ne katılıyoruz.&lt;/p&gt;
-
-&lt;p&gt;Etkinlikteki &lt;q&gt;Mobil Sağlık Aplikasyon Kullanımında İkna Stratejileri&lt;/q&gt; konulu panele ekibimizden
-Serdar YAĞCI konuşmacı olarak katılacaktır.&lt;/p&gt;
-
-&lt;p&gt;İlgililere duyurulur.&lt;/p&gt;
-
-&lt;p&gt;Detaylar için:
-&lt;a href="http://www.dhsturkey.com/"&gt;http://www.dhsturkey.com/&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="Diagnoscope" src="assets/images/articles/2014-09-15-diagnoscope-post/diagnoscope2.jpg" /&gt;&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Tmux'a Giriş</title>
-    <link rel="alternate" href="http://lab2023.com/tmuxa-giris.html"/>
-    <id>http://lab2023.com/tmuxa-giris.html</id>
-    <published>2014-08-11T03:00:00+03:00</published>
-    <updated>2015-09-07T18:08:49+03:00</updated>
-    <author>
-      <name>lab2023</name>
-    </author>
-    <content type="html">&lt;p&gt;&lt;strong&gt;Tmux&lt;/strong&gt;, kısaltmanın açılmış haliyle Terminal Multiplexer, bir &lt;strong&gt;uçbirim&lt;/strong&gt; (terminal) çoklayıcısıdır. Aynı pencere içerisinde birden fazla terminal oturumu açıp, istediğiniz şekilde yapılandırıp kullanabilmenizi ve mevcut oturumu kaydedip-kapatıp istediğiniz zaman devam edebilmenizi sağlar. Özellikle kaydetme ve yeniden kullanma özellikleri, Tmux’ı elzem bir araç haline getiriyor.&lt;/p&gt;
-
-&lt;p&gt;Tmux’ın kurulumu oldukça kolay. Debian/Ubuntu ve türevlerinde kurmak için:&lt;/p&gt;
-&lt;pre class="highlight shell"&gt;&lt;code&gt;sudo apt-get install tmux
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Mac OS X için:&lt;/p&gt;
-&lt;pre class="highlight shell"&gt;&lt;code&gt;brew install tmux
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Arch Linux için:&lt;/p&gt;
-&lt;pre class="highlight shell"&gt;&lt;code&gt;sudo pacman -S tmux
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Kurulum bu kadar. Kullanmaya başlamak için bir terminal oturumundan &lt;strong&gt;tmux&lt;/strong&gt; komutunu verin. Yaptıktan sonra terminalin alt kısmının değiştiğini göreceksiniz. Terminali dikey olarak bölmek için şu &lt;strong&gt;tuş kombinasyonunu&lt;/strong&gt; kullanın:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&lt;code&gt;Ctrl-B %
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Bulunduğunuz pencereyi yatay olarak bölmek için:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&lt;code&gt;Ctrl-B “
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Bu şekilde istediğiniz kadar bölme yapıp yeni oturumlar açabilirsiniz. Bulunduğunuz oturumdan bir diğerine geçmek için şunu kullanın:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&lt;code&gt;Ctrl-B (Yön Tuşları)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Mevcut oturumun penceresini yeniden boyutlandırmak için ise şu kombinasyonu kullanmanız gerekiyor:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&lt;code&gt;Ctrl-B Ctrl-(Yön Tuşları)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Tmux’ın genel kullanım şekli böyle. Örneğin bir oturumda web sunucu çalıştırıp, diğerinde log dosyalarını takip edip, diğerinde metin editörü ile düzenleme yapabilirsiniz. Tamamen ihtiyacınıza göre düzenlenebilir bir sistem oluşturmanız mümkün.&lt;/p&gt;
-
-&lt;p&gt;Şimdi ise Tmux’ın en bomba özelliklerinden bir tanesine değinmek istiyorum. Öncelikle şu komutu verin:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&lt;code&gt;Ctrl-B D
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Terminal penceresi kapandı değil mi? :) Burada yaptığımız şey, aslında çalışan bir Tmux oturumundan ayrılmaktan (&lt;strong&gt;detaching&lt;/strong&gt;) ibaret. Ama Tmux oturumu kapanmadı, biz sadece o oturumla olan bağlantımızı kestik. Şimdi şu komutu verin:&lt;/p&gt;
-&lt;pre class="highlight shell"&gt;&lt;code&gt;tmux ls
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Şuna benzer bir çıktı göreceksiniz: &lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&lt;code&gt;0: 1 windows (created Mon Aug 11 15:40:31 2014) [103x24]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Gördüğünüz çıktı, Tmux oturumlarının listesi. Çıktının başındaki numara ise, duruma göre isim de olabilir, oturum adı oluyor ve oturumlara tekrardan bağlanmak için bunu kullanıyoruz. Tekrardan bağlanmak için şu komutu verin:&lt;/p&gt;
-&lt;pre class="highlight shell"&gt;&lt;code&gt;tmux attach -t 0
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Eğer bir sorun olmazsa, az önce kapattığımız terminal penceresinin tekrardan geri gelmesi lazım. İşin güzel yanı, bu oturumlardan istediğiniz kadar yapıp, birinden ayrılıp diğerine geçmeniz mümkün. Tabi oturumlar, siz Tmux oturumunu veya tek tek terminalleri kapatmadığınız sürece olduğu gibi kalıyorlar. Ekstra olarak bilgisayar kapanınca veya yeniden başlayınca da oturumlar gidiyor ama bunları da kaydetmek mümkün.&lt;/p&gt;
-
-&lt;p&gt;Bunun dışında güzel bir özellik de, Tmux oturumlarını en başta belirli bir isimle açabiliyorsunuz. Örnek olarak:&lt;/p&gt;
-&lt;pre class="highlight shell"&gt;&lt;code&gt;tmux new -s rails-projesi
-
-&lt;span class="c"&gt;# Ctrl-B D&lt;/span&gt;
-
-tmux new -s django-projesi
-
-&lt;span class="c"&gt;# Ctrl-B D&lt;/span&gt;
-
-tmux ls
-
-&lt;span class="c"&gt;# Çıktı&lt;/span&gt;
-django-projesi: 1 windows &lt;span class="o"&gt;(&lt;/span&gt;created Mon Aug 11 16:03:13 2014&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;103x24]
-rails-projesi: 1 windows &lt;span class="o"&gt;(&lt;/span&gt;created Mon Aug 11 16:02:52 2014&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;103x24]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Böylelikle farklı projeleriniz arasında rahatça geçiş yapıp, geliştirme ortamlarınızı korumanız mümkün. Tmux’la ilgili daha fazla detay ve örnek için:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="https://gist.github.com/MohamedAlaa/2961058"&gt;https://gist.github.com/MohamedAlaa/2961058&lt;/a&gt;
-&lt;a href="http://cheat.errtheblog.com/s/tmux"&gt;http://cheat.errtheblog.com/s/tmux&lt;/a&gt;&lt;/p&gt;
 </content>
   </entry>
 </feed>
