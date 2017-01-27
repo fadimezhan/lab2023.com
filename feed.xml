@@ -5,13 +5,241 @@
   <id>http://lab2023.com/</id>
   <link href="http://lab2023.com/"/>
   <link href="http://lab2023.com/feed.xml" rel="self"/>
-  <updated>2015-12-22T02:00:00+02:00</updated>
+  <updated>2016-08-04T03:00:00+03:00</updated>
+  <entry>
+    <title>Ruby on Rails Uygulamasının Heroku Servisinde Çoklu Ortamda(Staging, Production) Yayınlanması</title>
+    <link rel="alternate" href="http://lab2023.com/ruby-on-rails-uygulamasinin-heroku-servisinde-coklu-ortamda-yayinlanmasi.html"/>
+    <id>http://lab2023.com/ruby-on-rails-uygulamasinin-heroku-servisinde-coklu-ortamda-yayinlanmasi.html</id>
+    <published>2016-08-04T03:00:00+03:00</published>
+    <updated>2017-01-27T13:59:35+02:00</updated>
+    <author>
+      <name>lab2023</name>
+    </author>
+    <content type="html">&lt;p&gt;Merhaba,&lt;/p&gt;
+
+&lt;p&gt;Sizlere daha önceden rails uygulamanın yayına alınması yöntemlerinden biri olan kendi ubuntu sunucunuzda uygulamanın yayınlanması işlemini anlatmıştım. İlgili yazıya şu &lt;a href="http://lab2023.com/ruby-on-rails-uygulamasinin-capistrano-3-ile-kolayca-yayinlanmasi.html"&gt;linkten&lt;/a&gt; ulaşabilirsiniz.&lt;/p&gt;
+
+&lt;p&gt;Bu yazıda ise uygulamanın &lt;a href="http://heroku.com" target="_blank"&gt;Heroku&lt;/a&gt; servisi üzerinde, çoklu ortamlar(Staging, Production) için ayrı ayrı yayına alınması süreçlerinden ve her bir ortam için farklı git branch&amp;#39;lerinin kullanılması olayından bahsedeceğim.&lt;/p&gt;
+
+&lt;p&gt;Heroku üzerinde yayına alacağımız uygulamanın boş bir uygulama olması yerine bir kaç işlem yapabildiğimiz bir uygulama olması için &lt;a href="https://github.com/lab2023/cybele/" target="_blank"&gt;Cybele&lt;/a&gt; gem&amp;#39;ini kullanarak bir uygulama oluşturacağım. Kullandığım cybele versiyonu ise 1.9.2&amp;#39;dir.&lt;/p&gt;
+
+&lt;p&gt;Proje oluşturma adımı ile başlayacak olursak;&lt;/p&gt;
+
+&lt;p&gt;Terminalimizden cybele proje oluşturma komutunu çalıştırıyoruz;&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;    cybele blog
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Daha sonrasında ise oluşturulan projemizin README.md dosyasında yeralan uygulama çalıştırılmadan önce yapılması gerekenleri yapıyoruz.
+Bu işlemler ise;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Proje dizininde yeralan .env.local değişkenlerini ayarlıyoruz.
+Bu ayarlar içinde e-posta göndermek için kullandığımız SMTP ayarları olan aşağıda listelenen ayarlar bulunmaktadır.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;    &lt;span class="no"&gt;SMTP_PASSWORD&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;your_password&lt;/span&gt;
+    &lt;span class="no"&gt;SMTP_USER_NAME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;your_user_name&lt;/span&gt;
+    &lt;span class="no"&gt;SMTP_ADDRESS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;smtp&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;sendgrid&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;net&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Mail servisi olarak &lt;a href="https://sendgrid.com" target="_blank"&gt;SendGrid&lt;/a&gt; servisi size ücretsiz olarak aylık 12000 e-posta sağlamaktadır. Hobi projeleriniz için bu servisi kullanabilirsiniz. &lt;a href="https://app.sendgrid.com/settings/credentials" target="_blank"&gt;Settings-&amp;gt;Credentials&lt;/a&gt; sayfasından gerekli username ve password&amp;#39;u alabilirsiniz.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Hataları izleyebilmek için kullnadığımız Rollbar servisinde aldığımız token&amp;#39;ı config/initializers/rollbar.rb dosyasında yer alan your_token yazan string ile değiştiriyoruz. Rollbar servisi üzerinde projenizi oluşturduğunuzda size doğrudan gerekli token&amp;#39;ı, yönergeleri ile birlikte verecektir.&lt;/li&gt;
+&lt;li&gt;User ve Admin model&amp;#39;leri için db/migrate/*.rb  dizininde yeralan migration dosyalarındaki is_active alanının varsayılan değerini true olarak ayarlıyoruz.&lt;/li&gt;
+&lt;li&gt;Projenin config/settings.yml dosyasında yeralan username ve password alanlarını değiştiriyoruz.&lt;/li&gt;
+&lt;li&gt;Son olarakta projenin public dizini için VERSION.txt dosyası oluşturmak için şu komutu çalıştırıyoruz;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;    ln -s ../VERSION.txt VERSION.txt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Projemizde bu ayarları yaptıktan sonra, uygulamayı çalıştırma işlemlerine geçiyoruz. Bu adımda ise şu komutları sırasıyla çalıştırıyoruz.&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;    bundle
+    redis-server
+    rake sidekiq:start
+    rake db:create
+    rake db:migrate
+    rake dev:seed
+    rails server
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Çalışan uygulamanın ekran görüntüsü aşağıdaki resimdeki gibi elde edilecektir.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="#"&gt;&lt;img alt="cybele-ile-kurulmus-uygulama" src="assets/images/articles/2016-08-04-ruby-on-rails-uygulamasinin-heroku-servisinde-coklu-ortamda-yayinlanmasi/uygulama.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Ayrıca localhost:3000/hq url&amp;#39;linden de uygulamanın yönetici bölümüne erişebilirsiniz. Yönetici giriş bilgileri db/seeds.rb dosyasında yer almaktadır.&lt;/p&gt;
+
+&lt;p&gt;Buraya kadar normal olarak projemizi oluşturmuş olduk. Şimdi çoklu ortamlarda kullanmak için git&amp;#39;in efektif bir dallanma eklentisi olan &lt;a href="http://danielkummer.github.io/git-flow-cheatsheet/" target="_blank"&gt;git-flow&lt;/a&gt; ile ilgili ayarlara.
+Projemizin kök dizininde tanımlamış olduğumuz git yanına git-flow&amp;#39;u tanımlıyoruz. Git&amp;#39;in master branchinde iken şu komut ile git-flow&amp;#39;u aktif hale getiriyoruz.&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;    git flow init
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Bu komut sayesinde release kodlarımızın yani production ortamı için kullanılacak kodlarımız master branch&amp;#39;inde, development kodlarımız yani staging sunucusunda yayınlayacağımız kodlar develop branch&amp;#39;inde tutulacaktır.
+Git-flow tanımlama işleminin ardından artık heroku üzerinde uygulama oluşturma bölümüne geçiyoruz.
+Heroku üzerinde heabımızı oluşturup giriş yaptıktan sonra yeni bir uygulama oluşturuyoruz.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="#"&gt;&lt;img alt="heroku-uzerinde-uygulama-olusturma" src="assets/images/articles/2016-08-04-ruby-on-rails-uygulamasinin-heroku-servisinde-coklu-ortamda-yayinlanmasi/heroku-uygulama-olusturma.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Oluşturduğumuz uygulamannın ismi eşsiz olmalıdır. Heroku size alt alanadı sağladığı için aynı isimli uygulamara izin vermemektedir.
+Biz uygulama ismi olarak lab2023-blog-sample tercih ettik. Bu uygulama production ortamı için kullanacağımız kodları barındıracaktır.
+Yukarıdaki adımları izleyerekten tekrar bir uygulama daha oluşturuyoruz. Bu uygulama ise staging ortamımız olacak ve develop branch&amp;#39;indeki kodlarımızı barındıracağız.
+Staging ortamı için uygulama ismi olarak staging-lab2023-blog-sample&amp;#39;ı tercih ettik.&lt;/p&gt;
+
+&lt;p&gt;Production ve Staging uygulamalarımızı oluşturduktan sonra bu iki uygulamaya da uygulamnaın detaylar sayfasında bulunan Resources sekmesinden Heroku Postgres::Database, Logentries ve Redis To Go elementlerini şekilde ki gibi ekliyoruz.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="#"&gt;&lt;img alt="heroku-uzerinde-uygulamaya-element-ekleme" src="assets/images/articles/2016-08-04-ruby-on-rails-uygulamasinin-heroku-servisinde-coklu-ortamda-yayinlanmasi/heroku-uygulamaya-element-ekleme.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Heroku Postgres::Database elementi PostgreSQL veritabanı için gereklidir.
+Logentries elementi uygulama logları portal üzerinden analiz edebilmemiz için gereklidir.
+Redis To Go elementi uygulama içinde kullandığımız Sidekiq arka plan işlerini gerçekleştirebilmemiz için gereklidir.&lt;/p&gt;
+
+&lt;p&gt;Uygulamamız için gerekli elementleri ekledikten sonra sıra geldi heroku uygulamalarımızın git ile ilgili ayarlarını yapma işlemine. Bu işlem için Production uygulamamız olan lab2023-blog-sample uygulamasının Detaylar sayfasından Settings sekmesine geliyoruz. Bu sayfada uygulama ile ilgili bir çok detayı bulabilirsiniz. Info bölümde yer alan Git URL alanındaki linki kopyalıyoruz.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="#"&gt;&lt;img alt="heroku-uzerinde-uygulama-git-url" src="assets/images/articles/2016-08-04-ruby-on-rails-uygulamasinin-heroku-servisinde-coklu-ortamda-yayinlanmasi/heroku-uzerinde-uygulama-git-url.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Bu kopyaladığımız git url&amp;#39;i terminalden proje dizinimize gelerek, aşağıdaki komutu kullanarak ekliyoruz.&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;    git remote add production https://git.heroku.com/lab2023-blog-sample.git
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Git komutlarında kullancağınız remote.production.url&amp;#39;in ayarlandığını görmek için, şu komutu kullanabilirsiniz.&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;    git config --list
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Eğer yanlış bir url eklemesi yaptıysanız şu komutu kullanarak aklediğiniz url&amp;#39;i kaldırabilirsiniz.&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;    git remote remove production
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Bu uyguladığımız adımlardan terminalden url eklemeye kadar olan adımları aynı şekilde staging uygulaması olan staging-lab2023-blog-sample için de yapıyoruz.
+Terminalden git url&amp;#39;i ekleme bölümünde ise şu şekilde ki komutu çalıştırıyoruz.&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;    git remote add staging https://git.heroku.com/staging-lab2023-blog-sample.git
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Bu işlemlerden sonra artık uygulamamızın heroku urllerinide eklenmiş olduk.&lt;/p&gt;
+
+&lt;p&gt;Şimdi staging uygulamamıza kodları gönderme kısmına gelelim.
+Bu işlemi yapabilmek için heroku uygulamalarına erişimimiz olması gerekmektedir. Heroku sunucularına, git ile uygulama kodlarını gönderebilmek için heroku komutları ile login olmalıyız. Heroku komutlarının kullanılabilmesi için ise &lt;a href="https://toolbelt.heroku.com" target="_blank"&gt;Heroku Toolbelt&lt;/a&gt; kurulumunu yapmalısınız.&lt;/p&gt;
+
+&lt;p&gt;Kurulum yapıldıktan sonra şu komut ile heroku hesabınıza giriş yapabilirsiniz;&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;    heroku login
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Giriş yaptıktan sonra staging uygulmamızı yayına almak için şu komutu kullanıyoruz;&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;    git push staging develop:master
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Bu komutta develop:master ile yapılmak istenen develop branch&amp;#39;indeki kodlar heroku üzerinde master branchine aktarılması işlemidir. Heroku uygulamaları master branch&amp;#39;te çalışmaktadır. Bu komutu çalıştırdıktan sonra uygulamamız artık heroku sunucusuna gönderilmiştir, şekilde gördüğünüz gibi.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="#"&gt;&lt;img alt="heroku-uzerinde-uygulama-calismasi" src="assets/images/articles/2016-08-04-ruby-on-rails-uygulamasinin-heroku-servisinde-coklu-ortamda-yayinlanmasi/heroku-uzerinde-uygulama-calismasi.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Proje dizinimizde bulunan Procfile sayesinde bir web bir de worker dynosu çalıştırılabilir duruma gelmiştir. Web dynosu varsayılan olarak direk çalıştırılmıştır. Worker&amp;#39;ı ise uygulama detay sayfasında Resources sekmesinde bulunan sayfadan açmamız gerekmektedir. Worker&amp;#39;ı da çalıştırdıktan sonra uygulamamızın son hali şekildeki gibidir.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="#"&gt;&lt;img alt="heroku-uzerinde-uygulama-calismasi-2" src="assets/images/articles/2016-08-04-ruby-on-rails-uygulamasinin-heroku-servisinde-coklu-ortamda-yayinlanmasi/heroku-uzerinde-uygulama-calismasi-2.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Worker&amp;#39;larımızın sidekiq ayarları config/sidekiq.yml dosyasında bulunmaktadır. Burada production ortamı için concurrency: 25 olarak ayarlanmıştır. Redis To Go ücretsiz paketi düşük özelliklere sahip olduğu için 25 thread&amp;#39;e izin vermemektedir. Bunu 3 olarak ayarlarsak production ortamı içinde problem yaşamadan uygulamamızı yayınlamış oluruz.&lt;/p&gt;
+
+&lt;p&gt;Uygulamamızı sunucuya gönderdik ve web ile worker dynolarını çalışır hale getirdik. Şimdi heroku üzerinde veritabanı için migration dosyalarını koşma ve seed rake&amp;#39;lerini çalıştırma işlemine geçiyoruz.&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;    heroku run rake db:migrate --app staging-lab2023-blog-sample
+    heroku run rake dev:seed --app staging-lab2023-blog-sample
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Heroku uygulamasında rails console&amp;#39;a erişmek için gerekli komut;&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;    heroku run rake console --app staging-lab2023-blog-sample
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Bu işlemlerden sonra .env.local dosyamızda tutduğumuz ENV değişkenlerinin heroku üzerinde ayarlanması işlemine geçeçek olursak, şu komut ile bu değişkenleri ayarlayabiliriz.&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;    heroku config:set &lt;span class="nv"&gt;SMTP_ADDRESS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;smtp.sendgrid.net --app staging-lab2023-blog-sample
+    heroku config:set &lt;span class="nv"&gt;SSMTP_USER_NAME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;your_user_name --app staging-lab2023-blog-sample
+    heroku config:set &lt;span class="nv"&gt;SMTP_PASSWORD&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;your_password --app staging-lab2023-blog-sample
+    heroku config:set &lt;span class="nv"&gt;ROOT_PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;https://staging-lab2023-blog-sample.herokuapp.com --app staging-lab2023-blog-sample
+    heroku config:set &lt;span class="nv"&gt;BASIC_AUTH_IS_ACTIVE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;yes --app staging-lab2023-blog-sample
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Ayarlarınızı bu komutlar ile ayarladıktan sonra heroku üzerinde uygulamanın ayarlar sayfasında Config Variables bölümünde bu değişkenleri görebilirsiniz, ayrıca portal üzerinden de bu değişkenleri değiştirebilirsiniz. Herokuya rails uygulaması gönderildiğinde RAILS_ENV varsayılan olarak production olarak ayarlanıyor. RAILS_ENV değerinide staging ile değiştirebilirsiniz.&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;    heroku config:set &lt;span class="nv"&gt;RAILS_ENV&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;staging --app staging-lab2023-blog-sample
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Şu komut ile de heroku üzerindeki değişkenlerinizi listeleyebilirsiniz;&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;    heroku config --app staging-lab2023-blog-sample
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Şu komut ile çalışan dynolarınızı listeleyebilirsiniz;&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;    heroku ps --app staging-lab2023-blog-sample
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Şu komut ile dynolarınızı(web, worker) yeniden başlatabilirsiniz;&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;    heroku ps:restart --app staging-lab2023-blog-sample
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Komut bilgilerinin ardından production ortamında uygulamamızı yayınlama işemine gelecek olursak; Şu anda master branch&amp;#39;imizde herhangi bir release kodu bulunmamakta. Git-flow&amp;#39;dan yararlanarak v1.0.0 etiketi ile bir versiyon yayınlayalım.
+Bu işlem için gerekli olan komutlar şunlardır;&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;    git flow release start v1.0.0
+    git flow release finish v1.0.0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Git-flow sayesinde çıkardığımız ilk release&amp;#39;i lab2023-blog-sample heroku uygulamamıza göndermek için gerekli komut;&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;    git push production master
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Uygulamamızı production ortamına gönderdik sonra aynı staging ortamında olduğu gibi diğer komutları uygulamaya özel olarak çalıştırıyoruz.&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;    heroku run rake db:migrate --app lab2023-blog-sample
+    heroku run rake dev:seed --app lab2023-blog-sample
+    heroku config:set &lt;span class="nv"&gt;SMTP_ADDRESS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;smtp.sendgrid.net --app lab2023-blog-sample
+    heroku config:set &lt;span class="nv"&gt;SSMTP_USER_NAME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;your_user_name --app lab2023-blog-sample
+    heroku config:set &lt;span class="nv"&gt;SMTP_PASSWORD&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;your_password --app lab2023-blog-sample
+    heroku config:set &lt;span class="nv"&gt;ROOT_PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;https://lab2023-blog-sample.herokuapp.com --app lab2023-blog-sample
+    heroku config:set &lt;span class="nv"&gt;BASIC_AUTH_IS_ACTIVE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;no --app lab2023-blog-sample
+    &lt;span class="c"&gt;# Tek seferde bütün ayarları yapmak isterseniz şu komutu kullanabilirsiniz&lt;/span&gt;
+    heroku config:set &lt;span class="nv"&gt;SMTP_ADDRESS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;smtp.sendgrid.net &lt;span class="nv"&gt;SSMTP_USER_NAME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;your_user_name &lt;span class="nv"&gt;SMTP_PASSWORD&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;your_password &lt;span class="nv"&gt;ROOT_PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;https://lab2023-blog-sample.herokuapp.com &lt;span class="nv"&gt;BASIC_AUTH_IS_ACTIVE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;no --app lab2023-blog-sample
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Uygulamamız da ilk kez bu komutları çalıştırdıktan sonra yeni değişiklikleri sunucuya göndermek için kullanacağımız komutlar;&lt;/p&gt;
+
+&lt;p&gt;Staging ortamı için;&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;    git push staging develop:master
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Production ortamı için;&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;    git push production master
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Eğer yeni migration dosyalarınız veya çalıştırmanız gereken özel rake&amp;#39;ler varsa yukarıdaki komutlardaki gibi uygulamayı belirterek çalıştırmanız yeterlidir.&lt;/p&gt;
+
+&lt;p&gt;Gemfile dosyanızda özel github repolarınız varsa bu repolara heroku uygulamanızın erişebilmesi için herokuya özel oluştruduğunuz ssh keylerinizi şu komut ile herokuya ekleyebilirsiniz;&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;    heroku keys:add ~/.ssh/heroku_id_rsa.pub
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Sık ihtiyac duyabileceğiniz bazı komutların listesi aşğıdaki gibidir;&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;    &lt;span class="c"&gt;# Web dynonusunu yeniden başlatır&lt;/span&gt;
+    heroku ps:restart web
+    &lt;span class="c"&gt;# Worker dynonusunu yeniden başlatır&lt;/span&gt;
+    heroku restart worker
+    &lt;span class="c"&gt;# Yapılması gereken ağır işleri farklı dyno büyüklüklerinde çalıştırmak isterseniz&lt;/span&gt;
+    heroku run --size&lt;span class="o"&gt;=&lt;/span&gt;standard-2x rake heavy:job
+    heroku run --size&lt;span class="o"&gt;=&lt;/span&gt;performance-l rake heavy:job
+    &lt;span class="c"&gt;# Uygulama loglarını terminalden izleyebilmeniz için&lt;/span&gt;
+    heroku logs
+    heroku logs --tail
+    heroku logs --source app --tail
+    &lt;span class="c"&gt;# Uygulamanın veritabanı bilgilerini listelemek isterseniz&lt;/span&gt;
+    heroku pg
+    &lt;span class="c"&gt;# Uygulamanın veritabanı yedek alma zaman planı&lt;/span&gt;
+    heroku pg:backups schedules
+    &lt;span class="c"&gt;# Uygulamanın veritabanın düzenli olarak yedek almasını istiyorsanız&lt;/span&gt;
+    heroku pg:backups schedule --at &lt;span class="s1"&gt;'04:00 Europe/Istanbul'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Örnek uygulamaya şu &lt;a href="https://lab2023-blog-sample.herokuapp.com/" target="_blank"&gt;linkten&lt;/a&gt; ulaşabilirsiniz.
+Örnek kaynak kodlar ise şu &lt;a href="https://github.com/ismailakbudak/lab2023-blog-sample" target="_blank"&gt;linkten&lt;/a&gt; ulaşabilirsiniz.&lt;/p&gt;
+
+&lt;p&gt;Umarım faydalı bir yazı olmuştur.
+İyi çalışmalar..&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>Bulutfon Ruby SDK</title>
     <link rel="alternate" href="http://lab2023.com/bulutfon-ruby-sdk.html"/>
     <id>http://lab2023.com/bulutfon-ruby-sdk.html</id>
     <published>2015-12-22T02:00:00+02:00</published>
-    <updated>2016-07-01T16:07:24+03:00</updated>
+    <updated>2017-01-26T14:07:26+02:00</updated>
     <author>
       <name>lab2023</name>
     </author>
@@ -362,7 +590,7 @@ oluşturma gibi birçok özelliği hızlı bir şekilde uygulmalarınıza entegr
     <link rel="alternate" href="http://lab2023.com/ruby-on-rails-uygulamasinin-capistrano-3-ile-kolayca-yayinlanmasi.html"/>
     <id>http://lab2023.com/ruby-on-rails-uygulamasinin-capistrano-3-ile-kolayca-yayinlanmasi.html</id>
     <published>2015-12-21T02:00:00+02:00</published>
-    <updated>2016-07-01T16:18:27+03:00</updated>
+    <updated>2017-01-26T14:07:26+02:00</updated>
     <author>
       <name>lab2023</name>
     </author>
@@ -651,7 +879,7 @@ Kolay gelsin.&lt;/p&gt;
     <link rel="alternate" href="http://lab2023.com/deploy-ruby-on-rails-application-quickly-with-capistrano.html"/>
     <id>http://lab2023.com/deploy-ruby-on-rails-application-quickly-with-capistrano.html</id>
     <published>2015-12-21T02:00:00+02:00</published>
-    <updated>2016-07-01T16:18:27+03:00</updated>
+    <updated>2017-01-26T14:07:26+02:00</updated>
     <author>
       <name>lab2023</name>
     </author>
@@ -939,7 +1167,7 @@ Do deploy to production server.
     <link rel="alternate" href="http://lab2023.com/ikinci-rails-girls-denizli-etkinligi.html"/>
     <id>http://lab2023.com/ikinci-rails-girls-denizli-etkinligi.html</id>
     <published>2015-12-02T02:00:00+02:00</published>
-    <updated>2016-07-01T16:07:24+03:00</updated>
+    <updated>2017-01-26T14:07:26+02:00</updated>
     <author>
       <name>lab2023</name>
     </author>
@@ -1410,7 +1638,7 @@ After create your account, open your terminal,&lt;/p&gt;
     <link rel="alternate" href="http://lab2023.com/how-we-created-bulutfon-animation.html"/>
     <id>http://lab2023.com/how-we-created-bulutfon-animation.html</id>
     <published>2014-12-17T02:00:00+02:00</published>
-    <updated>2016-07-01T16:07:24+03:00</updated>
+    <updated>2017-01-26T14:07:26+02:00</updated>
     <author>
       <name>lab2023</name>
     </author>
@@ -1503,7 +1731,7 @@ Here is a very short review with the main principles of making animation:&lt;/p&
     <link rel="alternate" href="http://lab2023.com/how-we-created-bulutfon-animation-russian.html"/>
     <id>http://lab2023.com/how-we-created-bulutfon-animation-russian.html</id>
     <published>2014-12-17T02:00:00+02:00</published>
-    <updated>2016-07-01T16:07:24+03:00</updated>
+    <updated>2017-01-26T14:07:26+02:00</updated>
     <author>
       <name>lab2023</name>
     </author>
@@ -1595,7 +1823,7 @@ Here is a very short review with the main principles of making animation:&lt;/p&
     <link rel="alternate" href="http://lab2023.com/como-creamos-la-animacion-para-bulutfon.html"/>
     <id>http://lab2023.com/como-creamos-la-animacion-para-bulutfon.html</id>
     <published>2014-12-17T02:00:00+02:00</published>
-    <updated>2016-07-01T16:07:24+03:00</updated>
+    <updated>2017-01-26T14:07:26+02:00</updated>
     <author>
       <name>lab2023</name>
     </author>
@@ -1688,7 +1916,7 @@ Aqui un pequeño resumen con los principios básicos para realizar animación di
     <link rel="alternate" href="http://lab2023.com/bulutfon-animasyonunu-nasil-hazirladik.html"/>
     <id>http://lab2023.com/bulutfon-animasyonunu-nasil-hazirladik.html</id>
     <published>2014-12-17T02:00:00+02:00</published>
-    <updated>2016-07-01T16:07:24+03:00</updated>
+    <updated>2017-01-26T14:07:26+02:00</updated>
     <author>
       <name>lab2023</name>
     </author>
@@ -1996,72 +2224,6 @@ yukarıdaki komutları koşup rubocop&amp;#39;u rails projenize entegre edebilrs
 &lt;p&gt;Komutunu koşmanız size daha detaylı bir liste verecektir.&lt;/p&gt;
 
 &lt;p&gt;Detaylı bilgi için &lt;a href="https://github.com/bbatsov/rubocop"&gt;Rubocop Github Sayfası&lt;/a&gt; yardımcı olacaktır.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>How to Integrate Rubocop to Rails Project ?</title>
-    <link rel="alternate" href="http://lab2023.com/how-to-integrate-rubocop-to-rails-project.html"/>
-    <id>http://lab2023.com/how-to-integrate-rubocop-to-rails-project.html</id>
-    <published>2014-11-21T02:00:00+02:00</published>
-    <updated>2015-11-24T23:26:50+02:00</updated>
-    <author>
-      <name>lab2023</name>
-    </author>
-    <content type="html">&lt;p&gt;You have a rails project and you are coding randomly. But you&amp;rsquo;re thinking for your code quality shouldn&amp;rsquo;t compromise, in this step
-&lt;code&gt;rubocop&lt;/code&gt; helped to you.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Rubocop&lt;/strong&gt; is code analyzer tool, scanning your codes according to &lt;a href="https://github.com/bbatsov/ruby-style-guide"&gt;ruby style guide&lt;/a&gt; and 
-find bugs like typo or sometimes fix your bugs. With &lt;code&gt;rubocop&lt;/code&gt;, your code quality is increase, you start coding more clean and coding like professional.&lt;/p&gt;
-
-&lt;p&gt;Before setup and using &lt;code&gt;rubocop&lt;/code&gt;, you should be careful for integrate your project with &lt;code&gt;git&lt;/code&gt; or derivatives. Then you should make below step by step.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Open &lt;code&gt;Gemfile&lt;/code&gt; in your rails project, add below &lt;code&gt;gems&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;group&lt;/span&gt; &lt;span class="ss"&gt;:development&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
-  &lt;span class="n"&gt;gem&lt;/span&gt; &lt;span class="s1"&gt;'rubocop'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;require: &lt;/span&gt;&lt;span class="kp"&gt;false&lt;/span&gt;
-  &lt;span class="n"&gt;gem&lt;/span&gt; &lt;span class="s1"&gt;'haml-lint'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;require: &lt;/span&gt;&lt;span class="kp"&gt;false&lt;/span&gt;
-&lt;span class="k"&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;After running &lt;code&gt;bundle&lt;/code&gt; command, for see working logic of the rubocop, you can run below command,&lt;/p&gt;
-&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;rubocop -RD
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Let&amp;rsquo;s continue to integration steps, you should create &lt;code&gt;.rubocop.yml&lt;/code&gt; file on root of your rails project. Then running below commands,&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;rubocop --auto-gen-config
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;When you running above commands, rubocop created &lt;code&gt;.rubocop-todo.yml&lt;/code&gt; file automatically on your root of rails project. &lt;code&gt;.rubocop-todo.yml&lt;/code&gt; offer a list including
-bug checks and counts. In addition if you use &lt;code&gt;ubuntu&lt;/code&gt; desktop, you should run below command.&lt;/p&gt;
-&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;rubocop --config .rubocop_todo.yml
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;After that we created &lt;code&gt;.rubocop.yml&lt;/code&gt; file. In this file, we can write which file you want to include or exclude with below code&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre class="highlight yaml"&gt;&lt;code&gt;&lt;span class="s"&gt;AllCops&lt;/span&gt;&lt;span class="pi"&gt;:&lt;/span&gt;
-  &lt;span class="s"&gt;Include&lt;/span&gt;&lt;span class="pi"&gt;:&lt;/span&gt;
-    &lt;span class="pi"&gt;-&lt;/span&gt; &lt;span class="s"&gt;Rakefile&lt;/span&gt;
-    &lt;span class="pi"&gt;-&lt;/span&gt; &lt;span class="s"&gt;config.ru&lt;/span&gt;
-  &lt;span class="s"&gt;Exclude&lt;/span&gt;&lt;span class="pi"&gt;:&lt;/span&gt;
-    &lt;span class="pi"&gt;-&lt;/span&gt; &lt;span class="s"&gt;db/schema.rb&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;But if you don&amp;rsquo;t want to make include or exclude, you don&amp;rsquo;t need to create &lt;code&gt;.rubocop.yml&lt;/code&gt; files. Without create &lt;code&gt;.rubocop.yml&lt;/code&gt; file, you can run above commands. 
-Thus you can integrate &lt;code&gt;rubocop&lt;/code&gt; to your rails project.&lt;/p&gt;
-
-&lt;p&gt;After you integrate &lt;code&gt;rubocop&lt;/code&gt; to your project, you should run&lt;/p&gt;
-&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;rubocop
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;instead of above command, if you run below command, rubocop give you details list for your bugs and errors.&lt;/p&gt;
-&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;rubocop -R 
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;For detail you can visit &lt;a href="https://github.com/bbatsov/rubocop"&gt;Rubocop Github Page&lt;/a&gt;. &lt;/p&gt;
 </content>
   </entry>
 </feed>
